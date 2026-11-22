@@ -13,7 +13,7 @@
 
 > 原文（feature-visualization）：Even if you carefully tune learning rate, you'll get noise.
 
-高頻圖樣為什麼形成，作者說還不完全了解；看起來重要的一部分是有步幅的卷積和池化，它們會在梯度裡造成高頻圖樣：反向傳播經過每一個有步幅的卷積或池化，梯度大小都會出現棋盤狀圖樣（[Feature Visualization](../sources/feature-visualization.md) § The Enemy of Feature Visualization）。步幅見[填充與步幅](padding-and-stride.md)，池化見[池化](pooling.md)。
+高頻圖樣為什麼形成，作者說還不完全了解；看起來重要的一部分是有步幅的卷積和池化，它們會在梯度裡造成高頻圖樣：反向傳播經過每一個有步幅的卷積或池化，梯度大小都會出現棋盤狀假影（[Feature Visualization](../sources/feature-visualization.md) § The Enemy of Feature Visualization）。步幅見[填充與步幅](padding-and-stride.md)，池化見[池化](pooling.md)，假影怎麼形成見[棋盤狀假影](../concepts/checkerboard-artifacts.md)。
 
 > 原文（feature-visualization）：Each strided convolution or pooling creates checkerboard patterns in the gradient magnitudes when we backprop through it.
 
@@ -34,6 +34,7 @@
 
 1. 每一步最佳化之前，隨機抖動、旋轉或縮放影像（[Feature Visualization](../sources/feature-visualization.md) § Three Families of Regularization）。
 2. 對影像來說少量變換似乎就很有效，和比較一般的高頻正則化一起用時尤其明顯（[Feature Visualization](../sources/feature-visualization.md) § Three Families of Regularization）。
+3. Deconvolution and Checkerboard Artifacts 發現，DeepDream 在不同位移上最佳化的抖動，能抵消一部分梯度裡的棋盤狀假影，見[棋盤狀假影](../concepts/checkerboard-artifacts.md)（[Deconvolution and Checkerboard Artifacts](../sources/deconv-checkerboard.md) § Artifacts in Gradients）。
 
 > 原文（feature-visualization）：Concretely, this means that we stochastically jitter, rotate or scale the image before applying the optimization step.
 
@@ -143,3 +144,4 @@
 - [特徵視覺化](feature-visualization.md)
 - [填充與步幅](padding-and-stride.md)
 - [池化](pooling.md)
+- [棋盤狀假影](../concepts/checkerboard-artifacts.md)

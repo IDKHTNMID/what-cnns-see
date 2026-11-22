@@ -66,3 +66,22 @@
 - 截圖程式（f748d34）：Distill 後半的圖原本會截成正文或空白。原因是捲到圖時上方的圖片才載入，版面往下推了 585px，程式還用舊座標截。改成只截視窗內、等圖裡的圖片載完、截圖前後位置一樣才保留；測試從 29 個增加到 38 個。單張偶爾仍會逾時，重跑即可。
 - 檢查：第 1 輪 6 個問題（「圖見原文」的連結文字有 §，被當成出處解析），第 2 輪通過。之後逐句對原文修了 1 處推論過頭的說法（「任何方向都可以當最佳化目標」改成「方向也可以」），再跑一次也通過。
 - 修正（同日）：通道頁「隨機方向常常也看得懂」補回「但比例低於基底方向」；方法頁、來源頁和名詞表的「一次最佳化好幾張」「同一批」改成原文的「多個例子」；激活空間頁 3 個「圖見原文」連結標明各自是哪張圖；多樣性例子的圖說「上面／下面」改成「第一張／第二張」。檢查再跑一次，通過。
+
+## [2026-11-23] ingest | Deconvolution and Checkerboard Artifacts
+
+- 新增：`sources/deconv-checkerboard.md`；方法頁 `upsampling`；概念頁 `checkerboard-artifacts`。
+- 更新：`methods/padding-and-stride.md`（一般有步幅的卷積可能也有問題、GAN 鑑別器、轉置卷積的不均勻重疊）、`methods/convolution-operation.md`（卷積層的反向傳播就是轉置卷積）、`methods/pooling.md`（另一種說法，連到說法不一致段）、`methods/regularization-and-preconditioning.md`（DeepDream 的抖動）、`sources/feature-visualization.md`（相關頁面）、`index.md`（概念、方法、來源各 1 頁）、`glossary.md`（新增 17 條，共 70 條；對抗樣本加別名）。
+- 名詞決定（使用者已確認）：
+  - 轉置卷積當主名詞，反卷積（deconvolution）是別名。這篇為了簡短用 deconvolution，其他 5 篇都沒用到，依 PyTorch `nn.ConvTranspose2d`、TensorFlow `Conv2DTranspose` 的 API 名稱。
+  - 棋盤狀假影當主名詞，artifacts 譯成假影；FV 那批頁面的「棋盤狀圖樣」改成棋盤狀假影（padding-and-stride、pooling、regularization-and-preconditioning 各 1 處），棋盤狀圖樣收為別名。
+  - resize-convolution 保留英文。
+  - 新譯名：上採樣、不均勻重疊、最近鄰插值、雙線性插值、子像素卷積、超解析度、生成對抗網路（GAN）、生成器、鑑別器、假影。
+  - FV 補確認：白化、雙邊濾波器、潛在空間、去噪自編碼器，收進名詞表。
+  - 這篇的 adversarial counter-examples 用既有的對抗樣本，收為別名。
+- 說法不一致：池化在梯度裡造成什麼圖樣。這篇認為最大池化造成的是比較不規則的高頻圖樣；FV 說每個有步幅的卷積或池化都會造成棋盤狀假影。以 FV 為主軸，理由是比較新，寫在棋盤狀假影頁。building-blocks 也說有步幅的最大池化會帶來棋盤狀圖樣，那篇 ingest 時補進同一段，理由再加上「兩篇支持」。
+- 圖：
+  - 截圖 2 張（fig01 一維重疊、fig03 兩層疊加），都打開看過。二維重疊的圖（fig02）是循環動畫，截圖程式抓到的是重置後的空白網格，改附原文連結。
+  - 下載 29 個靜態圖：SVG 3 張（學到的權重兩張、三種上採樣寫成矩陣）、GAN 換掉轉置卷積前後 12 張、訓練前隨機權重的輸出 6 張、DeepDream 有沒有抖動 2 張、鑑別器步幅 2 和 1 各 3 張；都看過，是作者的實驗結果。
+  - 風格轉換那組是拿照片做的，列進 Figures not stored here，頁面只附連結；開頭別人模型的樣本原本就列在那裡。這兩張圖在原文都沒有錨點，連結指向文章網址。
+- 修正：名詞表的神經元、通道頁的通道目標，`\text` 的 `\t` 先前被當成 tab 吃掉，補回。
+- 檢查：第 1 輪 1 個問題（說法不一致段的粗體標題那行沒有出處），第 2 輪通過。

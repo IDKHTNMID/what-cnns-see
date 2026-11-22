@@ -28,7 +28,8 @@
 > 原文（d2l-ch7）：Since pooling aggregates information from an area, deep learning frameworks default to matching pooling window sizes and stride.
 
 - 計算感受野時，池化層和卷積層用同一組參數描述，池化窗口的大小就是公式裡的卷積核大小 $k_l$，見[感受野的計算](receptive-field-computation.md)（[Computing Receptive Fields](../sources/computing-receptive-fields.md) § Problem setup）。
-- 反向傳播經過池化時，梯度大小會出現棋盤狀圖樣；Feature Visualization 說高頻圖樣為什麼形成還不完全清楚，但看起來這是重要原因之一，見[正則化與預條件](regularization-and-preconditioning.md)（[Feature Visualization](../sources/feature-visualization.md) § The Enemy of Feature Visualization）。
+- 反向傳播經過池化時，梯度大小會出現棋盤狀假影；Feature Visualization 說高頻圖樣為什麼形成還不完全清楚，但看起來這是重要原因之一，見[正則化與預條件](regularization-and-preconditioning.md)（[Feature Visualization](../sources/feature-visualization.md) § The Enemy of Feature Visualization）。
+- Deconvolution and Checkerboard Artifacts 則認為，最大池化造成的是比較不規則的高頻圖樣；兩種說法見[棋盤狀假影](../concepts/checkerboard-artifacts.md)的說法不一致段（[Deconvolution and Checkerboard Artifacts](../sources/deconv-checkerboard.md) § Artifacts in Gradients）。
 
 ## 公式與參數
 
@@ -80,3 +81,5 @@
 - [填充與步幅](padding-and-stride.md)
 - [感受野的計算](receptive-field-computation.md)
 - [正則化與預條件](regularization-and-preconditioning.md)
+- [棋盤狀假影](../concepts/checkerboard-artifacts.md)
+- [Deconvolution and Checkerboard Artifacts](../sources/deconv-checkerboard.md)

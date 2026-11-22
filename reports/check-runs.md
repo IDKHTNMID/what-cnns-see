@@ -69,3 +69,19 @@ Append-only record of every `scripts/check_all.py` run.
 - check_quotes: 0 problem(s)
 - check_links: 0 problem(s)
 
+## [2026-11-23 02:09] ingest deconv-checkerboard round 1 | FAIL (1)
+
+- check_quotes: 1 problem(s)
+  - `wiki/concepts/checkerboard-artifacts.md:83: no citation`
+- check_links: 0 problem(s)
+
+## [2026-11-23 02:10] ingest deconv-checkerboard round 2 | PASS
+
+- check_quotes: 0 problem(s)
+- check_links: 0 problem(s)
+
+## [2026-11-23 02:10] ingest deconv-checkerboard final | PASS
+
+- check_quotes: 0 problem(s)
+- check_links: 0 problem(s)
+

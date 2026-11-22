@@ -76,3 +76,4 @@
 - [通道](../concepts/channel.md)
 - [池化](../methods/pooling.md)
 - [填充與步幅](../methods/padding-and-stride.md)
+- [棋盤狀假影](../concepts/checkerboard-artifacts.md)

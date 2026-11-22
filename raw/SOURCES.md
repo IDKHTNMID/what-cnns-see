@@ -20,6 +20,7 @@ These figures are other authors' work or contain dataset photos. They are not do
 | Source | Files | Original work |
 |---|---|---|
 | deconv-checkerboard | `assets/im_sample_dcgan.png`, `assets/im_sample_dcgan_contrast.png`, `assets/im_sample_salimans.png`, `assets/im_sample_donahue.png`, `assets/im_sample_dumoulin.png` | Samples from Radford et al. 2015, Salimans et al. 2016, Donahue et al. 2016, Dumoulin et al. 2016 |
+| deconv-checkerboard | `assets/style_artifacts.png`, `assets/style_clean.png` | Style transfer results made from a photo |
 | feature-visualization | `images/prior_vis_icons/*.png` (10 files) | Icons of prior work: Erhan 2009, Szegedy 2013, Mahendran 2015, Nguyen 2015, Mordvintsev 2015, Øygard 2015, Tyka 2016, Mordvintsev 2016, Nguyen 2016a, Nguyen 2016b |
 | feature-visualization | `images/diversity/*_examples.jpg` (4 files) | Dataset example photos in the Diversity figures |
 | feature-visualization | `images/attribution-1.png`, `images/attribution-2.jpg` | Dataset photo and its attribution map in the opening figure |
@@ -47,3 +48,5 @@ Figures drawn by JavaScript are captured with `scripts/screenshot_figures.py` an
 | feature-visualization | `screenshots/feature-visualization/fig24.png` | Frequency penalization: L1 -0.05, total variation -0.25, blur -1 | 2026-11-22 |
 | feature-visualization | `screenshots/feature-visualization/fig26.png` | Transformation robustness: jitter 1px, rotate 5°, scale 1.1× | 2026-11-22 |
 | feature-visualization | `screenshots/feature-visualization/fig30.png` | Decorrelated space plus transformation robustness, learning rate 0.05 | 2026-11-22 |
+| deconv-checkerboard | `screenshots/deconv-checkerboard/fig01.png` | One-dimensional deconvolution overlap: stride 2, size 3 | 2026-11-23 |
+| deconv-checkerboard | `screenshots/deconv-checkerboard/fig03.png` | Two stacked deconvolutions: stride 2, size 3 each | 2026-11-23 |

@@ -83,6 +83,10 @@ d2l 用邊緣偵測說明卷積核能做什麼。輸入是 6×8 的「影像」�
 
 卷積可以用來偵測邊緣和線條、模糊或銳化影像；最重要的是卷積核可以直接從資料學出來（[d2l](../sources/d2l-ch7.md) § 7.2.7. Summary）。
 
+計算卷積層的梯度時，反向傳播做的是轉置卷積（transposed convolution），所以梯度裡可能出現棋盤狀假影，見[棋盤狀假影](../concepts/checkerboard-artifacts.md)；轉置卷積也是產生影像時常用的上採樣做法，見[上採樣](upsampling.md)（[Deconvolution and Checkerboard Artifacts](../sources/deconv-checkerboard.md) § Artifacts in Gradients；[Deconvolution and Checkerboard Artifacts](../sources/deconv-checkerboard.md) § Deconvolution & Overlap）。
+
+> 原文（deconv-checkerboard）：Whenever we compute the gradients of a convolutional layer, we do deconvolution (transposed convolution) on the backward pass.
+
 ## 比較
 
 卷積層實際算的是互相關（cross-correlation），不是數學上嚴格的卷積（[d2l](../sources/d2l-ch7.md) § 7.2.1. The Cross-Correlation Operation）。
@@ -105,3 +109,5 @@ d2l 用邊緣偵測說明卷積核能做什麼。輸入是 6×8 的「影像」�
 - [感受野](../concepts/receptive-field.md)
 - [填充與步幅](padding-and-stride.md)
 - [池化](pooling.md)
+- [上採樣](upsampling.md)
+- [棋盤狀假影](../concepts/checkerboard-artifacts.md)

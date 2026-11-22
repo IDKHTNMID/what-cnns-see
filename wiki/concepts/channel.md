@@ -42,7 +42,7 @@ Feature Visualization 用最佳化把 GoogLeNet 各層的通道畫出來：低�
 - [池化](../methods/pooling.md)：每個通道分開池化，輸出通道數等於輸入通道數（[d2l](../sources/d2l-ch7.md) § 7.5.3. Multiple Channels）。
 - [局部性](locality.md)與[平移不變性](translation-invariance.md)：通道補回這兩個限制拿掉的複雜度（[d2l](../sources/d2l-ch7.md) § 7.1.5. Summary and Discussion）。
 - [感受野](receptive-field.md)：通道數不影響感受野的計算（[Computing Receptive Fields](../sources/computing-receptive-fields.md) § Problem setup）。
-- [特徵視覺化](../methods/feature-visualization.md)：通道目標 $	ext{layer}_n[:,:,z]$ 讓一整個通道所有空間位置的值變大；原文大部分的圖片用這個目標（[Feature Visualization](../sources/feature-visualization.md) § Optimization Objectives）。
+- [特徵視覺化](../methods/feature-visualization.md)：通道目標 $\text{layer}_n[:,:,z]$ 讓一整個通道所有空間位置的值變大；原文大部分的圖片用這個目標（[Feature Visualization](../sources/feature-visualization.md) § Optimization Objectives）。
 - [激活空間](activation-space.md)：通道裡的每個值是一個神經元，神經元的組合是激活空間裡的向量（[Feature Visualization](../sources/feature-visualization.md) § Optimization Objectives；[Feature Visualization](../sources/feature-visualization.md) § Interaction between Neurons）。
 
 ## 相關頁面
