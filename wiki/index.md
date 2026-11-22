@@ -6,7 +6,7 @@
 - [平移不變性](concepts/translation-invariance.md) — 同一塊圖案不管出現在哪裡，早期層的反應都相似
 - [局部性](concepts/locality.md) — 早期層只看局部區域，代價是每個單元只用到局部資訊
 - [通道](concepts/channel.md) — 每個位置對應一個向量；通道不一定一對一對應某種特徵
-- [卷積運算](methods/convolution-operation.md) — 二維互相關的滑動計算、多通道與 1×1 卷積
+- [卷積運算](methods/convolution-operation.md) — 卷積窗口的滑動計算、多通道與 1×1 卷積
 - [填充與步幅](methods/padding-and-stride.md) — 補 0 讓輸出不縮小，步幅用來降採樣；輸出大小公式
 - [池化](methods/pooling.md) — 沒有參數的最大值或平均值匯總，用來降採樣並減輕對位置的敏感
 

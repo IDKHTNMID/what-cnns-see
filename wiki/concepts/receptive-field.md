@@ -10,8 +10,8 @@
 
 例子：下圖是 3×3 輸入配 2×2 卷積核，輸出值 19 那個元素的感受野，就是輸入陰影部分的 4 個元素。把 2×2 的輸出 $\mathbf{Y}$ 再接一層 2×2 卷積層、輸出單一元素 $z$，則 $z$ 在 $\mathbf{Y}$ 上的感受野是 $\mathbf{Y}$ 的全部 4 個元素，在輸入上的感受野是全部 9 個元素（[d2l](../sources/d2l-ch7.md) § 7.2.6. Feature Map and Receptive Field）。
 
-![二維互相關：陰影部分是第一個輸出元素和它用到的輸入與卷積核元素](../../raw/d2l-ch7/_images/correlation.svg)
-圖：二維互相關，輸入的陰影部分就是輸出 19 的感受野（[d2l](../sources/d2l-ch7.md) § 7.2.1. The Cross-Correlation Operation；[d2l](../sources/d2l-ch7.md) § 7.2.6. Feature Map and Receptive Field）
+![二維卷積運算：陰影部分是第一個輸出元素和它用到的輸入與卷積核元素](../../raw/d2l-ch7/_images/correlation.svg)
+圖：二維卷積運算，輸入的陰影部分就是輸出 19 的感受野（[d2l](../sources/d2l-ch7.md) § 7.2.1. The Cross-Correlation Operation；[d2l](../sources/d2l-ch7.md) § 7.2.6. Feature Map and Receptive Field）
 
 ## 為什麼重要
 

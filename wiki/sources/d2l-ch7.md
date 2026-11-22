@@ -5,7 +5,7 @@
 
 ## 一句話
 
-從全連接層出發，加上平移不變性和局部性兩個原則，推導出卷積層；再說明卷積層實際的計算（互相關）、控制輸出大小的填充與步幅、多個通道，以及池化（§ 全文）。
+從全連接層出發，加上平移不變性和局部性兩個原則，推導出卷積層；再說明卷積層實際怎麼計算、控制輸出大小的填充與步幅、多個通道，以及池化（§ 全文）。
 
 ## 重點
 
@@ -21,7 +21,7 @@
 
 > 原文（d2l-ch7）：In keeping with standard terminology in deep learning literature, we will continue to refer to the cross-correlation operation as a convolution even though, strictly-speaking, it is slightly different.
 
-**4. 通道。** 每個空間位置對應一整個向量；多輸入通道時各通道分別做互相關再相加，每個輸出通道各有一組卷積核；1×1 卷積只在通道維度上計算（§ 7.1.4. Channels；§ 7.4.1. Multiple Input Channels；§ 7.4.2. Multiple Output Channels；§ 7.4.3. 1×1 Convolutional Layer）。一個通道不一定對應一種特徵，可能是通道空間裡的某個方向對應偵測邊緣（§ 7.4.2. Multiple Output Channels）。
+**4. 通道。** 每個空間位置對應一整個向量；多輸入通道時各通道分別做卷積再相加，每個輸出通道各有一組卷積核；1×1 卷積只在通道維度上計算（§ 7.1.4. Channels；§ 7.4.1. Multiple Input Channels；§ 7.4.2. Multiple Output Channels；§ 7.4.3. 1×1 Convolutional Layer）。一個通道不一定對應一種特徵，可能是通道空間裡的某個方向對應偵測邊緣（§ 7.4.2. Multiple Output Channels）。
 
 > 原文（d2l-ch7）：Instead, channels are optimized to be jointly useful.
 
@@ -35,12 +35,12 @@
 
 > 原文（d2l-ch7）：In this section we derived the structure of convolutional neural networks from first principles.
 
-每種運算都先用小矩陣手算一次（例如 3×3 輸入配 2×2 卷積核），再寫成函式，並和框架內建的層對照結果（§ 7.2.1. The Cross-Correlation Operation；§ 7.4.3. 1×1 Convolutional Layer；§ 7.5.1. Maximum Pooling and Average Pooling）。邊緣偵測的例子先手動設計卷積核 [1, −1]，再只看輸入輸出對、用平方誤差和梯度把卷積核學回來（§ 7.2.3. Object Edge Detection in Images；§ 7.2.4. Learning a Kernel）。
+每種運算都先用小矩陣手算一次（例如 3×3 輸入配 2×2 卷積核），再寫成函式，用圖上的數值驗證輸出；1×1 卷積另外用全連接層實作，確認結果和先前的多通道函式相同（§ 7.2.1. The Cross-Correlation Operation；§ 7.4.3. 1×1 Convolutional Layer；§ 7.5.1. Maximum Pooling and Average Pooling）。邊緣偵測的例子先手動設計卷積核 [1, −1]，再只看輸入輸出對、用平方誤差和梯度把卷積核學回來（§ 7.2.3. Object Edge Detection in Images；§ 7.2.4. Learning a Kernel）。
 
 ## 結論
 
-- 卷積層的核心計算是互相關；計算高度局部，因此能做大量硬體最佳化（§ 7.2.7. Summary）。
-- 不必由人設計濾波器，可以直接從資料學出來（§ 7.2.7. Summary）。
+- 卷積層的核心計算很簡單，一個巢狀迴圈就能算出來；而且計算高度局部，因此能做大量硬體最佳化（§ 7.2.7. Summary）。
+- 不必由人設計卷積核，可以直接從資料學出來（§ 7.2.7. Summary）。
 - 通道把被局部性和平移不變性拿掉的一部分複雜度補回來，讓 CNN 能同時用多種特徵推理（§ 7.1.5. Summary and Discussion；§ 7.4.4. Discussion）。
 - 兩種常見的池化中，最大池化比平均池化好，因為它讓輸出有一定程度的不變性；常用 2×2 的池化窗口把空間解析度降為四分之一（§ 7.5.4. Summary）。
 

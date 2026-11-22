@@ -15,10 +15,10 @@
 
 > 原文（d2l-ch7）：We refer to the number of rows and columns traversed per slide as stride.
 
-![二維互相關加上填充](../../raw/d2l-ch7/_images/conv-pad.svg)
+![加上填充的卷積運算](../../raw/d2l-ch7/_images/conv-pad.svg)
 圖：3×3 輸入四周補 0 成為 5×5，配 2×2 卷積核，輸出變成 4×4（[d2l](../sources/d2l-ch7.md) § 7.3.1. Padding）
 
-![高方向步幅 3、寬方向步幅 2 的互相關](../../raw/d2l-ch7/_images/conv-stride.svg)
+![高方向步幅 3、寬方向步幅 2 的卷積運算](../../raw/d2l-ch7/_images/conv-stride.svg)
 圖：高方向步幅 3、寬方向步幅 2。產生第一欄第二個元素時，窗口往下滑三列；產生第一列第二個元素時，窗口往右滑兩行（[d2l](../sources/d2l-ch7.md) § 7.3.2. Stride）
 
 ## 輸出

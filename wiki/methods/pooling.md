@@ -61,7 +61,7 @@
 |---|---|---|
 | 怎麼算 | 取窗口內的最大值（[d2l](../sources/d2l-ch7.md) § 7.5.1. Maximum Pooling and Average Pooling） | 取窗口內的平均值（[d2l](../sources/d2l-ch7.md) § 7.5.1. Maximum Pooling and Average Pooling） |
 | 由來 | Riesenhuber and Poggio (1999) 在認知神經科學中提出，語音辨識裡更早就有一個版本（[d2l](../sources/d2l-ch7.md) § 7.5.1. Maximum Pooling and Average Pooling） | 幾乎和 CNN 一樣早；類似把影像降採樣，但平均相鄰像素，得到訊噪比較好的影像（[d2l](../sources/d2l-ch7.md) § 7.5.1. Maximum Pooling and Average Pooling） |
-| 建議 | 幾乎所有情況都比平均池化好，因為它讓輸出有一定程度的不變性（[d2l](../sources/d2l-ch7.md) § 7.5.4. Summary） | 不如最大池化（[d2l](../sources/d2l-ch7.md) § 7.5.4. Summary） |
+| 建議 | 幾乎所有情況都比平均池化好，因為它讓輸出有一定程度的不變性（[d2l](../sources/d2l-ch7.md) § 7.5.1. Maximum Pooling and Average Pooling；[d2l](../sources/d2l-ch7.md) § 7.5.4. Summary） | 不如最大池化（[d2l](../sources/d2l-ch7.md) § 7.5.4. Summary） |
 
 > 原文（d2l-ch7）：Lastly, of the two popular pooling choices, max-pooling is preferable to average pooling, as it confers some degree of invariance to output.
 

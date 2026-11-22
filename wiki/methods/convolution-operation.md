@@ -14,18 +14,18 @@
 
 > 原文（d2l-ch7）：When the convolution window slides to a certain position, the input subtensor contained in that window and the kernel tensor are multiplied elementwise and the resulting tensor is summed up yielding a single scalar value.
 
-![二維互相關：3×3 輸入、2×2 卷積核、2×2 輸出](../../raw/d2l-ch7/_images/correlation.svg)
-圖：二維互相關。陰影部分是第一個輸出元素，以及計算它用到的輸入和卷積核元素：$0\times0+1\times1+3\times2+4\times3=19$（[d2l](../sources/d2l-ch7.md) § 7.2.1. The Cross-Correlation Operation）
+![二維卷積運算：3×3 輸入、2×2 卷積核、2×2 輸出](../../raw/d2l-ch7/_images/correlation.svg)
+圖：二維卷積運算。陰影部分是第一個輸出元素，以及計算它用到的輸入和卷積核元素：$0\times0+1\times1+3\times2+4\times3=19$（[d2l](../sources/d2l-ch7.md) § 7.2.1. The Cross-Correlation Operation）
 
 ### 多個通道
 
-- 多輸入通道：每個通道各自和對應的卷積核切片做互相關，再把各通道的結果加起來，得到一張二維輸出（[d2l](../sources/d2l-ch7.md) § 7.4.1. Multiple Input Channels）。
+- 多輸入通道：每個通道各自和對應的卷積核切片做卷積，再把各通道的結果加起來，得到一張二維輸出（[d2l](../sources/d2l-ch7.md) § 7.4.1. Multiple Input Channels）。
 - 多輸出通道：每個輸出通道有自己的一組 $c_i \times k_h \times k_w$ 卷積核，並從輸入的所有通道取值（[d2l](../sources/d2l-ch7.md) § 7.4.2. Multiple Output Channels）。
 
 > 原文（d2l-ch7）：Notice that all we are doing is performing a cross-correlation operation per channel and then adding up the results.
 
-![兩個輸入通道的互相關](../../raw/d2l-ch7/_images/conv-multi-in.svg)
-圖：兩個輸入通道的互相關，第一個輸出元素是兩個通道各自的結果相加：$(1\times1+2\times2+4\times3+5\times4)+(0\times0+1\times1+3\times2+4\times3)=56$（[d2l](../sources/d2l-ch7.md) § 7.4.1. Multiple Input Channels）
+![兩個輸入通道的卷積運算](../../raw/d2l-ch7/_images/conv-multi-in.svg)
+圖：兩個輸入通道的卷積運算，第一個輸出元素是兩個通道各自的結果相加：$(1\times1+2\times2+4\times3+5\times4)+(0\times0+1\times1+3\times2+4\times3)=56$（[d2l](../sources/d2l-ch7.md) § 7.4.1. Multiple Input Channels）
 
 ### 特例：1×1 卷積
 
@@ -77,11 +77,11 @@ d2l 用邊緣偵測說明卷積核能做什麼。輸入是 6×8 的「影像」�
 
 > 原文（d2l-ch7）：The kernel K only detects vertical edges.
 
-卷積核大了、層數多了，就不可能手動指定每個濾波器該做什麼（[d2l](../sources/d2l-ch7.md) § 7.2.4. Learning a Kernel）。d2l 只用輸入和輸出這組資料，從隨機的卷積核開始，用平方誤差和梯度更新 10 次，學到的卷積核就很接近 $[1, -1]$（[d2l](../sources/d2l-ch7.md) § 7.2.4. Learning a Kernel）。
+卷積核大了、層數多了，就不可能手動指定每個卷積核該做什麼（[d2l](../sources/d2l-ch7.md) § 7.2.4. Learning a Kernel）。d2l 只用輸入和輸出這組資料，從隨機的卷積核開始，用平方誤差和梯度更新 10 次，學到的卷積核就很接近 $[1, -1]$（[d2l](../sources/d2l-ch7.md) § 7.2.4. Learning a Kernel）。
 
 > 原文（d2l-ch7）：Indeed, the learned kernel tensor is remarkably close to the kernel tensor K we defined earlier.
 
-卷積可以用來偵測邊緣和線條、模糊或銳化影像；最重要的是濾波器可以直接從資料學出來（[d2l](../sources/d2l-ch7.md) § 7.2.7. Summary）。
+卷積可以用來偵測邊緣和線條、模糊或銳化影像；最重要的是卷積核可以直接從資料學出來（[d2l](../sources/d2l-ch7.md) § 7.2.7. Summary）。
 
 ## 比較
 

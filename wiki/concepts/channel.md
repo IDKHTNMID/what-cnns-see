@@ -32,7 +32,7 @@
 
 ## 和其他概念的關係
 
-- [卷積運算](../methods/convolution-operation.md)：多輸入通道時各通道分別做互相關再相加；每個輸出通道有自己的一組卷積核（[d2l](../sources/d2l-ch7.md) § 7.4.1. Multiple Input Channels；[d2l](../sources/d2l-ch7.md) § 7.4.2. Multiple Output Channels）。1×1 卷積只在通道維度上計算（[d2l](../sources/d2l-ch7.md) § 7.4.3. 1×1 Convolutional Layer）。
+- [卷積運算](../methods/convolution-operation.md)：多輸入通道時各通道分別做卷積再相加；每個輸出通道有自己的一組卷積核（[d2l](../sources/d2l-ch7.md) § 7.4.1. Multiple Input Channels；[d2l](../sources/d2l-ch7.md) § 7.4.2. Multiple Output Channels）。1×1 卷積只在通道維度上計算（[d2l](../sources/d2l-ch7.md) § 7.4.3. 1×1 Convolutional Layer）。
 - [池化](../methods/pooling.md)：每個通道分開池化，輸出通道數等於輸入通道數（[d2l](../sources/d2l-ch7.md) § 7.5.3. Multiple Channels）。
 - [局部性](locality.md)與[平移不變性](translation-invariance.md)：通道補回這兩個限制拿掉的複雜度（[d2l](../sources/d2l-ch7.md) § 7.1.5. Summary and Discussion）。
 
