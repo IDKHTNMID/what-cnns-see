@@ -12,13 +12,16 @@
 
 ## 概念
 
-- [感受野](concepts/receptive-field.md) — 可能影響某個元素的所有前層元素，網路越深越大
+- [感受野](concepts/receptive-field.md) — 可能影響某個元素的所有前層元素，網路越深越大；感受野大小、區域與有效感受野
 
 ## 方法
+
+- [感受野的計算](methods/receptive-field-computation.md) — 由各層的卷積核大小、步幅、填充算出感受野大小、區域與中心；多路徑網路要對齊
 
 ## 來源
 
 - [d2l 第 7 章（7.1–7.5）](sources/d2l-ch7.md) — CNN 基礎：卷積層、填充與步幅、通道、池化
+- [Computing Receptive Fields（2019）](sources/computing-receptive-fields.md) — 感受野大小與區域的閉式解、多路徑對齊、現代網路的感受野
 
 ## 名詞表
 

@@ -27,6 +27,8 @@
 
 > 原文（d2l-ch7）：Since pooling aggregates information from an area, deep learning frameworks default to matching pooling window sizes and stride.
 
+- 計算感受野時，池化層和卷積層用同一組參數描述，池化窗口的大小就是公式裡的卷積核大小 $k_l$，見[感受野的計算](receptive-field-computation.md)（[Computing Receptive Fields](../sources/computing-receptive-fields.md) § Problem setup）。
+
 ## 公式與參數
 
 上圖四個輸出的計算（[d2l](../sources/d2l-ch7.md) § 7.5.1. Maximum Pooling and Average Pooling）：
@@ -75,3 +77,4 @@
 - [通道](../concepts/channel.md)
 - [卷積運算](convolution-operation.md)
 - [填充與步幅](padding-and-stride.md)
+- [感受野的計算](receptive-field-computation.md)

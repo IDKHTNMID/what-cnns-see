@@ -31,3 +31,9 @@ Figures drawn by JavaScript are captured with `scripts/screenshot_figures.py` an
 
 | Source | File | Figure | Captured |
 |---|---|---|---|
+| computing-receptive-fields | `screenshots/computing-receptive-fields/fig00.png` | Problem setup: the four layer parameters (k=2, p=1, q=1, s=3) | 2026-11-22 |
+| computing-receptive-fields | `screenshots/computing-receptive-fields/fig03.png` | Computing receptive field size: k=1, s=3 | 2026-11-22 |
+| computing-receptive-fields | `screenshots/computing-receptive-fields/fig04.png` | Computing receptive field size: k=5, s=3 | 2026-11-22 |
+| computing-receptive-fields | `screenshots/computing-receptive-fields/fig05.png` | Computing receptive field region: two-layer network, u0=-1, v0=4 | 2026-11-22 |
+| computing-receptive-fields | `screenshots/computing-receptive-fields/fig06.png` | Arbitrary computation graphs: misaligned two-path network | 2026-11-22 |
+| computing-receptive-fields | `screenshots/computing-receptive-fields/fig07.png` | Arbitrary computation graphs: aligned two-path network | 2026-11-22 |

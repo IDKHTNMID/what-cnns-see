@@ -41,6 +41,7 @@
 | 保持大小的填充 | $p_h=k_h-1$、$p_w=k_w-1$；$k_h$ 是奇數時上下各補 $p_h/2$ 列，是偶數時上方補 $\lceil p_h/2\rceil$、下方補 $\lfloor p_h/2\rfloor$，寬方向同理（[d2l](../sources/d2l-ch7.md) § 7.3.1. Padding） |
 | 簡稱 | 上下、左右對稱時叫 $(p_h, p_w)$ 填充，$p_h = p_w$ 時叫填充 $p$；兩個方向步幅相同時叫步幅 $s$（[d2l](../sources/d2l-ch7.md) § 7.3.3. Summary and Discussion） |
 | 例子 | 3×3 卷積核、四周各補 1，8×8 輸入的輸出也是 8×8；高寬步幅都設 2，輸出高寬減半（[d2l](../sources/d2l-ch7.md) § 7.3.1. Padding；[d2l](../sources/d2l-ch7.md) § 7.3.2. Stride） |
+| 符號 | 這頁的 $p_h$ 是高方向總共補幾列；[感受野的計算](receptive-field-computation.md)用的 $p_l$、$q_l$ 是一個維度上左側、右側各補幾個（[d2l](../sources/d2l-ch7.md) § 7.3.1. Padding；[Computing Receptive Fields](../sources/computing-receptive-fields.md) § Problem setup） |
 
 > 原文（d2l-ch7）：By default, the padding is 0 and the stride is 1.
 
@@ -63,8 +64,12 @@ CNN 常用奇數高寬的卷積核，例如 1、3、5、7：上下、左右補�
 
 步幅用在為了計算效率、或想要降採樣的時候；卷積核很大時特別有用，因為它已經蓋住影像中很大的範圍（[d2l](../sources/d2l-ch7.md) § 7.3.2. Stride）。
 
+對感受野的影響：某一層的步幅大於 1 時，它底下所有層的區域都按比例變大；填充不影響感受野大小，但感受野區域的位置和填充有關（[Computing Receptive Fields](../sources/computing-receptive-fields.md) § Computing receptive field size；[Computing Receptive Fields](../sources/computing-receptive-fields.md) § Computing receptive field region in input image）。每一層都補 $(k_l - 1)/2$ 時，輸出元素的感受野中心對齊輸入的第一個像素，間隔是有效步幅（[Computing Receptive Fields](../sources/computing-receptive-fields.md) § Computing receptive field region in input image）。
+
 ## 相關頁面
 
 - [d2l 第 7 章](../sources/d2l-ch7.md)
+- [Computing Receptive Fields](../sources/computing-receptive-fields.md)
 - [卷積運算](convolution-operation.md)
 - [池化](pooling.md)
+- [感受野的計算](receptive-field-computation.md)

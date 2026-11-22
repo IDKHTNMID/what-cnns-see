@@ -14,6 +14,10 @@
 
 > 原文（d2l-ch7）：They are also sometimes called feature maps, as each provides a spatialized set of learned features for the subsequent layer.
 
+computing-receptive-fields 也把第 $l$ 層的整個輸出叫特徵圖，寫成 $f_l \in R^{h_l \times w_l \times d_l}$；第三維 $d_l$ 原文叫 depth，就是通道數。本 Wiki 的「深度」只指網路的層數（[Computing Receptive Fields](../sources/computing-receptive-fields.md) § Problem setup；[Computing Receptive Fields](../sources/computing-receptive-fields.md) § Discussion: receptive fields of modern networks）。
+
+> 原文（computing-receptive-fields）：Define feature map \(f_l \in R^{h_l\times w_l\times d_l}\) to denote the output of the \(l\)-th layer, with height \(h_l\), width \(w_l\) and depth \(d_l\).
+
 直覺上，靠近輸入的低層可能有些通道專門辨認邊緣，有些辨認紋理（[d2l](../sources/d2l-ch7.md) § 7.1.4. Channels）。但實際情況更複雜：通道是一起被最佳化、一起發揮作用的，所以不一定是單一通道對應邊緣偵測器，可能是通道空間裡的某個方向對應偵測邊緣（[d2l](../sources/d2l-ch7.md) § 7.4.2. Multiple Output Channels）。
 
 > 原文（d2l-ch7）：This means that rather than mapping a single channel to an edge detector, it may simply mean that some direction in channel space corresponds to detecting edges.
@@ -24,7 +28,7 @@
 
 > 原文（d2l-ch7）：Adding channels allowed us to bring back some of the complexity that was lost due to the restrictions imposed on the convolutional kernel by locality and translation invariance.
 
-主流架構通常越深通道越多，用降採樣換取更多通道，也就是犧牲空間解析度換通道深度（[d2l](../sources/d2l-ch7.md) § 7.4.2. Multiple Output Channels）。
+主流架構通常越深通道越多，用降採樣犧牲空間解析度，換取更多通道（[d2l](../sources/d2l-ch7.md) § 7.4.2. Multiple Output Channels）。
 
 > 原文（d2l-ch7）：In the most popular neural network architectures, we actually increase the channel dimension as we go deeper in the neural network, typically downsampling to trade off spatial resolution for greater channel depth.
 
@@ -35,10 +39,13 @@
 - [卷積運算](../methods/convolution-operation.md)：多輸入通道時各通道分別做卷積再相加；每個輸出通道有自己的一組卷積核（[d2l](../sources/d2l-ch7.md) § 7.4.1. Multiple Input Channels；[d2l](../sources/d2l-ch7.md) § 7.4.2. Multiple Output Channels）。1×1 卷積只在通道維度上計算（[d2l](../sources/d2l-ch7.md) § 7.4.3. 1×1 Convolutional Layer）。
 - [池化](../methods/pooling.md)：每個通道分開池化，輸出通道數等於輸入通道數（[d2l](../sources/d2l-ch7.md) § 7.5.3. Multiple Channels）。
 - [局部性](locality.md)與[平移不變性](translation-invariance.md)：通道補回這兩個限制拿掉的複雜度（[d2l](../sources/d2l-ch7.md) § 7.1.5. Summary and Discussion）。
+- [感受野](receptive-field.md)：通道數不影響感受野的計算（[Computing Receptive Fields](../sources/computing-receptive-fields.md) § Problem setup）。
 
 ## 相關頁面
 
 - [d2l 第 7 章](../sources/d2l-ch7.md)
+- [Computing Receptive Fields](../sources/computing-receptive-fields.md)
+- [感受野](receptive-field.md)
 - [卷積層](convolutional-layer.md)
 - [卷積運算](../methods/convolution-operation.md)
 - [池化](../methods/pooling.md)

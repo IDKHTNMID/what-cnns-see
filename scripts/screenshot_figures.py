@@ -5,8 +5,10 @@ Usage:
   python scripts/screenshot_figures.py <page URL> --out raw/<slug>/screenshots --only 0,3,5
 
 Figures are the page's <figure> and <d-figure> elements, numbered from 0 in page order.
-Each capture is saved as figNN.png and shows the figure's default state. Existing files
-are not overwritten. A figure that fails is reported and skipped.
+Each capture is saved as figNN.png and shows the figure's default state, including labels
+that stick a little out of the figure box. Existing files are not overwritten. A figure that
+fails is reported and skipped; after a timeout the browser can be left in a bad state, so
+rerun failed figures one per call and check every image.
 Requires Microsoft Edge and the websocket-client package.
 """
 import argparse
@@ -29,6 +31,28 @@ LOAD_WAIT_S = 8
 FIGURE_WAIT_S = 2
 CALL_TIMEOUT_S = 30
 FIGURES = "document.querySelectorAll('figure, d-figure')"
+PAD_PX = 8            # blank space kept around the figure
+MAX_OVERFLOW_PX = 24  # how far labels may stick out of the figure box and still be captured
+
+
+def capture_box(figure, parts, pad=PAD_PX, max_overflow=MAX_OVERFLOW_PX):
+    """Area to capture: the figure box grown to hold its parts, then padded.
+
+    Labels often stick out of a figure's fixed height; parts further out than max_overflow
+    (hidden tooltips and the like) are cut off there. Boxes are dicts with x, y, w, h in page pixels.
+    """
+    left, top = figure["x"], figure["y"]
+    right, bottom = left + figure["w"], top + figure["h"]
+    for p in parts:
+        if p["w"] <= 0 or p["h"] <= 0:
+            continue
+        left = min(left, max(p["x"], figure["x"] - max_overflow))
+        top = min(top, max(p["y"], figure["y"] - max_overflow))
+        right = max(right, min(p["x"] + p["w"], figure["x"] + figure["w"] + max_overflow))
+        bottom = max(bottom, min(p["y"] + p["h"], figure["y"] + figure["h"] + max_overflow))
+    left, top = max(left - pad, 0), max(top - pad, 0)
+    right, bottom = right + pad, bottom + pad
+    return {"x": left, "y": top, "w": right - left, "h": bottom - top}
 
 
 class Browser:
@@ -107,8 +131,11 @@ def main():
                 try:
                     browser.js(f"{FIGURES}[{i}].scrollIntoView({{block: 'start'}})")
                     time.sleep(FIGURE_WAIT_S)
-                    box = browser.js(f"(() => {{ const r = {FIGURES}[{i}].getBoundingClientRect();"
-                                     " return {x: r.left + scrollX, y: r.top + scrollY, w: r.width, h: r.height}; })()")
+                    boxes = browser.js(f"(() => {{ const f = {FIGURES}[{i}];"
+                                       " return [f, ...f.querySelectorAll('*')].map(e => {"
+                                       " const r = e.getBoundingClientRect();"
+                                       " return {x: r.left + scrollX, y: r.top + scrollY, w: r.width, h: r.height}; }); })()")
+                    box = capture_box(boxes[0], boxes[1:])
                     shot = browser.call("Page.captureScreenshot", format="png", captureBeyondViewport=True,
                                         clip={"x": box["x"], "y": box["y"], "width": box["w"],
                                               "height": box["h"], "scale": 1})
