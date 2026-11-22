@@ -28,6 +28,8 @@ These figures are other authors' work or contain dataset photos. They are not do
 | d2l-ch7 | `_images/waldo-football.jpg`, `_images/waldo-mask.jpg` | Photos courtesy of William Murphy (Infomatique) |
 | d2l-ch7 | `_images/field-visual.png` | Figure taken from Field (1987) |
 | d2l-ch7 | `_static/logo-with-text.png` | Site logo, not a figure |
+| building-blocks | JS figures `#Teaser`, `#ActivationCube`, `#SemanticDict`, `#ActivationVecVis`, `#AttributionSpatial`, `#AttributionChannel`, `#CubeGroups`, `#ActivationGroups`, `#AttributionGroups` | Figures that combine the input photo of a Labrador puppy and a kitten with the authors' results |
+| building-blocks | `images/teaser-1.png`, `images/teaser-2.png`, `images/teaser-3.png` | Step thumbnails in The Space of Interpretability Interfaces, built on the same input photo |
 
 ## Screenshots
 
@@ -50,3 +52,5 @@ Figures drawn by JavaScript are captured with `scripts/screenshot_figures.py` an
 | feature-visualization | `screenshots/feature-visualization/fig30.png` | Decorrelated space plus transformation robustness, learning rate 0.05 | 2026-11-22 |
 | deconv-checkerboard | `screenshots/deconv-checkerboard/fig01.png` | One-dimensional deconvolution overlap: stride 2, size 3 | 2026-11-23 |
 | deconv-checkerboard | `screenshots/deconv-checkerboard/fig03.png` | Two stacked deconvolutions: stride 2, size 3 each | 2026-11-23 |
+| building-blocks | `screenshots/building-blocks/fig06.png` | What Does the Network See?: activation grids of mixed3a, mixed4a, mixed4d, mixed5a, cell area scaled by activation magnitude (`#AllActivationGridsMagnitude`) | 2026-11-23 |
+| building-blocks | `screenshots/building-blocks/fig12.png` | The Space of Interpretability Interfaces: layers, atoms, content, presentation (`#Atoms`) | 2026-11-23 |

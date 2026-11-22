@@ -79,6 +79,10 @@ C_{\text{diversity}} = - \sum_{a} \sum_{b\neq a} ~ \frac{\text{vec}(G_a) \cdot \
 
 圖見原文：[Feature Visualization：Why visualize by optimization?](https://distill.pub/2017/feature-visualization/#example-optimization-comparison)（[Feature Visualization](../sources/feature-visualization.md) § Why visualize by optimization?）
 
+Building Blocks 做[語意字典](../concepts/semantic-dictionary.md)時也用以最佳化為基礎的特徵視覺化，理由同樣是避免假相關；作者說也可以用其他方法（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Making Sense of Hidden Layers）。[激活網格](activation-grid.md)和[矩陣分解](matrix-factorization.md)的神經元群組，也都用特徵視覺化畫出來（[The Building Blocks of Interpretability](../sources/building-blocks.md) § What Does the Network See?；[The Building Blocks of Interpretability](../sources/building-blocks.md) § Making Things Human-Scale）。
+
+> 原文（building-blocks）：We use optimization-based feature visualization to avoid spurious correlation, but one could use other methods.
+
 **為什麼類別目標多用 logits。** 要提高 softmax 給某一類的機率，最容易的做法常常是壓低其他類，而不是讓這一類更像；作者的經驗是最佳化 softmax 之前的 logits，影像的視覺品質比較好（[Feature Visualization](../sources/feature-visualization.md) § Optimization Objectives）。
 
 > 原文（feature-visualization）：From our experience, optimizing pre-softmax logits produces images of better visual quality.
@@ -103,3 +107,7 @@ C_{\text{diversity}} = - \sum_{a} \sum_{b\neq a} ~ \frac{\text{vec}(G_a) \cdot \
 - [激活空間](../concepts/activation-space.md)
 - [通道](../concepts/channel.md)
 - [卷積層](../concepts/convolutional-layer.md)
+- [The Building Blocks of Interpretability](../sources/building-blocks.md)
+- [語意字典](../concepts/semantic-dictionary.md)
+- [激活網格](activation-grid.md)
+- [矩陣分解](matrix-factorization.md)

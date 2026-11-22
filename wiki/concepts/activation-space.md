@@ -18,6 +18,14 @@ d2l 有類似的說法：不一定是單一通道對應邊緣偵測器，可能�
 
 > 原文（feature-visualization）：In real life, combinations of neurons work together to represent images in neural networks.
 
+Building Blocks 把同時回應幾種不相干概念的神經元叫多義神經元（poly-semantic neurons），例如同時回應貓和車（[The Building Blocks of Interpretability](../sources/building-blocks.md) § How Trustworthy Are These Interfaces?）。介面可以這樣應對：用多樣性的視覺化顯示一個神經元的各種意義，或旋轉[語意字典](semantic-dictionary.md)，讓各成分更分得開；旋轉後的成分就是激活空間裡基底以外的方向（[The Building Blocks of Interpretability](../sources/building-blocks.md) § How Trustworthy Are These Interfaces?）。
+
+> 原文（building-blocks）：There are natural ways that interfaces could respond to this: we could use diversity visualizations to reveal the variety of meanings the neuron can take, or rotate our semantic dictionaries so their components are more disentangled.
+
+Building Blocks 也提到，很多前人研究發現神經網路裡的方向有語意；特別醒目的例子是語意算術，例如 "king" - "man" + "woman" = "queen"（[The Building Blocks of Interpretability](../sources/building-blocks.md) § How Trustworthy Are These Interfaces?）。
+
+> 原文（building-blocks）：Much prior research has found that directions in neural networks are semantically meaningful.
+
 基底方向是否比其他方向好解讀，前人結論不同：Szegedy et al. 發現隨機方向看起來和基底方向一樣有意義；Bau、Zhou et al. 發現基底方向比隨機方向更常看得懂（[Feature Visualization](../sources/feature-visualization.md) § Interaction between Neurons）。作者的經驗和兩者大致一致：隨機方向常常也看得懂，但比例低於基底方向（[Feature Visualization](../sources/feature-visualization.md) § Interaction between Neurons）。
 
 > 原文（feature-visualization）：Our experience is broadly consistent with both results; we find that random directions often seem interpretable, but at a lower rate than basis directions.
@@ -30,6 +38,9 @@ d2l 有類似的說法：不一定是單一通道對應邊緣偵測器，可能�
 - 神經元相加：對神經元做算術，可以得到激活空間裡有意思的方向；例如把「黑白」神經元加上「馬賽克」神經元，得到黑白版的馬賽克。這讓人想到 Word2Vec 詞向量的語意算術，或生成模型的潛在空間（[Feature Visualization](../sources/feature-visualization.md) § Interaction between Neurons）。
 - 內插：最佳化目標是兩個通道目標之間的線性內插；為了讓結果好看，另外加一個小的對齊目標讓低層的激活值相近，並混用分開和共用的影像參數化（[Feature Visualization](../sources/feature-visualization.md) § Interaction between Neurons）。這和在生成模型的潛在空間裡內插類似（[Feature Visualization](../sources/feature-visualization.md) § Interaction between Neurons）。
 - [通道](channel.md)：通道目標是一整個通道所有空間位置的值（[Feature Visualization](../sources/feature-visualization.md) § Optimization Objectives）。
+- [語意字典](semantic-dictionary.md)：語意字典以神經元介紹，但可以用在任何激活值的基底上（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Making Sense of Hidden Layers）。
+- [激活網格](../methods/activation-grid.md)：把一個元素上所有通道的激活值當成一個激活向量（activation vector）一起畫，看的是神經元的組合，不是單一神經元（[The Building Blocks of Interpretability](../sources/building-blocks.md) § What Does the Network See?）。
+- [矩陣分解](../methods/matrix-factorization.md)：分出來的神經元群組是另一種基底；作者說用其他基底提供更好的理解單位，才剛開始探索（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Making Things Human-Scale）。
 
 > 原文（feature-visualization）：For example, if we add a "black and white" neuron to a "mosaic" neuron, we obtain a black and white version of the mosaic.
 
@@ -47,3 +58,7 @@ d2l 有類似的說法：不一定是單一通道對應邊緣偵測器，可能�
 - [特徵視覺化](../methods/feature-visualization.md)
 - [通道](channel.md)
 - [d2l 第 7 章](../sources/d2l-ch7.md)
+- [The Building Blocks of Interpretability](../sources/building-blocks.md)
+- [語意字典](semantic-dictionary.md)
+- [激活網格](../methods/activation-grid.md)
+- [矩陣分解](../methods/matrix-factorization.md)

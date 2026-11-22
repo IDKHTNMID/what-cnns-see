@@ -29,7 +29,10 @@
 
 - 計算感受野時，池化層和卷積層用同一組參數描述，池化窗口的大小就是公式裡的卷積核大小 $k_l$，見[感受野的計算](receptive-field-computation.md)（[Computing Receptive Fields](../sources/computing-receptive-fields.md) § Problem setup）。
 - 反向傳播經過池化時，梯度大小會出現棋盤狀假影；Feature Visualization 說高頻圖樣為什麼形成還不完全清楚，但看起來這是重要原因之一，見[正則化與預條件](regularization-and-preconditioning.md)（[Feature Visualization](../sources/feature-visualization.md) § The Enemy of Feature Visualization）。
-- Deconvolution and Checkerboard Artifacts 則認為，最大池化造成的是比較不規則的高頻圖樣；兩種說法見[棋盤狀假影](../concepts/checkerboard-artifacts.md)的說法不一致段（[Deconvolution and Checkerboard Artifacts](../sources/deconv-checkerboard.md) § Artifacts in Gradients）。
+- Deconvolution and Checkerboard Artifacts 則認為，最大池化造成的是比較不規則的高頻圖樣；各篇的說法見[棋盤狀假影](../concepts/checkerboard-artifacts.md)的說法不一致段（[Deconvolution and Checkerboard Artifacts](../sources/deconv-checkerboard.md) § Artifacts in Gradients）。
+- Building Blocks 說 GoogLeNet 有步幅的最大池化會在梯度裡帶來很多雜訊和棋盤狀圖樣。作者做[歸因](attribution.md)時把最大池化的梯度放寬：依激活值比例分給窗口裡的各輸入，不再全部給最大的那個；再把棋盤狀圖樣抵消掉（[The Building Blocks of Interpretability](../sources/building-blocks.md) § How Are Concepts Assembled?）。
+
+> 原文（building-blocks）：To avoid our interface demonstrations being dominated by this noise, we (a) do a relaxation of the gradient of max pooling, distributing gradient to inputs proportional to their activation instead of winner takes all and (b) cancel out the checkerboard patterns.
 
 ## 公式與參數
 
@@ -83,3 +86,5 @@
 - [正則化與預條件](regularization-and-preconditioning.md)
 - [棋盤狀假影](../concepts/checkerboard-artifacts.md)
 - [Deconvolution and Checkerboard Artifacts](../sources/deconv-checkerboard.md)
+- [歸因](attribution.md)
+- [The Building Blocks of Interpretability](../sources/building-blocks.md)

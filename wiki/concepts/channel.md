@@ -24,6 +24,10 @@ computing-receptive-fields 也把第 $l$ 層的整個輸出叫特徵圖，寫成
 
 Feature Visualization 用最佳化把 GoogLeNet 各層的通道畫出來：低層的結果像邊緣，往上依序像紋理、圖案、部件、物體，見[特徵視覺化](../methods/feature-visualization.md)（[Feature Visualization](../sources/feature-visualization.md) § Feature Visualization）。它對「方向」也有類似的說法：神經元的組合是激活空間裡的向量；作者的經驗是隨機方向常常也看得懂，但比例低於基底方向，見[激活空間](activation-space.md)（[Feature Visualization](../sources/feature-visualization.md) § Interaction between Neurons）。
 
+Building Blocks 把一層的特徵圖畫成立方體：x、y 軸是影像上的位置，z 軸是通道；原文把通道也叫 detector，意思是在影像上跑的偵測器，見[特徵圖](feature-map.md)（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Making Sense of Hidden Layers）。
+
+> 原文（building-blocks）：The x- and y-axes correspond to positions in the image, and the z-axis is the channel (or detector) being run.
+
 ## 為什麼重要
 
 局部性和平移不變性限制了卷積核，加入通道把一部分失去的複雜度補回來（[d2l](../sources/d2l-ch7.md) § 7.1.5. Summary and Discussion）。通道讓 CNN 能同時用多種特徵推理，例如邊緣偵測器和形狀偵測器，也在大幅減少參數和模型的表達力之間取得平衡（[d2l](../sources/d2l-ch7.md) § 7.4.4. Discussion）。
@@ -44,6 +48,9 @@ Feature Visualization 用最佳化把 GoogLeNet 各層的通道畫出來：低�
 - [感受野](receptive-field.md)：通道數不影響感受野的計算（[Computing Receptive Fields](../sources/computing-receptive-fields.md) § Problem setup）。
 - [特徵視覺化](../methods/feature-visualization.md)：通道目標 $\text{layer}_n[:,:,z]$ 讓一整個通道所有空間位置的值變大；原文大部分的圖片用這個目標（[Feature Visualization](../sources/feature-visualization.md) § Optimization Objectives）。
 - [激活空間](activation-space.md)：通道裡的每個值是一個神經元，神經元的組合是激活空間裡的向量（[Feature Visualization](../sources/feature-visualization.md) § Optimization Objectives；[Feature Visualization](../sources/feature-visualization.md) § Interaction between Neurons）。
+- [特徵圖](feature-map.md)：通道是特徵圖的一種切法，沿 z 軸取一片（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Making Sense of Hidden Layers）。
+- [歸因](../methods/attribution.md)：通道歸因問每個通道對最後的輸出貢獻多少（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Channel Attribution）。
+- [語意字典](semantic-dictionary.md)：d2l 說偵測邊緣的可能是通道空間裡的某個方向，不一定是單一通道（[d2l](../sources/d2l-ch7.md) § 7.4.2. Multiple Output Channels）。Building Blocks 也知道通道不一定乾淨，有些神經元同時回應幾種不相干的概念；但作者認為特徵不必是完美的偵測器，把它們當偵測器看仍然有用（[The Building Blocks of Interpretability](../sources/building-blocks.md) § How Trustworthy Are These Interfaces?）。
 
 ## 相關頁面
 
@@ -56,3 +63,7 @@ Feature Visualization 用最佳化把 GoogLeNet 各層的通道畫出來：低�
 - [Feature Visualization](../sources/feature-visualization.md)
 - [特徵視覺化](../methods/feature-visualization.md)
 - [激活空間](activation-space.md)
+- [The Building Blocks of Interpretability](../sources/building-blocks.md)
+- [特徵圖](feature-map.md)
+- [語意字典](semantic-dictionary.md)
+- [歸因](../methods/attribution.md)

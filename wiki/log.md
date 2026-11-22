@@ -85,3 +85,24 @@
   - 風格轉換那組是拿照片做的，列進 Figures not stored here，頁面只附連結；開頭別人模型的樣本原本就列在那裡。這兩張圖在原文都沒有錨點，連結指向文章網址。
 - 修正：名詞表的神經元、通道頁的通道目標，`\text` 的 `\t` 先前被當成 tab 吃掉，補回。
 - 檢查：第 1 輪 1 個問題（說法不一致段的粗體標題那行沒有出處），第 2 輪通過。
+
+## [2026-11-23] ingest | The Building Blocks of Interpretability
+
+- 新增：`sources/building-blocks.md`；概念頁 `feature-map`、`semantic-dictionary`；方法頁 `activation-grid`、`attribution`、`matrix-factorization`。
+- 更新：`concepts/checkerboard-artifacts.md`（說法不一致段加這篇）、`methods/pooling.md`（放寬最大池化的梯度）、`concepts/channel.md`（通道也叫 detector；和特徵圖、歸因、語意字典的關係）、`concepts/activation-space.md`（多義神經元、旋轉語意字典、方向有語意；和三個新頁的關係）、`methods/feature-visualization.md`（語意字典也用以最佳化為基礎的特徵視覺化）、`sources/feature-visualization.md`（相關頁面）、`index.md`（概念 2 頁、方法 3 頁、來源 1 頁）、`glossary.md`（新增 18 條，共 88 條；通道、特徵圖、元素加別名，歸因拿掉 saliency maps 別名）。
+- 名詞決定（使用者已確認）：
+  - 這篇的 cube of activations 就是特徵圖，收為別名「激活立方體」；特徵圖頁補上四種切法。
+  - 這篇的 spatial position／spatial location 用既有的元素，收為別名「空間位置」；頁面第一次出現時註明原文叫法。
+  - 這篇把通道也叫 detector，收為通道的別名。
+  - 顯著圖從歸因的別名獨立出來：FV 把 saliency maps 當成歸因的另一種叫法，這篇定義成歸因最常見的介面。照這篇的定義，歸因頁的比較段並列兩句原文。
+  - 矩陣的一格寫「每一格」，不用元素。
+  - 激活的複合詞沿用「激活」：激活向量、激活網格。
+  - 新譯名：語意字典、激活向量、激活網格、空間歸因、通道歸因、層到層歸因、熱圖、降維、矩陣分解、非負矩陣分解（NMF）、神經元群組、多義神經元、路徑相依、可解釋性、可解釋性介面。
+  - 寫名詞表時補收 CAM、ReLU，保留英文。
+- 說法不一致：池化在梯度裡造成什麼圖樣。這篇說 GoogLeNet 有步幅的最大池化在梯度裡帶來很多雜訊和棋盤狀圖樣（原文在 § How Are Concepts Assembled? 的註腳），支持 FV 的說法，也和 deconv-checkerboard 說的不規則高頻圖樣不衝突。棋盤狀假影頁的主軸理由改成「比較新，而且 Building Blocks 也這樣說」。d2l 說偵測邊緣的可能是通道空間裡的某個方向，這篇說特徵不必是完美的偵測器；兩者不衝突，寫在通道頁的關係段，不列成說法不一致。
+- 圖：
+  - 截圖 2 張（fig06 四層的激活網格、fig12 介面的四個組成），都打開看過。
+  - 下載 2 個 SVG（`images/design_space/empty.svg`、`teaser.svg`），是作者畫的介面文法圖，嵌在來源頁。
+  - 文中的互動圖幾乎都畫在同一張輸入照片（拉布拉多幼犬和小貓）上：9 張 JS 圖和介面設計空間那段的 3 張步驟縮圖列進 Figures not stored here，頁面只附原文連結。原文 HTML 裡被註解掉的圖（`activation-pca.png`、`vector-eq-full.png`、`attribution-channels.png`）和 Neuron Attribution 小節不用。
+- 寫法：激活網格第 2 步的最佳化目標只出現在 JS 產生的文字裡，`check_quotes.py --dump` 抓不到，所以只改寫、標出處並附 `#ActivationVecVis` 連結，不附原文句。
+- 檢查：第 1 輪通過。寫頁面時先用 `check_quotes.py` 自查，把 4 處 `$$…$$` 的展示公式改成 math 區塊（`$$` 會被當成沒有出處的段落）。

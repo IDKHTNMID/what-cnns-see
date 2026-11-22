@@ -76,20 +76,23 @@
 - [卷積運算](../methods/convolution-operation.md)：卷積層的反向傳播就是轉置卷積（[Deconvolution and Checkerboard Artifacts](../sources/deconv-checkerboard.md) § Artifacts in Gradients）。
 - [正則化與預條件](../methods/regularization-and-preconditioning.md)：Feature Visualization 說高頻圖樣為什麼形成還不完全清楚，看起來重要的一部分是有步幅的卷積和池化在梯度裡造成的棋盤狀假影（[Feature Visualization](../sources/feature-visualization.md) § The Enemy of Feature Visualization）。
 - [填充與步幅](../methods/padding-and-stride.md)：作者說類似的論證表示，一般有步幅的卷積層可能也有問題（[Deconvolution and Checkerboard Artifacts](../sources/deconv-checkerboard.md) § Conclusion）。
-- [池化](../methods/pooling.md)：池化在梯度裡造成什麼圖樣，兩篇說法不同，見下一段（[Deconvolution and Checkerboard Artifacts](../sources/deconv-checkerboard.md) § Artifacts in Gradients；[Feature Visualization](../sources/feature-visualization.md) § The Enemy of Feature Visualization）。
+- [池化](../methods/pooling.md)：池化在梯度裡造成什麼圖樣，各篇說法不同，見下一段（[Deconvolution and Checkerboard Artifacts](../sources/deconv-checkerboard.md) § Artifacts in Gradients；[Feature Visualization](../sources/feature-visualization.md) § The Enemy of Feature Visualization；[The Building Blocks of Interpretability](../sources/building-blocks.md) § How Are Concepts Assembled?）。
 
 ## 說法不一致
 
-**池化在梯度裡造成什麼圖樣。** 兩篇的說法不同（[Deconvolution and Checkerboard Artifacts](../sources/deconv-checkerboard.md) § Artifacts in Gradients；[Feature Visualization](../sources/feature-visualization.md) § The Enemy of Feature Visualization）：
+**池化在梯度裡造成什麼圖樣。** 前兩篇的說法不同，第三篇和 Feature Visualization 一致（[Deconvolution and Checkerboard Artifacts](../sources/deconv-checkerboard.md) § Artifacts in Gradients；[Feature Visualization](../sources/feature-visualization.md) § The Enemy of Feature Visualization；[The Building Blocks of Interpretability](../sources/building-blocks.md) § How Are Concepts Assembled?）：
 
 - Deconvolution and Checkerboard Artifacts（2016）：梯度裡的棋盤狀假影來自卷積層的反向傳播；DeepDream 的假影裡另有比較不規則的高頻圖樣，作者認為是最大池化造成的（[Deconvolution and Checkerboard Artifacts](../sources/deconv-checkerboard.md) § Artifacts in Gradients）。
 - Feature Visualization（2017）：反向傳播經過每一個有步幅的卷積或池化，梯度大小都會出現棋盤狀假影（[Feature Visualization](../sources/feature-visualization.md) § The Enemy of Feature Visualization）。
+- The Building Blocks of Interpretability（2018）：GoogLeNet 有步幅的最大池化在梯度裡帶來很多雜訊和棋盤狀圖樣；作者做空間歸因時放寬最大池化的梯度，並把棋盤狀圖樣抵消掉，見[歸因](../methods/attribution.md)（[The Building Blocks of Interpretability](../sources/building-blocks.md) § How Are Concepts Assembled?）。
 
 > 原文（deconv-checkerboard）：We believe these to be caused by max pooling.
 
 > 原文（feature-visualization）：Each strided convolution or pooling creates checkerboard patterns in the gradient magnitudes when we backprop through it.
 
-本 Wiki 以 Feature Visualization 的說法為主軸：池化也會在梯度裡造成棋盤狀假影。理由是它比較新（[Deconvolution and Checkerboard Artifacts](../sources/deconv-checkerboard.md) § Artifacts in Gradients；[Feature Visualization](../sources/feature-visualization.md) § The Enemy of Feature Visualization）。
+> 原文（building-blocks）：GoogLeNet's strided max pooling introduces a lot of noise and checkerboard patterns to it's gradients.
+
+本 Wiki 以 Feature Visualization 的說法為主軸：池化也會在梯度裡造成棋盤狀假影。理由是它比較新，而且 Building Blocks 也這樣說；Building Blocks 同時提到雜訊，和 Deconvolution and Checkerboard Artifacts 說的不規則高頻圖樣並不衝突（[Deconvolution and Checkerboard Artifacts](../sources/deconv-checkerboard.md) § Artifacts in Gradients；[Feature Visualization](../sources/feature-visualization.md) § The Enemy of Feature Visualization；[The Building Blocks of Interpretability](../sources/building-blocks.md) § How Are Concepts Assembled?）。
 
 ## 相關頁面
 
@@ -101,3 +104,5 @@
 - [正則化與預條件](../methods/regularization-and-preconditioning.md)
 - [特徵視覺化](../methods/feature-visualization.md)
 - [Feature Visualization（來源）](../sources/feature-visualization.md)
+- [The Building Blocks of Interpretability（來源）](../sources/building-blocks.md)
+- [歸因](../methods/attribution.md)

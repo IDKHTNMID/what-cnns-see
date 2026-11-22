@@ -77,3 +77,6 @@
 - [池化](../methods/pooling.md)
 - [填充與步幅](../methods/padding-and-stride.md)
 - [棋盤狀假影](../concepts/checkerboard-artifacts.md)
+- [The Building Blocks of Interpretability](building-blocks.md)
+- [語意字典](../concepts/semantic-dictionary.md)
+- [歸因](../methods/attribution.md)
