@@ -22,6 +22,8 @@ computing-receptive-fields 也把第 $l$ 層的整個輸出叫特徵圖，寫成
 
 > 原文（d2l-ch7）：This means that rather than mapping a single channel to an edge detector, it may simply mean that some direction in channel space corresponds to detecting edges.
 
+Feature Visualization 用最佳化把 GoogLeNet 各層的通道畫出來：低層的結果像邊緣，往上依序像紋理、圖案、部件、物體，見[特徵視覺化](../methods/feature-visualization.md)（[Feature Visualization](../sources/feature-visualization.md) § Feature Visualization）。它對「方向」也有類似的說法：神經元的組合是激活空間裡的向量，隨機方向常常也看得懂，見[激活空間](activation-space.md)（[Feature Visualization](../sources/feature-visualization.md) § Interaction between Neurons）。
+
 ## 為什麼重要
 
 局部性和平移不變性限制了卷積核，加入通道把一部分失去的複雜度補回來（[d2l](../sources/d2l-ch7.md) § 7.1.5. Summary and Discussion）。通道讓 CNN 能同時用多種特徵推理，例如邊緣偵測器和形狀偵測器，也在大幅減少參數和模型的表達力之間取得平衡（[d2l](../sources/d2l-ch7.md) § 7.4.4. Discussion）。
@@ -40,6 +42,8 @@ computing-receptive-fields 也把第 $l$ 層的整個輸出叫特徵圖，寫成
 - [池化](../methods/pooling.md)：每個通道分開池化，輸出通道數等於輸入通道數（[d2l](../sources/d2l-ch7.md) § 7.5.3. Multiple Channels）。
 - [局部性](locality.md)與[平移不變性](translation-invariance.md)：通道補回這兩個限制拿掉的複雜度（[d2l](../sources/d2l-ch7.md) § 7.1.5. Summary and Discussion）。
 - [感受野](receptive-field.md)：通道數不影響感受野的計算（[Computing Receptive Fields](../sources/computing-receptive-fields.md) § Problem setup）。
+- [特徵視覺化](../methods/feature-visualization.md)：通道目標 $	ext{layer}_n[:,:,z]$ 讓一整個通道所有空間位置的值變大；原文大部分的圖片用這個目標（[Feature Visualization](../sources/feature-visualization.md) § Optimization Objectives）。
+- [激活空間](activation-space.md)：通道裡的每個值是一個神經元，神經元的組合是激活空間裡的向量（[Feature Visualization](../sources/feature-visualization.md) § Optimization Objectives；[Feature Visualization](../sources/feature-visualization.md) § Interaction between Neurons）。
 
 ## 相關頁面
 
@@ -49,3 +53,6 @@ computing-receptive-fields 也把第 $l$ 層的整個輸出叫特徵圖，寫成
 - [卷積層](convolutional-layer.md)
 - [卷積運算](../methods/convolution-operation.md)
 - [池化](../methods/pooling.md)
+- [Feature Visualization](../sources/feature-visualization.md)
+- [特徵視覺化](../methods/feature-visualization.md)
+- [激活空間](activation-space.md)

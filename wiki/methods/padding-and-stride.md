@@ -66,6 +66,8 @@ CNN 常用奇數高寬的卷積核，例如 1、3、5、7：上下、左右補�
 
 對感受野的影響：某一層的步幅大於 1 時，它底下所有層的區域都按比例變大；填充不影響感受野大小，但感受野區域的位置和填充有關（[Computing Receptive Fields](../sources/computing-receptive-fields.md) § Computing receptive field size；[Computing Receptive Fields](../sources/computing-receptive-fields.md) § Computing receptive field region in input image）。每一層左側都補 $p_l = (k_l - 1)/2$ 時，輸出元素的感受野中心對齊輸入的第一個像素，間隔是有效步幅（[Computing Receptive Fields](../sources/computing-receptive-fields.md) § Computing receptive field region in input image）。
 
+對梯度的影響：反向傳播經過有步幅的卷積時，梯度大小會出現棋盤狀圖樣；Feature Visualization 說高頻圖樣為什麼形成還不完全清楚，但看起來這是重要原因之一，見[正則化與預條件](regularization-and-preconditioning.md)（[Feature Visualization](../sources/feature-visualization.md) § The Enemy of Feature Visualization）。
+
 ## 相關頁面
 
 - [d2l 第 7 章](../sources/d2l-ch7.md)
@@ -73,3 +75,4 @@ CNN 常用奇數高寬的卷積核，例如 1、3、5、7：上下、左右補�
 - [卷積運算](convolution-operation.md)
 - [池化](pooling.md)
 - [感受野的計算](receptive-field-computation.md)
+- [正則化與預條件](regularization-and-preconditioning.md)

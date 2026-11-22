@@ -15,12 +15,15 @@ The Distill articles state that diagrams and text are under the licence above "u
 
 ## Figures not stored here
 
-These figures are other authors' work. They are not downloaded or screenshotted; pages link to the original section instead.
+These figures are other authors' work or contain dataset photos. They are not downloaded or screenshotted; pages link to the original section instead.
 
 | Source | Files | Original work |
 |---|---|---|
 | deconv-checkerboard | `assets/im_sample_dcgan.png`, `assets/im_sample_dcgan_contrast.png`, `assets/im_sample_salimans.png`, `assets/im_sample_donahue.png`, `assets/im_sample_dumoulin.png` | Samples from Radford et al. 2015, Salimans et al. 2016, Donahue et al. 2016, Dumoulin et al. 2016 |
 | feature-visualization | `images/prior_vis_icons/*.png` (10 files) | Icons of prior work: Erhan 2009, Szegedy 2013, Mahendran 2015, Nguyen 2015, Mordvintsev 2015, Øygard 2015, Tyka 2016, Mordvintsev 2016, Nguyen 2016a, Nguyen 2016b |
+| feature-visualization | `images/diversity/*_examples.jpg` (4 files) | Dataset example photos in the Diversity figures |
+| feature-visualization | `images/attribution-1.png`, `images/attribution-2.jpg` | Dataset photo and its attribution map in the opening figure |
+| feature-visualization | JS figures `#example-optimization-comparison`, `#random-optimization-and-examples`, `#steepest-descent` | Figures that mix dataset photos with the authors' results |
 | d2l-ch7 | `_images/waldo-football.jpg`, `_images/waldo-mask.jpg` | Photos courtesy of William Murphy (Infomatique) |
 | d2l-ch7 | `_images/field-visual.png` | Figure taken from Field (1987) |
 | d2l-ch7 | `_static/logo-with-text.png` | Site logo, not a figure |
@@ -37,3 +40,10 @@ Figures drawn by JavaScript are captured with `scripts/screenshot_figures.py` an
 | computing-receptive-fields | `screenshots/computing-receptive-fields/fig05.png` | Computing receptive field region: two-layer network, u0=-1, v0=4 | 2026-11-22 |
 | computing-receptive-fields | `screenshots/computing-receptive-fields/fig06.png` | Arbitrary computation graphs: misaligned two-path network | 2026-11-22 |
 | computing-receptive-fields | `screenshots/computing-receptive-fields/fig07.png` | Arbitrary computation graphs: aligned two-path network | 2026-11-22 |
+| feature-visualization | `screenshots/feature-visualization/fig00.png` | Hero: features from edges (conv2d0) to objects (mixed4d & mixed4e) in GoogLeNet | 2026-11-22 |
+| feature-visualization | `screenshots/feature-visualization/fig03.png` | Optimization from random noise to activate layer mixed4a, unit 11: steps 0, 4, 48, 2048 | 2026-11-22 |
+| feature-visualization | `screenshots/feature-visualization/fig04.png` | Optimization objectives: neuron, channel, layer/DeepDream, class logits, class probability | 2026-11-22 |
+| feature-visualization | `screenshots/feature-visualization/fig20.png` | Unregularized optimization at learning rate 0.05: steps 1 to 2048 (inner part of figure 19) | 2026-11-22 |
+| feature-visualization | `screenshots/feature-visualization/fig24.png` | Frequency penalization: L1 -0.05, total variation -0.25, blur -1 | 2026-11-22 |
+| feature-visualization | `screenshots/feature-visualization/fig26.png` | Transformation robustness: jitter 1px, rotate 5°, scale 1.1× | 2026-11-22 |
+| feature-visualization | `screenshots/feature-visualization/fig30.png` | Decorrelated space plus transformation robustness, learning rate 0.05 | 2026-11-22 |

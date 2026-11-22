@@ -13,15 +13,19 @@
 ## 概念
 
 - [感受野](concepts/receptive-field.md) — 可能影響某個元素的所有前層元素，網路越深越大；感受野大小、區域與有效感受野
+- [激活空間](concepts/activation-space.md) — 神經元的激活值是基底向量，神經元的組合是空間裡的向量；隨機方向也常看得懂
 
 ## 方法
 
 - [感受野的計算](methods/receptive-field-computation.md) — 由各層的卷積核大小、步幅、填充算出感受野大小、區域與中心；多路徑網路要對齊
+- [特徵視覺化](methods/feature-visualization.md) — 從雜訊出發最佳化輸入，看神經元、通道、層或類別在找什麼；多樣性項
+- [正則化與預條件](methods/regularization-and-preconditioning.md) — 壓掉高頻雜訊：頻率懲罰、變換穩健性、學習先驗，以及在去相關空間最佳化
 
 ## 來源
 
 - [d2l 第 7 章（7.1–7.5）](sources/d2l-ch7.md) — CNN 基礎：卷積層、填充與步幅、通道、池化
 - [Computing Receptive Fields（2019）](sources/computing-receptive-fields.md) — 感受野大小與區域的閉式解、多路徑對齊、現代網路的感受野
+- [Feature Visualization（2017）](sources/feature-visualization.md) — 用最佳化看 GoogLeNet 各層在找什麼：目標、多樣性、神經元互動、正則化光譜、預條件
 
 ## 名詞表
 

@@ -43,3 +43,24 @@ Append-only record of every `scripts/check_all.py` run.
 - check_quotes: 0 problem(s)
 - check_links: 0 problem(s)
 
+## [2026-11-22 23:10] ingest feature-visualization round 1 | FAIL (6)
+
+- check_quotes: 6 problem(s)
+  - `wiki/concepts/activation-space.md:25: '§ Interaction between Neurons](https://distill.pub/2017/feature-visualization/#random-optimization-and-examples)（[Feature Visualization](../sources/feature-visualization.md) § Interaction between Neurons' has no source link`
+  - `wiki/concepts/activation-space.md:36: '§ Interaction between Neurons](https://distill.pub/2017/feature-visualization/#linear-combinations)（[Feature Visualization](../sources/feature-visualization.md) § Interaction between Neurons' has no source link`
+  - `wiki/concepts/activation-space.md:38: '§ Interaction between Neurons](https://distill.pub/2017/feature-visualization/#interpolation)（[Feature Visualization](../sources/feature-visualization.md) § Interaction between Neurons' has no source link`
+  - `wiki/methods/feature-visualization.md:80: '§ Why visualize by optimization?](https://distill.pub/2017/feature-visualization/#example-optimization-comparison)（[Feature Visualization](../sources/feature-visualization.md) § Why visualize by optimization?' has no source link`
+  - `wiki/methods/regularization-and-preconditioning.md:62: '§ Preconditioning and Parameterization](https://distill.pub/2017/feature-visualization/#steepest-descent)（[Feature Visualization](../sources/feature-visualization.md) § Preconditioning and Parameterization' has no source link`
+  - `wiki/methods/regularization-and-preconditioning.md:138: '§ The Spectrum of Regularization](https://distill.pub/2017/feature-visualization/#feature-vis-history)（[Feature Visualization](../sources/feature-visualization.md) § The Spectrum of Regularization' has no source link`
+- check_links: 0 problem(s)
+
+## [2026-11-22 23:11] ingest feature-visualization round 2 | PASS
+
+- check_quotes: 0 problem(s)
+- check_links: 0 problem(s)
+
+## [2026-11-22 23:11] ingest feature-visualization after self-check | PASS
+
+- check_quotes: 0 problem(s)
+- check_links: 0 problem(s)
+
