@@ -87,6 +87,6 @@
 | 矩陣分解 | matrix factorization | — | 把特徵圖攤成「空間位置 × 通道」的矩陣再分解，得到少數幾個神經元群組 | （[The Building Blocks of Interpretability](sources/building-blocks.md) § Making Things Human-Scale） | 只有一種叫法 |
 | 非負矩陣分解 | non-negative matrix factorization（NMF） | — | 限制因子都是正的矩陣分解；Building Blocks 用它分出神經元群組 | （[The Building Blocks of Interpretability](sources/building-blocks.md) § Making Things Human-Scale） | 只有一種叫法 |
 | 神經元群組 | neuron groups | — | 矩陣分解分出來的元素和通道的組合，是使用者在介面上操作的單位 | （[The Building Blocks of Interpretability](sources/building-blocks.md) § Making Things Human-Scale） | 只有一種叫法 |
-| ReLU | ReLU | — | Building Blocks 提到的網路類型：ReLU 網路的激活值一定是正的，所以適合用 NMF | （[The Building Blocks of Interpretability](sources/building-blocks.md) § Making Things Human-Scale） | 沒有通用譯名，保留英文 |
+| ReLU | ReLU | — | Building Blocks 提到的網路類型：ReLU 網路的激活值一定是正的，所以 NMF 的非負限制沒有問題 | （[The Building Blocks of Interpretability](sources/building-blocks.md) § Making Things Human-Scale） | 沒有通用譯名，保留英文 |
 | 多義神經元 | poly-semantic neurons | — | 同時回應幾種不相干概念的神經元，例如貓和車 | （[The Building Blocks of Interpretability](sources/building-blocks.md) § How Trustworthy Are These Interfaces?） | 只有一種叫法 |
 | 路徑相依 | path-dependent | — | 函數的輸出來自輸入之間的非線性交互作用時，歸因可能出現的問題；作者建議介面直接顯示歸因有多路徑相依 | （[The Building Blocks of Interpretability](sources/building-blocks.md) § How Trustworthy Are These Interfaces?） | 只有一種叫法 |

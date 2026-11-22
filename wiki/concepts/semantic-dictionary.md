@@ -48,7 +48,7 @@
 - [特徵圖](feature-map.md)：語意字典替特徵圖裡的激活值配上圖像（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Making Sense of Hidden Layers）。
 - [激活網格](../methods/activation-grid.md)：把同樣的做法套到每個元素的激活向量，排成網格（[The Building Blocks of Interpretability](../sources/building-blocks.md) § What Does the Network See?）。
 - [歸因](../methods/attribution.md)：通道歸因的介面用語意字典的圖示代表通道（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Channel Attribution）。
-- [激活空間](activation-space.md)：語意字典可以換基底，旋轉後的成分是激活空間裡的其他方向（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Making Sense of Hidden Layers；[The Building Blocks of Interpretability](../sources/building-blocks.md) § How Trustworthy Are These Interfaces?）。
+- [激活空間](activation-space.md)：語意字典可以用在任何激活值的基底上；遇到多義神經元時，也可以旋轉語意字典（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Making Sense of Hidden Layers；[The Building Blocks of Interpretability](../sources/building-blocks.md) § How Trustworthy Are These Interfaces?）。
 - [矩陣分解](../methods/matrix-factorization.md)：神經元群組是另一種基底；作者說用其他基底提供更好的理解單位，才剛開始探索（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Making Things Human-Scale）。
 
 > 原文（building-blocks）：Our visualizations have only begun to explore the potential of alternate bases in providing better atoms for understanding neural networks.
