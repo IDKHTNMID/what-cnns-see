@@ -27,7 +27,7 @@
 2. 神經網路對輸入大致可微，所以可以算目標對輸入影像的導數（[Feature Visualization](../sources/feature-visualization.md) § Feature Visualization by Optimization）。
 3. 依導數一步步調整影像，往目標變大的方向走（[Feature Visualization](../sources/feature-visualization.md) § Feature Visualization by Optimization）。
 4. 不加任何限制會得到滿是高頻圖樣的影像，所以實際做時要加正則化，或改在去相關的空間裡最佳化，見[正則化與預條件](regularization-and-preconditioning.md)（[Feature Visualization](../sources/feature-visualization.md) § The Enemy of Feature Visualization；[Feature Visualization](../sources/feature-visualization.md) § Preconditioning and Parameterization）。
-5. 想看同一個特徵的不同面向時，一次最佳化好幾張影像，在目標上加多樣性項，讓這幾張彼此不同（[Feature Visualization](../sources/feature-visualization.md) § Achieving Diversity with Optimization）。
+5. 想看同一個特徵的不同面向時，在目標上加多樣性項，讓多個例子彼此不同（[Feature Visualization](../sources/feature-visualization.md) § Achieving Diversity with Optimization）。
 6. 想看神經元怎麼互動時，把兩個目標一起最佳化，或在兩個目標之間內插，見[激活空間](../concepts/activation-space.md)（[Feature Visualization](../sources/feature-visualization.md) § Interaction between Neurons）。
 
 > 原文（feature-visualization）：Starting from random noise, we optimize an image to activate a particular neuron (layer mixed4a, unit 11).
@@ -37,19 +37,19 @@
 
 ## 輸出
 
-- 一張讓目標反應很強的影像；加了多樣性項時是好幾張（[Feature Visualization](../sources/feature-visualization.md) § Feature Visualization by Optimization；[Feature Visualization](../sources/feature-visualization.md) § Achieving Diversity with Optimization）。
+- 一張讓目標反應很強的影像；加了多樣性項時是多個彼此不同的例子（[Feature Visualization](../sources/feature-visualization.md) § Feature Visualization by Optimization；[Feature Visualization](../sources/feature-visualization.md) § Achieving Diversity with Optimization）。
 - 在 GoogLeNet 上，由低層到高層的結果依序像邊緣、紋理、圖案、部件、物體（[Feature Visualization](../sources/feature-visualization.md) § Feature Visualization）。
 - 低層的例子加上多樣性項，可以看出一個特徵的不同面向；高層的例子效果更明顯，會出現不同種類的物體（[Feature Visualization](../sources/feature-visualization.md) § Achieving Diversity with Optimization）。
 
 ![mixed5a 層 unit 9：單純最佳化](../../raw/feature-visualization/images/diversity/mixed5a_9_optimized.png)
 ![mixed5a 層 unit 9：加上多樣性項](../../raw/feature-visualization/images/diversity/mixed5a_9_diversity.png)
-圖：mixed5a 層 unit 9。上面是單純最佳化的結果，下面是加上多樣性項的四張，出現好幾種球（[Feature Visualization](../sources/feature-visualization.md) § Achieving Diversity with Optimization）
+圖：mixed5a 層 unit 9。第一張是單純最佳化的結果，第二張是加上多樣性項的四個結果，出現好幾種球（[Feature Visualization](../sources/feature-visualization.md) § Achieving Diversity with Optimization）
 
 > 原文（feature-visualization）：For example, one neuron responds to different kinds of balls, even though they have a variety of appearances.
 
 ![mixed4e 層 unit 55：單純最佳化](../../raw/feature-visualization/images/diversity/mixed4e_55_optimized.png)
 ![mixed4e 層 unit 55：加上多樣性項](../../raw/feature-visualization/images/diversity/mixed4e_55_diversity.png)
-圖：mixed4e 層 unit 55。加上多樣性項後出現貓、狐狸，也出現汽車（[Feature Visualization](../sources/feature-visualization.md) § Achieving Diversity with Optimization）
+圖：mixed4e 層 unit 55。第一張是單純最佳化的結果；第二張加上多樣性項後出現貓、狐狸，也出現汽車（[Feature Visualization](../sources/feature-visualization.md) § Achieving Diversity with Optimization）
 
 ## 公式與參數
 
@@ -59,7 +59,7 @@
 G_{i,j} = \sum_{x,y} \text{layer}_n\text{[x, y, i]} \cdot \text{layer}_n\text{[x, y, j]}
 ```
 
-多樣性項是同一批視覺化兩兩之間餘弦相似度的負值；$a$、$b$ 是這一批裡的不同影像，再把這一項和原本的最佳化目標一起最大化（[Feature Visualization](../sources/feature-visualization.md) § Achieving Diversity with Optimization）。
+多樣性項是視覺化兩兩之間餘弦相似度的負值，$a$、$b$ 是不同的視覺化；再把這一項和原本的最佳化目標一起最大化（[Feature Visualization](../sources/feature-visualization.md) § Achieving Diversity with Optimization）。
 
 ```math
 C_{\text{diversity}} = - \sum_{a} \sum_{b\neq a} ~ \frac{\text{vec}(G_a) \cdot \text{vec}(G_b)}{||\text{vec}(G_a)||~||\text{vec}(G_b)||}

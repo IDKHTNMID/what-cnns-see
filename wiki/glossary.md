@@ -41,7 +41,7 @@
 | 歸因 | attribution | saliency maps | 研究一個例子的哪個部分讓網路以某種方式激發 | （[Feature Visualization](sources/feature-visualization.md) § Feature Visualization） | 原文說這個領域還沒有標準用語，近來研究偏好 attribution 和 saliency maps 這類叫法（[Feature Visualization](sources/feature-visualization.md) § Feature Visualization） |
 | 最佳化目標 | optimization objective | — | 最佳化時要讓網路哪個部分的反應變大：神經元、通道、層或類別 | （[Feature Visualization](sources/feature-visualization.md) § Optimization Objectives） | 只有一種叫法 |
 | 資料集範例 | dataset examples | — | 在資料集裡找到、讓目標反應強的真實例子 | （[Feature Visualization](sources/feature-visualization.md) § Why visualize by optimization?；[Feature Visualization](sources/feature-visualization.md) § Diversity） | 只有一種叫法 |
-| 多樣性項 | diversity term | — | 加在最佳化目標上、讓同一批結果彼此不同的一項 | （[Feature Visualization](sources/feature-visualization.md) § Achieving Diversity with Optimization） | 只有一種叫法 |
+| 多樣性項 | diversity term | — | 加在最佳化目標上、讓多個例子彼此不同的一項 | （[Feature Visualization](sources/feature-visualization.md) § Achieving Diversity with Optimization） | 只有一種叫法 |
 | Gram 矩陣 | Gram matrix | — | 各通道兩兩之間反應攤平後的內積 | （[Feature Visualization](sources/feature-visualization.md) § Achieving Diversity with Optimization） | 只有一種叫法 |
 | 對抗樣本 | adversarial examples | — | 完全不限制影像時最佳化得到的結果；原文說高頻圖樣看起來和這個現象密切相關 | （[Feature Visualization](sources/feature-visualization.md) § The Enemy of Feature Visualization） | 只有一種叫法 |
 | 高頻圖樣 | high-frequency patterns | 高頻雜訊（high frequency noise） | 不加限制的最佳化產生的雜訊和沒有意義的圖樣 | （[Feature Visualization](sources/feature-visualization.md) § The Enemy of Feature Visualization） | 原文兩種說法交替使用（[Feature Visualization](sources/feature-visualization.md) § The Enemy of Feature Visualization；[Feature Visualization](sources/feature-visualization.md) § The Spectrum of Regularization） |

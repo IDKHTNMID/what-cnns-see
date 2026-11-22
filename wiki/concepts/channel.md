@@ -22,7 +22,7 @@ computing-receptive-fields 也把第 $l$ 層的整個輸出叫特徵圖，寫成
 
 > 原文（d2l-ch7）：This means that rather than mapping a single channel to an edge detector, it may simply mean that some direction in channel space corresponds to detecting edges.
 
-Feature Visualization 用最佳化把 GoogLeNet 各層的通道畫出來：低層的結果像邊緣，往上依序像紋理、圖案、部件、物體，見[特徵視覺化](../methods/feature-visualization.md)（[Feature Visualization](../sources/feature-visualization.md) § Feature Visualization）。它對「方向」也有類似的說法：神經元的組合是激活空間裡的向量，隨機方向常常也看得懂，見[激活空間](activation-space.md)（[Feature Visualization](../sources/feature-visualization.md) § Interaction between Neurons）。
+Feature Visualization 用最佳化把 GoogLeNet 各層的通道畫出來：低層的結果像邊緣，往上依序像紋理、圖案、部件、物體，見[特徵視覺化](../methods/feature-visualization.md)（[Feature Visualization](../sources/feature-visualization.md) § Feature Visualization）。它對「方向」也有類似的說法：神經元的組合是激活空間裡的向量；作者的經驗是隨機方向常常也看得懂，但比例低於基底方向，見[激活空間](activation-space.md)（[Feature Visualization](../sources/feature-visualization.md) § Interaction between Neurons）。
 
 ## 為什麼重要
 

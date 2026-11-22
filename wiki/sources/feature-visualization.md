@@ -16,7 +16,7 @@
 
 > 原文（feature-visualization）：Neural networks are, generally speaking, differentiable with respect to their inputs.
 
-**3. 只看一張最佳化結果可能被誤導。** 最佳化通常只給一個極端的正例，可能只呈現特徵的一個面向；加上多樣性項（diversity term）可以讓多張結果彼此不同（§ Diversity；§ Achieving Diversity with Optimization）。有些例子對應到奇怪的混合概念，例如 mixed4e 層 unit 55 同時回應兩種動物的臉和車身；作者認為這暗示神經元不一定是理解網路的正確語意單位（§ Achieving Diversity with Optimization）。
+**3. 只看一張最佳化結果可能被誤導。** 最佳化通常只給一個極端的正例，可能只呈現特徵的一個面向；加上多樣性項（diversity term）可以讓多個例子彼此不同（§ Diversity；§ Achieving Diversity with Optimization）。有些例子對應到奇怪的混合概念，例如 mixed4e 層 unit 55 同時回應兩種動物的臉和車身；作者認為這暗示神經元不一定是理解網路的正確語意單位（§ Achieving Diversity with Optimization）。
 
 > 原文（feature-visualization）：Examples like these suggest that neurons are not necessarily the right semantic units for understanding neural nets.
 

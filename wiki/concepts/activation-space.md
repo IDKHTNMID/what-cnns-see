@@ -22,7 +22,7 @@ d2l 有類似的說法：不一定是單一通道對應邊緣偵測器，可能�
 
 > 原文（feature-visualization）：Our experience is broadly consistent with both results; we find that random directions often seem interpretable, but at a lower rate than basis directions.
 
-圖見原文：[Feature Visualization：Interaction between Neurons](https://distill.pub/2017/feature-visualization/#random-optimization-and-examples)（[Feature Visualization](../sources/feature-visualization.md) § Interaction between Neurons）
+圖見原文：[Feature Visualization：Interaction between Neurons（隨機方向的資料集範例和最佳化結果）](https://distill.pub/2017/feature-visualization/#random-optimization-and-examples)（[Feature Visualization](../sources/feature-visualization.md) § Interaction between Neurons）
 
 ## 和其他概念的關係
 
@@ -33,9 +33,9 @@ d2l 有類似的說法：不一定是單一通道對應邊緣偵測器，可能�
 
 > 原文（feature-visualization）：For example, if we add a "black and white" neuron to a "mosaic" neuron, we obtain a black and white version of the mosaic.
 
-圖見原文：[Feature Visualization：Interaction between Neurons](https://distill.pub/2017/feature-visualization/#linear-combinations)（[Feature Visualization](../sources/feature-visualization.md) § Interaction between Neurons）
+圖見原文：[Feature Visualization：Interaction between Neurons（兩個神經元一起最佳化）](https://distill.pub/2017/feature-visualization/#linear-combinations)（[Feature Visualization](../sources/feature-visualization.md) § Interaction between Neurons）
 
-圖見原文：[Feature Visualization：Interaction between Neurons](https://distill.pub/2017/feature-visualization/#interpolation)（[Feature Visualization](../sources/feature-visualization.md) § Interaction between Neurons）
+圖見原文：[Feature Visualization：Interaction between Neurons（在兩個神經元之間內插）](https://distill.pub/2017/feature-visualization/#interpolation)（[Feature Visualization](../sources/feature-visualization.md) § Interaction between Neurons）
 
 這些只是神經元互動的開頭：作者說幾乎不知道怎麼挑出有意義的方向，也不知道是否真的存在特別有意義的方向；內插只能看少數方向怎麼互動，實際上有數百個方向在互動（[Feature Visualization](../sources/feature-visualization.md) § Interaction between Neurons）。理解神經元的互動，仍列在待解決的問題裡（[Feature Visualization](../sources/feature-visualization.md) § Conclusion）。
 
