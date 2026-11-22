@@ -64,7 +64,7 @@ CNN 常用奇數高寬的卷積核，例如 1、3、5、7：上下、左右補�
 
 步幅用在為了計算效率、或想要降採樣的時候；卷積核很大時特別有用，因為它已經蓋住影像中很大的範圍（[d2l](../sources/d2l-ch7.md) § 7.3.2. Stride）。
 
-對感受野的影響：某一層的步幅大於 1 時，它底下所有層的區域都按比例變大；填充不影響感受野大小，但感受野區域的位置和填充有關（[Computing Receptive Fields](../sources/computing-receptive-fields.md) § Computing receptive field size；[Computing Receptive Fields](../sources/computing-receptive-fields.md) § Computing receptive field region in input image）。每一層都補 $(k_l - 1)/2$ 時，輸出元素的感受野中心對齊輸入的第一個像素，間隔是有效步幅（[Computing Receptive Fields](../sources/computing-receptive-fields.md) § Computing receptive field region in input image）。
+對感受野的影響：某一層的步幅大於 1 時，它底下所有層的區域都按比例變大；填充不影響感受野大小，但感受野區域的位置和填充有關（[Computing Receptive Fields](../sources/computing-receptive-fields.md) § Computing receptive field size；[Computing Receptive Fields](../sources/computing-receptive-fields.md) § Computing receptive field region in input image）。每一層左側都補 $p_l = (k_l - 1)/2$ 時，輸出元素的感受野中心對齊輸入的第一個像素，間隔是有效步幅（[Computing Receptive Fields](../sources/computing-receptive-fields.md) § Computing receptive field region in input image）。
 
 ## 相關頁面
 

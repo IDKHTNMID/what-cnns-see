@@ -114,7 +114,7 @@ S_l^{(i)} = S_l^{(j)}, \qquad -P_l^{(i)} + \frac{r_l^{(i)} - 1}{2} = -P_l^{(j)} 
 
 ## 為什麼這樣設計
 
-為什麼要算感受野：例如物體偵測要在多個尺度上表示物體，才能認出大小不同的物體，這時常要知道一個特徵涵蓋多大的範圍；網路的感受野太小，可能認不出大的物體（[Computing Receptive Fields](../sources/computing-receptive-fields.md) § Computing Receptive Fields of Convolutional Neural Networks）。
+為什麼要算感受野：例如物體偵測要在多個尺度上表示物體，才能認出大小不同的物體，這時常要知道一個元素在輸入上涵蓋多大的範圍；網路的感受野太小，可能認不出大的物體（[Computing Receptive Fields](../sources/computing-receptive-fields.md) § Computing Receptive Fields of Convolutional Neural Networks）。
 
 > 原文（computing-receptive-fields）：However, these computations are often done by hand, which is both tedious and error-prone.
 

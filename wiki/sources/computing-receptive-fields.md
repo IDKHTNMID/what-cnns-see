@@ -43,7 +43,7 @@
 ## 結論
 
 - 從 AlexNet、VGG 到 ResNet、Inception，感受野隨層數增加而變大，最新的網路通常蓋住整張輸入影像（§ Discussion: receptive fields of modern networks）。
-- 分類準確率和感受野大小呈對數關係，表示高階辨識任務需要大感受野，但效益遞減（§ Discussion: receptive fields of modern networks）。
+- 分類準確率和感受野大小呈對數關係，作者認為這暗示高階辨識任務需要大感受野，但效益遞減（§ Discussion: receptive fields of modern networks）。
 - MobileNet 用 depth-wise 卷積，以很小的計算量得到大感受野；VGG-16 的 FLOPs 是 MobileNet 的 27 倍，感受野卻比較小，準確率只高一點；這表示能有效率產生大感受野的網路，辨識效能可能比較好（§ Discussion: receptive fields of modern networks）。
 
 > 原文（computing-receptive-fields）：We observe a logarithmic relationship between classification accuracy and receptive field size, which suggests that large receptive fields are necessary for high-level recognition tasks, but with diminishing rewards.
