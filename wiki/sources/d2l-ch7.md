@@ -17,11 +17,11 @@
 
 > 原文（d2l-ch7）：As such, we reduced the number of parameters by another four orders of magnitude.
 
-**3. 卷積層實際算的是互相關。** 嚴格的卷積要先把卷積核上下左右翻轉；但卷積核是從資料學出來的，兩種算法得到的輸出一樣，所以照深度學習的慣例仍叫卷積（§ 7.2.1. The Cross-Correlation Operation；§ 7.2.5. Cross-Correlation and Convolution）。
+**3. 卷積層實際算的是互相關。** 嚴格的卷積要先把卷積核上下左右翻轉；但卷積核是從資料學出來的，兩種做法得到的輸出一樣，所以照深度學習的慣例仍叫卷積（§ 7.2.1. The Cross-Correlation Operation；§ 7.2.5. Cross-Correlation and Convolution）。
 
 > 原文（d2l-ch7）：In keeping with standard terminology in deep learning literature, we will continue to refer to the cross-correlation operation as a convolution even though, strictly-speaking, it is slightly different.
 
-**4. 通道。** 每個空間位置對應一整個向量；多輸入通道時各通道分別做卷積再相加，每個輸出通道各有一組卷積核；1×1 卷積只在通道維度上計算（§ 7.1.4. Channels；§ 7.4.1. Multiple Input Channels；§ 7.4.2. Multiple Output Channels；§ 7.4.3. 1×1 Convolutional Layer）。一個通道不一定對應一種特徵，可能是通道空間裡的某個方向對應偵測邊緣（§ 7.4.2. Multiple Output Channels）。
+**4. 通道。** 每個元素對應一整個向量；多輸入通道時各通道分別做卷積再相加，每個輸出通道各有一組卷積核；1×1 卷積只在通道維度上計算（§ 7.1.4. Channels；§ 7.4.1. Multiple Input Channels；§ 7.4.2. Multiple Output Channels；§ 7.4.3. 1×1 Convolutional Layer）。一個通道不一定對應一種特徵，可能是通道空間裡的某個方向對應偵測邊緣（§ 7.4.2. Multiple Output Channels）。
 
 > 原文（d2l-ch7）：Instead, channels are optimized to be jointly useful.
 

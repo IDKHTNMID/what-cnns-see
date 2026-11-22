@@ -44,7 +44,7 @@
 
 ## 輸出
 
-**一層的激活圖譜。** mixed4c 的圖譜裡，左上是動物的頭，比較像眼睛、毛、鼻子這類一般哺乳類的元素，而不是分成不同的動物類別；往下依序是毛和四足動物的背、腳、地面，再過渡到海灘和水；另一側有文字偵測器、人、依顏色排列的圓形食物和水果（[Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md) § Aggregating Multiple Images）。同一組激活值會支持很多類別，例如辨認「seashore」用的海水，也用來分類「starfish」和「sea lion」（[Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md) § Aggregating Multiple Images）。
+**一層的激活圖譜。** mixed4c 的圖譜裡，左上是動物的頭，比較像眼睛、毛、鼻子這類一般哺乳類的組成部分，而不是分成不同的動物類別；往下依序是毛和四足動物的背、腳、地面，再過渡到海灘和水；另一側有文字偵測器、人、依顏色排列的圓形食物和水果（[Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md) § Aggregating Multiple Images）。同一組激活值會支持很多類別，例如辨認「seashore」用的海水，也用來分類「starfish」和「sea lion」（[Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md) § Aggregating Multiple Images）。
 
 > 原文（activation-atlas）：While not unexpected, it is reassuring to see that the activations that are used to identify the sea for the class "seashore" are the same ones used when classifying "starfish" or "sea lion".
 

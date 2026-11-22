@@ -10,10 +10,10 @@
 
 例子：下圖是 3×3 輸入配 2×2 卷積核，輸出值 19 那個元素的感受野，就是輸入陰影部分的 4 個元素。把 2×2 的輸出 $\mathbf{Y}$ 再接一層 2×2 卷積層、輸出單一元素 $z$，則 $z$ 在 $\mathbf{Y}$ 上的感受野是 $\mathbf{Y}$ 的全部 4 個元素，在輸入上的感受野是全部 9 個元素（[d2l](../sources/d2l-ch7.md) § 7.2.6. Feature Map and Receptive Field）。
 
-![二維卷積運算：陰影部分是第一個輸出元素和它用到的輸入與卷積核元素](../../raw/d2l-ch7/_images/correlation.svg)
+![二維卷積運算：陰影部分是第一個輸出元素和它用到的輸入與卷積核的值](../../raw/d2l-ch7/_images/correlation.svg)
 圖：二維卷積運算，輸入的陰影部分就是輸出 19 的感受野（[d2l](../sources/d2l-ch7.md) § 7.2.1. The Cross-Correlation Operation；[d2l](../sources/d2l-ch7.md) § 7.2.6. Feature Map and Receptive Field）
 
-computing-receptive-fields 把感受野直接定義成「產生該元素的輸入區域的大小」（[Computing Receptive Fields](../sources/computing-receptive-fields.md) § Computing Receptive Fields of Convolutional Neural Networks）。本 Wiki 把這個量叫感受野大小（receptive field size），把區域在輸入上的最左、最右座標叫感受野區域（receptive field region），區域的中點叫感受野中心；三者的算法見[感受野的計算](../methods/receptive-field-computation.md)（[Computing Receptive Fields](../sources/computing-receptive-fields.md) § Computing receptive field size；[Computing Receptive Fields](../sources/computing-receptive-fields.md) § Computing receptive field region in input image）。
+computing-receptive-fields 把感受野直接定義成「產生該元素的輸入區域的大小」（[Computing Receptive Fields](../sources/computing-receptive-fields.md) § Computing Receptive Fields of Convolutional Neural Networks）。本 Wiki 把這個量叫感受野大小（receptive field size），把區域在輸入上的最左、最右座標叫感受野區域（receptive field region），區域的中點叫感受野中心；三者怎麼算見[感受野的計算](../methods/receptive-field-computation.md)（[Computing Receptive Fields](../sources/computing-receptive-fields.md) § Computing receptive field size；[Computing Receptive Fields](../sources/computing-receptive-fields.md) § Computing receptive field region in input image）。
 
 感受野區域是從最左到最右的一整段範圍：有些情況下中間會有沒用到的元素（洞）；用了填充時，邊界元素的區域也會伸進填充裡（[Computing Receptive Fields](../sources/computing-receptive-fields.md) § Computing receptive field size；[Computing Receptive Fields](../sources/computing-receptive-fields.md) § Computing receptive field region in input image）。
 

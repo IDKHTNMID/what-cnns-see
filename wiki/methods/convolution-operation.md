@@ -9,13 +9,13 @@
 ## 步驟
 
 1. 把卷積窗口（convolution window，形狀等於卷積核的高和寬）放在輸入的左上角（[d2l](../sources/d2l-ch7.md) § 7.2.1. The Cross-Correlation Operation）。
-2. 窗口由左到右、由上到下滑過輸入。每到一個位置，就把窗口內的輸入子張量和卷積核逐元素相乘、再全部加總，得到一個純量，當作輸出在對應位置的值（[d2l](../sources/d2l-ch7.md) § 7.2.1. The Cross-Correlation Operation）。
+2. 窗口由左到右、由上到下滑過輸入。每到一個位置，就把窗口內的輸入子張量和卷積核對應的值相乘、再全部加總，得到一個純量，當作輸出在對應位置的值（[d2l](../sources/d2l-ch7.md) § 7.2.1. The Cross-Correlation Operation）。
 3. 卷積層再把結果加上偏置（[d2l](../sources/d2l-ch7.md) § 7.2.2. Convolutional Layers）。
 
 > 原文（d2l-ch7）：When the convolution window slides to a certain position, the input subtensor contained in that window and the kernel tensor are multiplied elementwise and the resulting tensor is summed up yielding a single scalar value.
 
 ![二維卷積運算：3×3 輸入、2×2 卷積核、2×2 輸出](../../raw/d2l-ch7/_images/correlation.svg)
-圖：二維卷積運算。陰影部分是第一個輸出元素，以及計算它用到的輸入和卷積核元素：$0\times0+1\times1+3\times2+4\times3=19$（[d2l](../sources/d2l-ch7.md) § 7.2.1. The Cross-Correlation Operation）
+圖：二維卷積運算。陰影部分是第一個輸出元素，以及計算它用到的輸入和卷積核的值：$0\times0+1\times1+3\times2+4\times3=19$（[d2l](../sources/d2l-ch7.md) § 7.2.1. The Cross-Correlation Operation）
 
 ### 多個通道
 
@@ -93,7 +93,7 @@ d2l 用邊緣偵測說明卷積核能做什麼。輸入是 6×8 的「影像」�
 
 | | 互相關 | 嚴格卷積 |
 |---|---|---|
-| 怎麼算 | 窗口內的輸入和卷積核逐元素相乘再加總（[d2l](../sources/d2l-ch7.md) § 7.2.1. The Cross-Correlation Operation） | 先把卷積核上下、左右翻轉，再做互相關（[d2l](../sources/d2l-ch7.md) § 7.2.5. Cross-Correlation and Convolution） |
+| 怎麼算 | 窗口內的輸入和卷積核對應的值相乘再加總（[d2l](../sources/d2l-ch7.md) § 7.2.1. The Cross-Correlation Operation） | 先把卷積核上下、左右翻轉，再做互相關（[d2l](../sources/d2l-ch7.md) § 7.2.5. Cross-Correlation and Convolution） |
 | 公式的索引 | 輸入取 $(i+a, j+b)$（[d2l](../sources/d2l-ch7.md) § 7.1.3. Convolutions） | 取 $(i-a, j-b)$（[d2l](../sources/d2l-ch7.md) § 7.1.3. Convolutions） |
 | 在深度學習裡 | 卷積層實際做的運算，照慣例叫卷積（[d2l](../sources/d2l-ch7.md) § 7.2.5. Cross-Correlation and Convolution） | 改用它的話，學到的卷積核就是互相關卷積核翻轉後的樣子，輸出不變（[d2l](../sources/d2l-ch7.md) § 7.2.5. Cross-Correlation and Convolution） |
 

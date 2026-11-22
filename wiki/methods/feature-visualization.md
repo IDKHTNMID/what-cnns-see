@@ -8,14 +8,14 @@
 
 | 目標 | 寫法 | 看的是什麼 | 出處 |
 |---|---|---|---|
-| 神經元 | $\text{layer}_n[x,y,z]$ | 第 $n$ 層、空間位置 $(x,y)$、第 $z$ 個通道上的一個值 | （[Feature Visualization](../sources/feature-visualization.md) § Optimization Objectives） |
-| 通道 | $\text{layer}_n[:,:,z]$ | 第 $z$ 個通道的所有空間位置 | （[Feature Visualization](../sources/feature-visualization.md) § Optimization Objectives） |
+| 神經元 | $\text{layer}_n[x,y,z]$ | 第 $n$ 層、元素 $(x,y)$、第 $z$ 個通道上的一個值 | （[Feature Visualization](../sources/feature-visualization.md) § Optimization Objectives） |
+| 通道 | $\text{layer}_n[:,:,z]$ | 第 $z$ 個通道的所有元素 | （[Feature Visualization](../sources/feature-visualization.md) § Optimization Objectives） |
 | 層（DeepDream） | $\text{layer}_n[:,:,:]^2$ | 整層，找這層覺得「有趣」的影像 | （[Feature Visualization](../sources/feature-visualization.md) § Optimization Objectives） |
 | 類別 logits | $\text{pre\_softmax}[k]$ | 第 $k$ 類在 softmax 之前的值 | （[Feature Visualization](../sources/feature-visualization.md) § Optimization Objectives） |
 | 類別機率 | $\text{softmax}[k]$ | 第 $k$ 類在 softmax 之後的機率 | （[Feature Visualization](../sources/feature-visualization.md) § Optimization Objectives） |
 
 ![五種最佳化目標](../../raw/screenshots/feature-visualization/fig04.png)
-圖：五種最佳化目標和各自的結果。$n$ 是層的編號、$x,y$ 是空間位置、$z$ 是通道編號、$k$ 是類別編號（[Feature Visualization](../sources/feature-visualization.md) § Optimization Objectives）
+圖：五種最佳化目標和各自的結果。$n$ 是層的編號、$x,y$ 是元素的座標、$z$ 是通道編號、$k$ 是類別編號（[Feature Visualization](../sources/feature-visualization.md) § Optimization Objectives）
 
 原文把文中的例子都叫 neuron，圖說寫成「Layer mixed5a, Unit 9」這種標籤；作者也說文中大部分圖片用的是通道目標（[Feature Visualization](../sources/feature-visualization.md) § Optimization Objectives；[Feature Visualization](../sources/feature-visualization.md) § Achieving Diversity with Optimization）。
 
@@ -104,7 +104,7 @@ Building Blocks 做[語意字典](../concepts/semantic-dictionary.md)時也用�
 | 做法 | 好處 | 問題 | 出處 |
 |---|---|---|---|
 | 資料集範例 | 能找到多樣的例子，也能看不同強度的激活 | 只能看資料集裡固定的例子；分不開原因和只是一起出現的東西 | （[Feature Visualization](../sources/feature-visualization.md) § Diversity；[Feature Visualization](../sources/feature-visualization.md) § Why visualize by optimization?） |
-| 單純最佳化 | 分得開原因和相關；有彈性 | 通常只給一個極端的正例；不加限制會得到高頻雜訊 | （[Feature Visualization](../sources/feature-visualization.md) § Why visualize by optimization?；[Feature Visualization](../sources/feature-visualization.md) § Diversity；[Feature Visualization](../sources/feature-visualization.md) § The Enemy of Feature Visualization） |
+| 單純最佳化 | 分得開原因和相關；有彈性 | 通常只給一個極端的正例；不加限制會得到高頻圖樣 | （[Feature Visualization](../sources/feature-visualization.md) § Why visualize by optimization?；[Feature Visualization](../sources/feature-visualization.md) § Diversity；[Feature Visualization](../sources/feature-visualization.md) § The Enemy of Feature Visualization） |
 | 最佳化加多樣性項 | 看得到同一個特徵的不同面向 | 推開彼此的壓力可能讓不相干的假影（例如眼睛）出現；可能以不自然的方式變得不同 | （[Feature Visualization](../sources/feature-visualization.md) § Achieving Diversity with Optimization） |
 | 以資料集為基礎的分群（Wei et al.） | 拆開特徵的方式比較自然 | 對理解模型在不同資料上的行為，幫助可能沒那麼大 | （[Feature Visualization](../sources/feature-visualization.md) § Achieving Diversity with Optimization） |
 

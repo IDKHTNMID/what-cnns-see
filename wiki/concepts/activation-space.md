@@ -2,7 +2,7 @@
 
 ## 是什麼
 
-神經元（neuron）是某一層、某個空間位置、某個通道上的一個值，寫成 $\text{layer}_n[x,y,z]$（[Feature Visualization](../sources/feature-visualization.md) § Optimization Objectives）。激活空間（activation space）是所有可能的神經元激活值組合；每個神經元的激活值可以看成這個空間的基底向量，神經元的組合就是空間裡的一個向量（[Feature Visualization](../sources/feature-visualization.md) § Interaction between Neurons）。
+神經元（neuron）是某一層、某個元素、某個通道上的一個值，寫成 $\text{layer}_n[x,y,z]$（[Feature Visualization](../sources/feature-visualization.md) § Optimization Objectives）。激活空間（activation space）是所有可能的神經元激活值組合；每個神經元的激活值可以看成這個空間的基底向量，神經元的組合就是空間裡的一個向量（[Feature Visualization](../sources/feature-visualization.md) § Interaction between Neurons）。
 
 > 原文（feature-visualization）：We can then think of individual neuron activations as the basis vectors of this activation space. Conversely, a combination of neuron activations is then just a vector in this space.
 
@@ -49,7 +49,7 @@ Building Blocks 也提到，很多前人研究發現神經網路裡的方向有�
 - [特徵視覺化](../methods/feature-visualization.md)：激活空間裡的方向也可以當最佳化目標；原文對隨機方向同時列出資料集範例和最佳化結果，這些方向是挑過、比較好解讀的（[Feature Visualization](../sources/feature-visualization.md) § Interaction between Neurons）。
 - 神經元相加：對神經元做算術，可以得到激活空間裡有意思的方向；例如把「黑白」神經元加上「馬賽克」神經元，得到黑白版的馬賽克。這讓人想到 Word2Vec 詞向量的語意算術，或生成模型的潛在空間（[Feature Visualization](../sources/feature-visualization.md) § Interaction between Neurons）。
 - 內插：最佳化目標是兩個通道目標之間的線性內插；為了讓結果好看，另外加一個小的對齊目標讓低層的激活值相近，並混用分開和共用的影像參數化（[Feature Visualization](../sources/feature-visualization.md) § Interaction between Neurons）。這和在生成模型的潛在空間裡內插類似（[Feature Visualization](../sources/feature-visualization.md) § Interaction between Neurons）。
-- [通道](channel.md)：通道目標是一整個通道所有空間位置的值（[Feature Visualization](../sources/feature-visualization.md) § Optimization Objectives）。
+- [通道](channel.md)：通道目標是一整個通道所有元素的值（[Feature Visualization](../sources/feature-visualization.md) § Optimization Objectives）。
 - [語意字典](semantic-dictionary.md)：語意字典以神經元介紹，但可以用在任何激活值的基底上（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Making Sense of Hidden Layers）。
 - [激活網格](../methods/activation-grid.md)：把一個元素上所有通道的激活值當成一個激活向量（activation vector）一起畫，看的是神經元的組合，不是單一神經元（[The Building Blocks of Interpretability](../sources/building-blocks.md) § What Does the Network See?）。
 - [矩陣分解](../methods/matrix-factorization.md)：分出來的神經元群組是另一種基底；作者說用其他基底提供更好的理解單位，才剛開始探索（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Making Things Human-Scale）。

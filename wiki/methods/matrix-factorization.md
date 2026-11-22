@@ -7,7 +7,7 @@
 
 ## 步驟
 
-1. 把特徵圖攤平成「空間位置 × 通道」的矩陣（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Making Things Human-Scale）。
+1. 把特徵圖攤平成「元素 × 通道」的矩陣（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Making Things Human-Scale）。
 2. 對這個矩陣做矩陣分解（matrix factorization）；Building Blocks 用非負矩陣分解（non-negative matrix factorization，NMF），限制因子都是正的（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Making Things Human-Scale）。
 3. 分出來的每一組是一個神經元群組（neuron groups），是元素（原文叫 spatial location）和通道的組合；這些群組就是使用者在介面上操作的單位（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Making Things Human-Scale）。
 4. 每個群組用特徵視覺化（feature visualization）畫出它在找什麼，並列出它對各輸出類別的影響（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Making Things Human-Scale）。
@@ -37,7 +37,7 @@
 
 ## 公式與參數
 
-特徵圖的高、寬、通道數是 $h$、$w$、$c$，群組數是 $k$；攤平後的矩陣 $A$ 有 $h \cdot w$ 列（空間位置）、$c$ 行（通道）（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Making Things Human-Scale）。多數矩陣分解的演算法和函式庫，是讓重建矩陣的均方誤差最小（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Making Things Human-Scale）：
+特徵圖的高、寬、通道數是 $h$、$w$、$c$，群組數是 $k$；攤平後的矩陣 $A$ 有 $h \cdot w$ 列（元素）、$c$ 行（通道）（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Making Things Human-Scale）。多數矩陣分解的演算法和函式庫，是讓重建矩陣的均方誤差最小（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Making Things Human-Scale）：
 
 ```math
 \min_{W \ge 0,\; H \ge 0} \; \lVert A - W H \rVert^2, \quad W \in \mathbb{R}^{hw \times k},\; H \in \mathbb{R}^{k \times c}
@@ -53,7 +53,7 @@
 
 ## 為什麼這樣設計
 
-**為什麼要分組。** 很多通道或空間位置會高度相關地一起運作，當成一個單位最好理解；有些幾乎沒有活動，做高層概覽時可以忽略（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Making Things Human-Scale）。
+**為什麼要分組。** 很多通道或元素會高度相關地一起運作，當成一個單位最好理解；有些幾乎沒有活動，做高層概覽時可以忽略（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Making Things Human-Scale）。
 
 > 原文（building-blocks）：Often, many channels or spatial positions will work together in a highly correlated way and are most useful to think of as one unit.
 

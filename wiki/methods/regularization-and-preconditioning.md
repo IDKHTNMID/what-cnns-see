@@ -21,9 +21,9 @@
 
 ### 正則化三類
 
-**頻率懲罰（frequency penalization）** 直接針對高頻雜訊（[Feature Visualization](../sources/feature-visualization.md) § Three Families of Regularization）。
+**頻率懲罰（frequency penalization）** 直接針對高頻圖樣（[Feature Visualization](../sources/feature-visualization.md) § Three Families of Regularization）。
 
-1. 明確懲罰相鄰像素之間的變異，也就是總變差（total variation）；或每一步最佳化都把影像模糊一次，間接懲罰高頻雜訊（[Feature Visualization](../sources/feature-visualization.md) § Three Families of Regularization）。
+1. 明確懲罰相鄰像素之間的變異，也就是總變差（total variation）；或每一步最佳化都把影像模糊一次，間接懲罰高頻圖樣（[Feature Visualization](../sources/feature-visualization.md) § Three Families of Regularization）。
 2. 在傅立葉空間看，模糊等於在目標上加一個 L2 懲罰，依每個傅立葉分量的頻率決定懲罰多少（[Feature Visualization](../sources/feature-visualization.md) § Three Families of Regularization）。
 3. 改用會保留邊緣的雙邊濾波器（bilateral filter）取代模糊，可以稍微改善（[Feature Visualization](../sources/feature-visualization.md) § Three Families of Regularization）。
 
@@ -67,7 +67,7 @@
 
 ## 輸出
 
-- 高頻雜訊較少的視覺化。用去相關的下降方向，得到的視覺化差很多；作者說很難公平比較，但結果看起來好很多，也比較快成形（[Feature Visualization](../sources/feature-visualization.md) § Preconditioning and Parameterization）。
+- 高頻圖樣較少的視覺化。用去相關的下降方向，得到的視覺化差很多；作者說很難公平比較，但結果看起來好很多，也比較快成形（[Feature Visualization](../sources/feature-visualization.md) § Preconditioning and Parameterization）。
 - 預條件和變換穩健性一起用，品質還會更好（[Feature Visualization](../sources/feature-visualization.md) § Preconditioning and Parameterization）。
 
 > 原文（feature-visualization）：It's hard to do really fair comparisons because of hyperparameters, but the resulting visualizations seem a lot better — and develop faster, too.
@@ -91,7 +91,7 @@
 
 ## 為什麼這樣設計
 
-**為什麼一定要加結構。** 處理高頻雜訊一直是特徵視覺化研究的主要挑戰之一；想得到有用的視覺化，就要用某種先驗、正則化或限制加上比較自然的結構（[Feature Visualization](../sources/feature-visualization.md) § The Spectrum of Regularization）。
+**為什麼一定要加結構。** 處理高頻圖樣一直是特徵視覺化研究的主要挑戰之一；想得到有用的視覺化，就要用某種先驗、正則化或限制加上比較自然的結構（[Feature Visualization](../sources/feature-visualization.md) § The Spectrum of Regularization）。
 
 > 原文（feature-visualization）：If you want to get useful visualizations, you need to impose a more natural structure using some kind of prior, regularizer, or constraint.
 

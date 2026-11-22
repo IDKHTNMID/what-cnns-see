@@ -11,7 +11,7 @@
 
 1. 一個神經元（neuron）對輸出的影響，估計成「它的激活值（activation）× 提高它的激活值會讓輸出提高多快」，也就是激活值乘上梯度（[The Building Blocks of Interpretability](../sources/building-blocks.md) § How Are Concepts Assembled?）。
 2. 對激活值的線性組合，歸因是各單位歸因的線性組合，也等於這個組合的激活值和梯度的內積（[The Building Blocks of Interpretability](../sources/building-blocks.md) § How Are Concepts Assembled?）。
-3. 做空間歸因時另外處理梯度：GoogLeNet 有步幅的最大池化會在梯度裡帶來很多雜訊和棋盤狀圖樣，見[棋盤狀假影](../concepts/checkerboard-artifacts.md)；作者把最大池化的梯度放寬，依激活值比例分給各輸入，不再全部給最大的那個，再把棋盤狀圖樣抵消掉（[The Building Blocks of Interpretability](../sources/building-blocks.md) § How Are Concepts Assembled?）。
+3. 做空間歸因時另外處理梯度：GoogLeNet 有步幅的最大池化會在梯度裡帶來很多雜訊和[棋盤狀假影](../concepts/checkerboard-artifacts.md)；作者把最大池化的梯度放寬，依激活值比例分給各輸入，不再全部給最大的那個，再把棋盤狀假影抵消掉（[The Building Blocks of Interpretability](../sources/building-blocks.md) § How Are Concepts Assembled?）。
 
 > 原文（building-blocks）：That is, we estimate the effect of a neuron on the output is its activation times the rate at which increasing its activation increases the output.
 
@@ -89,7 +89,7 @@ $a_i$ 是神經元 $i$ 的激活值，$y$ 是輸出（[The Building Blocks of In
 
 所以作者改在隱藏層上做歸因，問的不是某個像素的顏色重不重要，而是那個位置偵測到的高層概念（例如垂耳）重不重要（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Spatial Attribution with Saliency Maps）。
 
-**為什麼再做通道歸因。** 同一個位置常同時偵測到好幾個概念，只看位置就分不開（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Spatial Attribution with Saliency Maps）。顯著圖等於按位置切、把所有通道加總，看不出每個位置上是哪些偵測器貢獻最多；通道歸因改成按通道切（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Channel Attribution）。
+**為什麼再做通道歸因。** 同一個位置常同時偵測到好幾個概念，只看位置就分不開（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Spatial Attribution with Saliency Maps）。顯著圖等於按位置切、把所有通道加總，看不出每個位置上是哪些通道貢獻最多；通道歸因改成按通道切（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Channel Attribution）。
 
 > 原文（building-blocks）：This aggregates over all channels and, as a result, we cannot tell which specific detectors at each position most contributed to the final output classification.
 

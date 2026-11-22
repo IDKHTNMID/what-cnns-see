@@ -18,17 +18,17 @@ Building Blocks 把每一層學到的表示畫成三維的立方體，叫激活�
 
 | 切法 | 切出來的一塊 |
 |---|---|
-| 神經元 | 一個空間位置、一個通道上的一格（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Making Sense of Hidden Layers） |
+| 神經元 | 一個元素、一個通道上的一格（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Making Sense of Hidden Layers） |
 | 元素（原文叫 spatial position） | 同一個位置上所有通道的值，合起來是一個激活向量（activation vector）（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Making Sense of Hidden Layers；[The Building Blocks of Interpretability](../sources/building-blocks.md) § What Does the Network See?） |
-| 通道 | 一個通道在所有空間位置上的值（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Making Sense of Hidden Layers） |
-| 神經元群組（neuron groups） | 空間位置和通道比較任意的組合，用矩陣分解找出來（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Making Things Human-Scale） |
+| 通道 | 一個通道在所有元素上的值（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Making Sense of Hidden Layers） |
+| 神經元群組（neuron groups） | 元素和通道比較任意的組合，用矩陣分解找出來（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Making Things Human-Scale） |
 
 > 原文（building-blocks）：In addition to naturally slicing a hidden layer's cube of activations into neurons, spatial locations, or channels, we can also consider more arbitrary groupings of locations and channels.
 
 ![介面的四個面向：層、atoms、內容、呈現方式](../../raw/screenshots/building-blocks/fig12.png)
 圖：Building Blocks 的介面四個面向。ATOMS 欄的四個小立方體就是特徵圖的四種切法：group（神經元群組）、spatial（元素）、channel（通道）、neuron（神經元）（[The Building Blocks of Interpretability](../sources/building-blocks.md) § The Space of Interpretability Interfaces）
 
-圖見原文：[The Building Blocks of Interpretability：Making Sense of Hidden Layers（激活立方體的三種切法）](https://distill.pub/2018/building-blocks/#ActivationCube)（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Making Sense of Hidden Layers）
+圖見原文：[The Building Blocks of Interpretability：Making Sense of Hidden Layers（特徵圖的三種切法）](https://distill.pub/2018/building-blocks/#ActivationCube)（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Making Sense of Hidden Layers）
 
 圖見原文：[The Building Blocks of Interpretability：Making Things Human-Scale（加上神經元群組的四種切法）](https://distill.pub/2018/building-blocks/#CubeGroups)（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Making Things Human-Scale）
 
