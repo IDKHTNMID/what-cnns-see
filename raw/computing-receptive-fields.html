@@ -1,0 +1,2524 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=650, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"><script>
+window.addEventListener('WebComponentsReady', function() {
+  console.warn('WebComponentsReady');
+  const loaderTag = document.createElement('script');
+  loaderTag.src = 'https://distill.pub/template.v2.js';
+  document.head.insertBefore(loaderTag, document.head.firstChild);
+});
+</script><script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.0.17/webcomponents-loader.js"></script>
+  
+  
+  <style id="distill-prerendered-styles" type="text/css">/*
+ * Copyright 2018 The Distill Template Authors
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+html {
+  font-size: 14px;
+	line-height: 1.6em;
+  /* font-family: "Libre Franklin", "Helvetica Neue", sans-serif; */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+  /*, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";*/
+  text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media(min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+body {
+  margin: 0;
+}
+
+a {
+  color: #004276;
+}
+
+figure {
+  margin: 0;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+table th {
+	text-align: left;
+}
+
+table thead {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+table thead th {
+  padding-bottom: 0.5em;
+}
+
+table tbody :first-child td {
+  padding-top: 0.5em;
+}
+
+pre {
+  overflow: auto;
+  max-width: 100%;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 1em;
+}
+
+sup, sub {
+  vertical-align: baseline;
+  position: relative;
+  top: -0.4em;
+  line-height: 1em;
+}
+
+sub {
+  top: 0.4em;
+}
+
+.kicker,
+.marker {
+  font-size: 15px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+
+/* Headline */
+
+@media(min-width: 1024px) {
+  d-title h1 span {
+    display: block;
+  }
+}
+
+/* Figure */
+
+figure {
+  position: relative;
+  margin-bottom: 2.5em;
+  margin-top: 1.5em;
+}
+
+figcaption+figure {
+
+}
+
+figure img {
+  width: 100%;
+}
+
+figure svg text,
+figure svg tspan {
+}
+
+figcaption,
+.figcaption {
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 12px;
+  line-height: 1.5em;
+}
+
+@media(min-width: 1024px) {
+figcaption,
+.figcaption {
+    font-size: 13px;
+  }
+}
+
+figure.external img {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+  padding: 18px;
+  box-sizing: border-box;
+}
+
+figcaption a {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+figcaption b,
+figcaption strong, {
+  font-weight: 600;
+  color: rgba(0, 0, 0, 1.0);
+}
+/*
+ * Copyright 2018 The Distill Template Authors
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+@supports not (display: grid) {
+  .base-grid,
+  distill-header,
+  d-title,
+  d-abstract,
+  d-article,
+  d-appendix,
+  distill-appendix,
+  d-byline,
+  d-footnote-list,
+  d-citation-list,
+  distill-footer {
+    display: block;
+    padding: 8px;
+  }
+}
+
+.base-grid,
+distill-header,
+d-title,
+d-abstract,
+d-article,
+d-appendix,
+distill-appendix,
+d-byline,
+d-footnote-list,
+d-citation-list,
+distill-footer {
+  display: grid;
+  justify-items: stretch;
+  grid-template-columns: [screen-start] 8px [page-start kicker-start text-start gutter-start middle-start] 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr [text-end page-end gutter-end kicker-end middle-end] 8px [screen-end];
+  grid-column-gap: 8px;
+}
+
+.grid {
+  display: grid;
+  grid-column-gap: 8px;
+}
+
+@media(min-width: 768px) {
+  .base-grid,
+  distill-header,
+  d-title,
+  d-abstract,
+  d-article,
+  d-appendix,
+  distill-appendix,
+  d-byline,
+  d-footnote-list,
+  d-citation-list,
+  distill-footer {
+    grid-template-columns: [screen-start] 1fr [page-start kicker-start middle-start text-start] 45px 45px 45px 45px 45px 45px 45px 45px [ kicker-end text-end gutter-start] 45px [middle-end] 45px [page-end gutter-end] 1fr [screen-end];
+    grid-column-gap: 16px;
+  }
+
+  .grid {
+    grid-column-gap: 16px;
+  }
+}
+
+@media(min-width: 1000px) {
+  .base-grid,
+  distill-header,
+  d-title,
+  d-abstract,
+  d-article,
+  d-appendix,
+  distill-appendix,
+  d-byline,
+  d-footnote-list,
+  d-citation-list,
+  distill-footer {
+    grid-template-columns: [screen-start] 1fr [page-start kicker-start] 50px [middle-start] 50px [text-start kicker-end] 50px 50px 50px 50px 50px 50px 50px 50px [text-end gutter-start] 50px [middle-end] 50px [page-end gutter-end] 1fr [screen-end];
+    grid-column-gap: 16px;
+  }
+
+  .grid {
+    grid-column-gap: 16px;
+  }
+}
+
+@media(min-width: 1180px) {
+  .base-grid,
+  distill-header,
+  d-title,
+  d-abstract,
+  d-article,
+  d-appendix,
+  distill-appendix,
+  d-byline,
+  d-footnote-list,
+  d-citation-list,
+  distill-footer {
+    grid-template-columns: [screen-start] 1fr [page-start kicker-start] 60px [middle-start] 60px [text-start kicker-end] 60px 60px 60px 60px 60px 60px 60px 60px [text-end gutter-start] 60px [middle-end] 60px [page-end gutter-end] 1fr [screen-end];
+    grid-column-gap: 32px;
+  }
+
+  .grid {
+    grid-column-gap: 32px;
+  }
+}
+
+
+
+
+.base-grid {
+  grid-column: screen;
+}
+
+/* .l-body,
+d-article > *  {
+  grid-column: text;
+}
+
+.l-page,
+d-title > *,
+d-figure {
+  grid-column: page;
+} */
+
+.l-gutter {
+  grid-column: gutter;
+}
+
+.l-text,
+.l-body {
+  grid-column: text;
+}
+
+.l-page {
+  grid-column: page;
+}
+
+.l-body-outset {
+  grid-column: middle;
+}
+
+.l-page-outset {
+  grid-column: page;
+}
+
+.l-screen {
+  grid-column: screen;
+}
+
+.l-screen-inset {
+  grid-column: screen;
+  padding-left: 16px;
+  padding-left: 16px;
+}
+
+
+/* Aside */
+
+d-article aside {
+  grid-column: gutter;
+  font-size: 12px;
+  line-height: 1.6em;
+  color: rgba(0, 0, 0, 0.6)
+}
+
+@media(min-width: 768px) {
+  aside {
+    grid-column: gutter;
+  }
+
+  .side {
+    grid-column: gutter;
+  }
+}
+/*
+ * Copyright 2018 The Distill Template Authors
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+d-title {
+  padding: 2rem 0 1.5rem;
+  contain: layout style;
+  overflow-x: hidden;
+}
+
+@media(min-width: 768px) {
+  d-title {
+    padding: 4rem 0 1.5rem;
+  }
+}
+
+d-title h1 {
+  grid-column: text;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 1.1em;
+  margin: 0 0 0.5rem;
+}
+
+@media(min-width: 768px) {
+  d-title h1 {
+    font-size: 50px;
+  }
+}
+
+d-title p {
+  font-weight: 300;
+  font-size: 1.2rem;
+  line-height: 1.55em;
+  grid-column: text;
+}
+
+d-title .status {
+  margin-top: 0px;
+  font-size: 12px;
+  color: #009688;
+  opacity: 0.8;
+  grid-column: kicker;
+}
+
+d-title .status span {
+  line-height: 1;
+  display: inline-block;
+  padding: 6px 0;
+  border-bottom: 1px solid #80cbc4;
+  font-size: 11px;
+  text-transform: uppercase;
+}
+/*
+ * Copyright 2018 The Distill Template Authors
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+d-byline {
+  contain: style;
+  overflow: hidden;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  font-size: 0.8rem;
+  line-height: 1.8em;
+  padding: 1.5rem 0;
+  min-height: 1.8em;
+}
+
+
+d-byline .byline {
+  grid-template-columns: 1fr 1fr;
+  grid-column: text;
+}
+
+@media(min-width: 768px) {
+  d-byline .byline {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+
+d-byline .authors-affiliations {
+  grid-column-end: span 2;
+  grid-template-columns: 1fr 1fr;
+  margin-bottom: 1em;
+}
+
+@media(min-width: 768px) {
+  d-byline .authors-affiliations {
+    margin-bottom: 0;
+  }
+}
+
+d-byline h3 {
+  font-size: 0.6rem;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.5);
+  margin: 0;
+  text-transform: uppercase;
+}
+
+d-byline p {
+  margin: 0;
+}
+
+d-byline a,
+d-article d-byline a {
+  color: rgba(0, 0, 0, 0.8);
+  text-decoration: none;
+  border-bottom: none;
+}
+
+d-article d-byline a:hover {
+  text-decoration: underline;
+  border-bottom: none;
+}
+
+d-byline p.author {
+  font-weight: 500;
+}
+
+d-byline .affiliations {
+
+}
+/*
+ * Copyright 2018 The Distill Template Authors
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+d-article {
+  contain: layout style;
+  overflow-x: hidden;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding-top: 2rem;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+d-article > * {
+  grid-column: text;
+}
+
+@media(min-width: 768px) {
+  d-article {
+    font-size: 16px;
+  }
+}
+
+@media(min-width: 1024px) {
+  d-article {
+    font-size: 1.06rem;
+    line-height: 1.7em;
+  }
+}
+
+
+/* H2 */
+
+
+d-article .marker {
+  text-decoration: none;
+  border: none;
+  counter-reset: section;
+  grid-column: kicker;
+  line-height: 1.7em;
+}
+
+d-article .marker:hover {
+  border: none;
+}
+
+d-article .marker span {
+  padding: 0 3px 4px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  position: relative;
+  top: 4px;
+}
+
+d-article .marker:hover span {
+  color: rgba(0, 0, 0, 0.7);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.7);
+}
+
+d-article h2 {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.25em;
+  margin: 2rem 0 1.5rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding-bottom: 1rem;
+}
+
+@media(min-width: 1024px) {
+  d-article h2 {
+    font-size: 36px;
+  }
+}
+
+/* H3 */
+
+d-article h3 {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.4em;
+  margin-bottom: 1em;
+  margin-top: 2em;
+}
+
+@media(min-width: 1024px) {
+  d-article h3 {
+    font-size: 20px;
+  }
+}
+
+/* H4 */
+
+d-article h4 {
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 14px;
+  line-height: 1.4em;
+}
+
+d-article a {
+  color: inherit;
+}
+
+d-article p,
+d-article ul,
+d-article ol,
+d-article blockquote {
+  margin-top: 0;
+  margin-bottom: 1em;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+d-article blockquote {
+  border-left: 2px solid rgba(0, 0, 0, 0.2);
+  padding-left: 2em;
+  font-style: italic;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+d-article a {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  text-decoration: none;
+}
+
+d-article a:hover {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.8);
+}
+
+d-article .link {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+d-article ul,
+d-article ol {
+  padding-left: 24px;
+}
+
+d-article li {
+  margin-bottom: 1em;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+d-article li:last-child {
+  margin-bottom: 0;
+}
+
+d-article pre {
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+d-article hr {
+  grid-column: screen;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  margin-top: 60px;
+  margin-bottom: 60px;
+}
+
+d-article section {
+  margin-top: 60px;
+  margin-bottom: 60px;
+}
+
+d-article span.equation-mimic {
+  font-family: georgia;
+  font-size: 115%;
+  font-style: italic;
+}
+
+d-article > d-code,
+d-article section > d-code  {
+  display: block;
+}
+
+d-article > d-math[block],
+d-article section > d-math[block]  {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  d-article > d-code,
+  d-article section > d-code,
+  d-article > d-math[block],
+  d-article section > d-math[block] {
+      overflow-x: scroll;
+      -ms-overflow-style: none;  // IE 10+
+      overflow: -moz-scrollbars-none;  // Firefox
+  }
+
+  d-article > d-code::-webkit-scrollbar,
+  d-article section > d-code::-webkit-scrollbar,
+  d-article > d-math[block]::-webkit-scrollbar,
+  d-article section > d-math[block]::-webkit-scrollbar {
+    display: none;  // Safari and Chrome
+  }
+}
+
+d-article .citation {
+  color: #668;
+  cursor: pointer;
+}
+
+d-include {
+  width: auto;
+  display: block;
+}
+
+d-figure {
+  contain: layout style;
+}
+
+/* KaTeX */
+
+.katex, .katex-prerendered {
+  contain: style;
+  display: inline-block;
+}
+
+/* Tables */
+
+d-article table {
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+d-article table th {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+d-article table td {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+d-article table tr:last-of-type td {
+  border-bottom: none;
+}
+
+d-article table th,
+d-article table td {
+  font-size: 15px;
+  padding: 2px 8px;
+}
+
+d-article table tbody :first-child td {
+  padding-top: 2px;
+}
+/*
+ * Copyright 2018 The Distill Template Authors
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+span.katex-display {
+  text-align: left;
+  padding: 8px 0 8px 0;
+  margin: 0.5em 0 0.5em 1em;
+}
+
+span.katex {
+  -webkit-font-smoothing: antialiased;
+  color: rgba(0, 0, 0, 0.8);
+  font-size: 1.18em;
+}
+/*
+ * Copyright 2018 The Distill Template Authors
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+@media print {
+
+  @page {
+    size: 8in 11in;
+    @bottom-right {
+      content: counter(page) " of " counter(pages);
+    }
+  }
+
+  html {
+    /* no general margins -- CSS Grid takes care of those */
+  }
+
+  p, code {
+    page-break-inside: avoid;
+  }
+
+  h2, h3 {
+    page-break-after: avoid;
+  }
+
+  d-header {
+    visibility: hidden;
+  }
+
+  d-footer {
+    display: none!important;
+  }
+
+}
+</style>
+  <script type="text/javascript" src="assets/dynamic_visuals/utils.js"></script>
+  <script type="text/javascript" src="assets/dynamic_visuals/globals.js"></script>
+
+  <!-- - Small mathjax addition to support equation numbering. -->
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+    });
+  </script>
+
+  <script async="" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+
+  <style id="distill-manual-toc">
+    /* TOC */
+    #contents nav a {
+      color: rgba(0, 0, 0, 0.8);
+      border-bottom: none;
+      text-decoration: none;
+    }
+
+    #contents nav ul li {
+      margin-bottom: .25em;
+    }
+
+    #contents nav a:hover {
+      text-decoration: underline solid rgba(0, 0, 0, 0.6);
+    }
+
+    #contents nav ul {
+      margin-top: 0;
+      margin-bottom: 6px;
+    }
+
+
+    #contents nav>div {
+      display: block;
+      outline: none;
+      margin-bottom: 0.5em;
+    }
+
+    #contents nav>div>a {
+      font-size: 13px;
+      font-weight: 600;
+    }
+  </style>
+  <style>
+    #model_table>table,
+    th,
+    td {
+      border: 1px solid #dfe2e5;
+      border-collapse: collapse;
+      padding: 6px 13px !important;
+    }
+
+    tr:nth-child(even)>td {
+      background-color: rgb(246, 248, 250);
+    }
+  </style>
+
+  <link rel="stylesheet" type="text/css" href="assets/dynamic_visuals/style.css">
+
+    
+    <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA99JREFUeNrsG4t1ozDMzQSM4A2ODUonKBucN2hugtIJ6E1AboLcBiQTkJsANiAb9OCd/OpzMWBJBl5TvaeXPiiyJetry0J8wW3D3QpjRh3GjneXDq+fSQA9s2mH9x3KDhN4foJfCb8N/Jrv+2fnDn8vLRQOplWHVYdvHZYdZsBcZP1vBmh/n8DzEmhUQDPaOuP9pFuY+JwJHwHnCLQE2tnWBGEyXozY9xCUgHMhhjE2I4heVWtgIkZ83wL6Qgxj1obfWBxymPwe+b00BCCRNPbwfb60yleAkkBHGT5AEehIYz7eJrFDMF9CvH4wwhcGHiHMneFvLDQwlwvMLQq58trRcYBWfYn0A0OgHWQUSu25mE+BnoYKnnEJoeIWAifzOv7vLWd2ZKRfWAIme3tOiUaQ3UnLkb0xj1FxRIeEGKaGIHOs9nEgLaaA9i0JRYo1Ic67wJW86KSKE/ZAM8KuVMk8ITVhmxUxJ3Cl2xlm9Vtkeju1+mpCQNxaEGNCY8bs9X2YqwNoQeGjBWut/ma0QAWy/TqAsHx9wSya3I5IRxOfTC+leG+kA/4vSeEcGBtNUN6byhu3+keEZCQJUNh8MAO7HL6H8pQLnsW/Hd4T4lv93TPjfM7A46iEEqbB5EDOvwYNW6tGNZzT/o+CZ6sqZ6wUtR/wf7mi/VL8iNciT6rHih48Y55b4nKCHJCCzb4y0nwFmin3ZEMIoLfZF8F7nncFmvnWBaBj7CGAYA/WGJsUwHdYqVDwAmNsUgAx4CGgAA7GOOxADYOFWOaIKifuVYzmOpREqA21Mo7aPsgiY1PhOMAmxtR+AUbYH3Id2wc0SAFIQTsn9IUGWR8k9jx3vtXSiAacFxTAGakBk9UudkNECd6jLe+6HrshshvIuC6IlLMRy7er+JpcKma24SlE4cFZSZJDGVVrsNvitQhQrDhW0jfiOLfFd47C42eHT56D/BK0To+58Ahj+cAT8HT1UWlfLZCCd/uKawzU0Rh2EyIX/Icqth3niG8ybNroezwe6khdCNxRN+l4XGdOLVLlOOt2hTRJlr1ETIuMAltVTMz70mJrkdGAaZLSmnBEqmAE32JCMmuTlCnRgsBENtOUpHhvvsYIL0ibnBkaC6QvKcR7738GKp0AKnim7xgUSNv1bpS8QwhBt8r+EP47v/oyRK/S34yJ9nT+AN0Tkm4OdB9E4BsmXM3SnMlRFUrtp6IDpV2eKzdYvF3etm3KhQksbOLChGkSmcBdmcEwvqkrMy5BzL00NZeu3qPYJOOuCc+5NjcWKXQxFvTa3NoXJ4d8in7fiAUuTt781dkvuHX4K8AA2Usy7yNKLy0AAAAASUVORK5CYII=
+">
+    <link href="/rss.xml" rel="alternate" type="application/rss+xml" title="Articles from Distill">
+  
+    <title>Computing Receptive Fields of Convolutional Neural Networks</title>
+    
+    <link rel="canonical" href="https://distill.pub/2019/computing-receptive-fields">
+    
+    <!--  https://schema.org/Article -->
+    <meta property="description" itemprop="description" content="Detailed derivations and open-source code to analyze the receptive fields of convnets.">
+    <meta property="article:published" itemprop="datePublished" content="2019-11-04">
+    <meta property="article:created" itemprop="dateCreated" content="2019-11-04">
+    
+    <meta property="article:modified" itemprop="dateModified" content="2019-11-04T10:36:51.000Z">
+    
+    <meta property="article:author" content="Andr&amp;eacute; Araujo">
+    <meta property="article:author" content="Wade Norris">
+    <meta property="article:author" content="Jack Sim">
+    <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Computing Receptive Fields of Convolutional Neural Networks">
+    <meta property="og:description" content="Detailed derivations and open-source code to analyze the receptive fields of convnets.">
+    <meta property="og:url" content="https://distill.pub/2019/computing-receptive-fields">
+    <meta property="og:image" content="https://distill.pub/2019/computing-receptive-fields/thumbnail.jpg">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="Distill">
+  
+    <!--  https://dev.twitter.com/cards/types/summary -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Computing Receptive Fields of Convolutional Neural Networks">
+    <meta name="twitter:description" content="Detailed derivations and open-source code to analyze the receptive fields of convnets.">
+    <meta name="twitter:url" content="https://distill.pub/2019/computing-receptive-fields">
+    <meta name="twitter:image" content="https://distill.pub/2019/computing-receptive-fields/thumbnail.jpg">
+    <meta name="twitter:image:width" content="560">
+    <meta name="twitter:image:height" content="295">
+  
+      <!--  https://scholar.google.com/intl/en/scholar/inclusion.html#indexing -->
+    <meta name="citation_title" content="Computing Receptive Fields of Convolutional Neural Networks">
+    <meta name="citation_fulltext_html_url" content="https://distill.pub/2019/computing-receptive-fields">
+    <meta name="citation_volume" content="4">
+    <meta name="citation_issue" content="11">
+    <meta name="citation_firstpage" content="e21">
+    <meta name="citation_doi" content="10.23915/distill.00021">
+    <meta name="citation_journal_title" content="Distill">
+    <meta name="citation_journal_abbrev" content="Distill">
+    <meta name="citation_issn" content="2476-0757">
+    <meta name="citation_fulltext_world_readable" content="">
+    <meta name="citation_online_date" content="2019/11/04">
+    <meta name="citation_publication_date" content="2019/11/04">
+    <meta name="citation_author" content="Araujo, Andr&amp;eacute;">
+    <meta name="citation_author_institution" content="Google Research">
+    <meta name="citation_author" content="Norris, Wade">
+    <meta name="citation_author_institution" content="Perception Labs">
+    <meta name="citation_author" content="Sim, Jack">
+    <meta name="citation_author_institution" content="Google Research">
+    <meta name="citation_reference" content="citation_title=Visualizing higher-layer features of a deep network;citation_author=Dumitru Erhan;citation_author=Yoshua Bengio;citation_author=Aaron Courville;citation_author=Pascal Vincent;citation_publication_date=2009;citation_journal_title=University of Montreal;citation_volume=1341;">
+    <meta name="citation_reference" content="citation_title=Visualizing and Understanding Convolutional Networks;citation_author=M. D. Zeiler;citation_author=R. Fergus;citation_publication_date=2014;citation_arxiv_id=1311.2901;">
+    <meta name="citation_reference" content="citation_title=Global Optimality in Neural Network Training;citation_author=B. Haeffele;citation_author=R. Vidal;citation_publication_date=2017;">
+    <meta name="citation_reference" content="citation_title=On the Global Convergence of Gradient Descent for Over-parameterized Models using Optimal Transport;citation_author=Lenaic Chizat;citation_author=Francis Bach;citation_publication_date=2018;">
+    <meta name="citation_reference" content="citation_title=Object Detectors Emerge in Deep Scene CNNs;citation_author=A. Khosla B. Zhou;citation_author=A. Torralba;citation_publication_date=2015;citation_arxiv_id=1412.6856;">
+    <meta name="citation_reference" content="citation_title=Interpreting Deep Visual Representations via Network Dissection;citation_author=B. Zhou;citation_author=D. Bau;citation_author=A. Oliva;citation_author=A. Torralba;citation_publication_date=2018;citation_arxiv_id=1711.05611;">
+    <meta name="citation_reference" content="citation_title=In Search of the Real Inductive Bias: On the Role of Implicit Regularization in Deep Learning;citation_author=Behnam Neyshabur;citation_author=Ryota Tomioka;citation_author=Nathan Srebro;citation_publication_date=2014;citation_arxiv_id=1412.6614;">
+    <meta name="citation_reference" content="citation_title=Understanding Deep Learning Requires Rethinking Generalization;citation_author=Chiyuan Zhang;citation_author=Samy Bengio;citation_author=Moritz Hardt;citation_author=Benjamin Recht;citation_author=Oriol Vinyals;citation_publication_date=2017;citation_arxiv_id=1611.03530;">
+    <meta name="citation_reference" content="citation_title=A Guide to Receptive Field Arithmetic for Convolutional Neural Networks;citation_author=The-Hien Dang-Ha;citation_publication_date=2017;">
+    <meta name="citation_reference" content="citation_title=What are the Receptive, Effective Receptive, and Projective Fields of Neurons in Convolutional Neural Networks?;citation_author=Hung Le;citation_author=Ali Borji;citation_publication_date=2017;citation_arxiv_id=1705.07049;">
+    <meta name="citation_reference" content="citation_title=ImageNet Classification with Deep Convolutional Neural Networks;citation_author=Alex Krizhevsky;citation_author=Ilya Sutskever;citation_author=Geoffrey Hinton;citation_publication_date=2012;">
+    <meta name="citation_reference" content="citation_title=Very Deep Convolutional Networks for Large-Scale Image Recognition;citation_author=Karen Simonyan;citation_author=Andrew Zisserman;citation_publication_date=2015;citation_arxiv_id=1409.1556;">
+    <meta name="citation_reference" content="citation_title=Deep Residual Learning for Image Recognition;citation_author=Kaiming He;citation_author=Xiangyu Zhang;citation_author=Shaoqing Ren;citation_author=Jian Sun;citation_publication_date=2016;citation_arxiv_id=1512.03385;">
+    <meta name="citation_reference" content="citation_title=Inception-v4, Inception-ResNet and the Impact of Residual Connections on Learning;citation_author=Christian Szegedy;citation_author=Sergey Ioffe;citation_author=Vincent Vanhoucke;citation_author=Alex Alemi;citation_publication_date=2016;citation_arxiv_id=1602.07261;">
+    <meta name="citation_reference" content="citation_title=Large-Scale Image Retrieval with Attentive Deep Local Features;citation_author=Hyeonwoo Noh;citation_author=Andre Araujo;citation_author=Jack Sim;citation_author=Tobias Weyand;citation_author=Bohyung Han;citation_publication_date=2017;citation_arxiv_id=1612.06321;">
+    <meta name="citation_reference" content="citation_title=MobileNets: Efficient Convolutional Neural Networks for Mobile Vision Applications;citation_author=Andrew Howard;citation_author=Menglong Zhu;citation_author=Bo Chen;citation_author=Dmitry Kalenichenko;citation_author=Weijun Wang;citation_author=Tobias Weyand;citation_author=Marco Andreetto;citation_author=Hartwig Adam;citation_publication_date=2017;citation_arxiv_id=1704.04861;">
+    <meta name="citation_reference" content="citation_title=Understanding the Effective Receptive Field in Deep Convolutional Neural Networks;citation_author=Wenjie Luo;citation_author=Yujia Li;citation_author=Raquel Urtasun;citation_author=Richard Zemel;citation_publication_date=2016;citation_arxiv_id=1701.04128;">
+</head>
+
+<body distill-prerendered=""><distill-header distill-prerendered="">
+<style>
+distill-header {
+  position: relative;
+  height: 60px;
+  background-color: hsl(200, 60%, 15%);
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 2;
+  color: rgba(0, 0, 0, 0.8);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);
+}
+distill-header .content {
+  height: 70px;
+  grid-column: page;
+}
+distill-header a {
+  font-size: 16px;
+  height: 60px;
+  line-height: 60px;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.8);
+  padding: 22px 0;
+}
+distill-header a:hover {
+  color: rgba(255, 255, 255, 1);
+}
+distill-header svg {
+  width: 24px;
+  position: relative;
+  top: 4px;
+  margin-right: 2px;
+}
+@media(min-width: 1080px) {
+  distill-header {
+    height: 70px;
+  }
+  distill-header a {
+    height: 70px;
+    line-height: 70px;
+    padding: 28px 0;
+  }
+  distill-header .logo {
+  }
+}
+distill-header svg path {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.8);
+  stroke-width: 3px;
+}
+distill-header .logo {
+  font-size: 17px;
+  font-weight: 200;
+}
+distill-header .nav {
+  float: right;
+  font-weight: 300;
+}
+distill-header .nav a {
+  font-size: 12px;
+  margin-left: 24px;
+  text-transform: uppercase;
+}
+</style>
+<div class="content">
+  <a href="/" class="logo">
+    <svg viewBox="-607 419 64 64">
+  <path d="M-573.4,478.9c-8,0-14.6-6.4-14.6-14.5s14.6-25.9,14.6-40.8c0,14.9,14.6,32.8,14.6,40.8S-565.4,478.9-573.4,478.9z"></path>
+</svg>
+
+    Distill
+  </a>
+  <nav class="nav">
+    <a href="/about/">About</a>
+    <a href="/prize/">Prize</a>
+    <a href="/journal/">Submit</a>
+  </nav>
+</div>
+</distill-header>
+  <d-front-matter>
+    <script id="distill-front-matter" type="text/json">{
+      "title": "Computing Receptive Fields of Convolutional Neural Networks",
+      "description": "Detailed derivations and open-source code to analyze the receptive fields of convnets.",
+      "authors": [
+        {"author": "Andr&eacute; Araujo", "authorURL": "http://andrefaraujo.github.io", "affiliation": "Google Research", "affiliationURL": "https://research.google.com/"},
+        {"author": "Wade Norris", "authorURL": "http://wadenorris.com", "affiliation": "Perception Labs", "affiliationURL": "https://perceptionlabs.ai/"},
+        {"author": "Jack Sim", "affiliation": "Google Research", "affiliationURL": "https://research.google.com/"}
+      ]
+    }</script>
+  </d-front-matter>
+
+  <d-title>
+    <h1>Computing Receptive Fields of Convolutional Neural Networks</h1>
+    <p style="grid-column: text;">Mathematical derivations and <a href="https://github.com/google-research/receptive_field">open-source library</a> to compute receptive fields of convnets, enabling the mapping of extracted features to input signals.</p>
+  </d-title>
+
+  <d-byline>
+  <div class="byline grid">
+    <div class="authors-affiliations grid">
+      <h3>Authors</h3>
+      <h3>Affiliations</h3>
+      
+        <p class="author">
+          
+            <a class="name" href="http://andrefaraujo.github.io">André Araujo</a>
+        </p>
+        <p class="affiliation">
+        <a class="affiliation" href="https://research.google.com/">Google Research</a>
+        </p>
+      
+        <p class="author">
+          
+            <a class="name" href="http://wadenorris.com">Wade Norris</a>
+        </p>
+        <p class="affiliation">
+        <a class="affiliation" href="https://perceptionlabs.ai/">Perception Labs</a>
+        </p>
+      
+        <p class="author">
+          
+            <span class="name">Jack Sim</span>
+        </p>
+        <p class="affiliation">
+        <a class="affiliation" href="https://research.google.com/">Google Research</a>
+        </p>
+      
+    </div>
+    <div>
+      <h3>Published</h3>
+      
+        <p>Nov. 4, 2019</p> 
+    </div>
+    <div>
+      <h3>DOI</h3>
+      
+        <p><a href="https://doi.org/10.23915/distill.00021">10.23915/distill.00021</a></p>
+    </div>
+  </div>
+</d-byline>
+
+  <div id="contents" class="base-grid" style="border-top: 1px solid #eee; padding: 1.5rem 0;">
+    <nav class="l-text toc figcaption">
+      <h3>Contents</h3>
+      <div><a href="#overview">Overview of the article</a></div>
+      <div><a href="#problem-setup">Problem setup</a></div>
+      <div><a href="#single-path-networks">Single-path networks</a></div>
+      <ul>
+        <li><a href="#computing-receptive-field-size">Computing receptive field size</a></li>
+        <li><a href="#computing-receptive-field-region">Computing receptive field region in input image</a></li>
+      </ul>
+      <div><a href="#arbitrary-computation-graphs">Arbitrary computation graphs</a></div>
+      <div><a href="#discussion">Discussion: receptive fields of modern networks</a></div>
+    </nav>
+  </div>
+
+
+  <d-article>
+
+    <p>
+      While deep neural networks have overwhelmingly established state-of-the-art
+      results in many artificial intelligence problems, they can still be
+      difficult to develop and debug.
+      Recent research on deep learning understanding has focused on
+      feature visualization <d-cite key="erhan2009visualizing,zeiler2014visualizing"></d-cite>,
+      theoretical guarantees <d-cite key="haeffele2017global,chizat2018onthe"></d-cite>,
+      model interpretability <d-cite key="zhou2015object,zhou2018interpreting"></d-cite>,
+      and generalization <d-cite key="neyshabur2014insearch,zhang2017understanding"></d-cite>.
+    </p>
+
+    <p>
+      In this work, we analyze deep neural networks from a complementary
+      perspective, focusing on convolutional models.
+      We are interested in understanding the extent to
+      which input signals may affect output features, and mapping
+      features at any part of the network to the region in the input that
+      produces them. The key parameter to associate an output feature to an input
+      region is the <i>receptive field</i> of the convolutional network, which is
+      defined as the size of the region in the input that produces the feature.
+    </p>
+    <p>
+      As our first contribution, we
+      present a mathematical derivation and an efficient algorithm to compute
+      receptive fields of modern convolutional neural networks.
+      Previous work <d-cite key="hien2017aguide,le2017what"></d-cite>
+      discussed receptive field
+      computation for simple convolutional
+      networks where there is a single path from the input to the output,
+      providing recurrence equations that apply to this case.
+      In this work, we revisit these derivations to obtain a closed-form
+      expression for receptive field computation in the single-path case.
+      Furthermore, we extend receptive field computation to modern convolutional
+      networks where there may be multiple paths from the input to the output.
+      To the best of our knowledge, this is the first exposition of receptive
+      field computation for such recent convolutional architectures.
+    </p>
+    <p>
+      Today, receptive field computations are needed in a variety of applications. For example,
+      for the computer vision task of object detection, it is important
+      to represent objects at multiple scales in order to recognize small and large instances;
+      understanding a convolutional feature’s span is often required for that goal
+      (e.g., if the receptive field of the network is small, it may not be able to recognize large objects).
+      However, these computations are often done by hand, which is both tedious and error-prone.
+      This is because there are no libraries to compute these parameters automatically.
+      As our second contribution, we fill the void by introducing an
+      <a href="https://github.com/google-research/receptive_field">open-source library</a>
+      which handily performs the computations described here. The library is integrated into the Tensorflow codebase and
+      can be easily employed to analyze a variety of models,
+      as presented in this article.
+    </p>
+    <!-- In order to enable the community to better understand the receptive fields of their models,
+       we introduce a library -->
+    <p>
+      We expect these derivations and open-source code to improve the understanding of complex deep learning models,
+      leading to more productive machine learning research.
+    </p>
+
+    <h2 id="overview">Overview of the article</h2>
+
+    <p>
+      We consider fully-convolutional neural networks, and derive their receptive
+      field size and receptive field locations for output features with respect to the
+      input signal.
+      While the derivations presented here are general enough for any type of signal used at the input of convolutional
+      neural networks, we use images as a running example, referring to modern computer vision architectures when
+      appropriate.
+    </p>
+    <p>
+      First, we derive closed-form expressions when the network has a
+      single path from input to output (as in
+      AlexNet <d-cite key="krizhevsky2012imagenet"></d-cite>
+      or
+      VGG <d-cite key="simonyan2015very"></d-cite>). Then, we discuss the
+      more general case of arbitrary computation graphs with multiple paths from the
+      input to the output (as in
+      ResNet <d-cite key="he2016deep"></d-cite>
+      or
+      Inception <d-cite key="szegedy2016inception"></d-cite>). We consider
+      potential alignment issues that arise in this context, and explain
+      an algorithm to compute the receptive field size and locations.
+    </p>
+
+    <p>
+      Finally, we analyze the receptive fields of modern convolutional neural networks, showcasing results obtained
+      using our open-source library.
+    </p>
+
+    <h2 id="problem-setup">Problem setup</h2>
+
+    <p>
+      Consider a fully-convolutional network (FCN) with \(L\) layers, \(l = 1,2,\ldots
+     &nbsp;,L\). Define feature map \(f_l \in R^{h_l\times w_l\times d_l}\) to denote the
+      output of the \(l\)-th layer, with height \(h_l\), width \(w_l\) and depth
+      \(d_l\). We denote the input image by \(f_0\). The final output feature map
+      corresponds to \(f_{L}\).
+    </p>
+
+    <p>
+      To simplify the presentation, the derivations presented in this document consider
+      \(1\)-dimensional input signals and feature maps. For higher-dimensional signals
+      (e.g., \(2\)D images), the
+      derivations can be applied to each dimension independently. Similarly, the figures
+      depict \(1\)-dimensional depth, since this does not affect the receptive field computation.
+    </p>
+
+    <p>Each layer \(l\)’s spatial configuration is parameterized by 4 variables, as illustrated in the following figure:
+    </p>
+
+    <ul>
+      <li>\(k_l\): kernel size (positive integer)</li>
+      <li>\(s_l\): stride (positive integer)</li>
+      <li>
+        \(p_l\): padding applied to the left side of the input feature map
+        (non-negative integer)
+        <d-footnote>
+          A more general definition of padding may also be considered: negative
+          padding, interpreted as cropping, can be used in our derivations
+          without any changes. In order to make the article more concise, our
+          presentation focuses solely on non-negative padding.
+        </d-footnote>
+      </li>
+      <li>
+        \(q_l\): padding applied to the right side of the input feature map
+        (non-negative integer)
+      </li>
+    </ul>
+
+    <figure class="figure-contents" style="height: 220px;">
+
+      <svg id="fig0_svg" height="295" width="500" style="position: relative; top: -75px;">
+        Sorry, your browser does not support inline SVG.
+      </svg>
+
+      <div id="fig0_params_l1" style="position: absolute; top: 108px; right: 0px; text-align: right;">
+        <div style="height: 20px;">Kernel Size (k<sub>l</sub>): <span>2</span></div>
+        <div style="height: 20px;">Left Padding (p<sub>l</sub>): <span>1</span></div>
+        <div style="height: 20px;">Right Padding (q<sub>l</sub>): <span>1</span></div>
+        <div style="height: 20px;">Stride (s<sub>l</sub>): <span>3</span></div>
+      </div>
+      <div id="fig0_fl" style="position: absolute; top: 195px; left: 40px;">f<sub>l</sub></div>
+      <div id="fig0_flm1" style="position: absolute; top: 65px; left: 40px;">f<sub>l-1</sub></div>
+      <div style="position: absolute; top: 15px; left: 130px;">k<sub>l</sub></div>
+      <div style="position: absolute; top: 15px; left: 205px;">k<sub>l</sub></div>
+      <div style="position: absolute; top: 15px; left: 280px;">k<sub>l</sub></div>
+      <div style="position: absolute; top: 105px; left: 130px;">s<sub>l</sub></div>
+      <div style="position: absolute; top: -5px; left: 100px;">p<sub>l</sub></div>
+      <div style="position: absolute; top: -5px; left: 310px;">q<sub>l</sub></div>
+
+      <script type="text/javascript" src="assets/dynamic_visuals/fig0.js">
+      </script>
+
+    </figure>
+
+    <p>
+      We consider layers whose output features depend locally on input features:
+      e.g., convolution, pooling, or elementwise operations such as non-linearities,
+      addition and filter concatenation. These are commonly used in state-of-the-art
+      networks. We define elementwise operations to
+      have a “kernel size” of \(1\), since each output feature depends on a single
+      location of the input feature maps.
+    </p>
+    <p>
+      Our notation is further illustrated with the simple
+      network below. In this case, \(L=4\) and the model consists of a
+      convolution, followed by ReLU, a second convolution and max-pooling.
+      <d-footnote>
+        We adopt the convention where the first output feature for each layer is
+        computed by placing the kernel on the left-most position of the input,
+        including padding. This convention is adopted by all major deep learning
+        libraries.
+      </d-footnote>     
+    </p>
+
+    <figure class="figure-contents" style="position: relative;">
+
+      <img style="position: absolute; width: 27px; right: 0px; top: -10px;" height="27" width="27" src="https://distill.pub/2018/feature-wise-transformations/images/pointer.svg">
+      
+      <svg id="fig1_svg" height="580" width="650" style="top: 0px;">
+        Sorry, your browser does not support inline SVG.
+      </svg>
+      
+      <div id="fig1_f0" style="position: absolute; top: 10px; left: 40px;">f<sub>0</sub></div>
+      <div id="fig1_f1" style="position: absolute; top: 140px; left: 40px;">f<sub>1</sub></div>
+      <div id="fig1_f2" style="position: absolute; top: 270px; left: 40px;">f<sub>2</sub></div>
+      <div id="fig1_f3" style="position: absolute; top: 400px; left: 40px;">f<sub>3</sub></div>
+      <div id="fig1_f4" style="position: absolute; top: 530px; left: 40px;">f<sub>4</sub></div>
+      
+      <div id="fig1_params_l1" style="position: absolute; top: 40px; right: 0px; text-align: right;">
+      <b>Convolution</b><br>
+      Kernel Size (k<sub>1</sub>): <span id="value_k1">1</span> <input id="slider_k1" type="range" style="width: 80px;" min="1" max="3" value="3"><br>
+      Padding (p<sub>1</sub>, q<sub>1</sub>): <span id="value_p1">0</span> <input id="slider_p1" type="range" style="width: 80px;" min="0" max="2" value="1"><br>
+      Stride (s<sub>1</sub>): <span id="value_s1">1</span> <input id="slider_s1" type="range" style="width: 80px;" min="1" max="2" value="2"><br>
+      <span id="value_error_1" style="display: none; color: red;">Invalid setup! Decrease kernel<br>size or increase padding.</span>
+      </div>
+      
+      <div id="fig1_params_l2" style="position: absolute; top: 170px; right: 0px; text-align: right;" data-tip="ReLUs only map features one-to-one.">
+      <b>ReLU</b><br>
+      Kernel Size (k<sub>2</sub>): <span id="value_k2">1</span> <input id="slider_k2" type="range" style="width: 80px; display: none;" min="1" max="3" value="1" disabled=""><br>
+      Padding (p<sub>2</sub>, q<sub>2</sub>): <span id="value_p2">0</span> <input id="slider_p2" type="range" style="width: 80px; display: none;" min="0" max="3" value="0" disabled=""><br>
+      Stride (s<sub>2</sub>): <span id="value_s2">1</span> <input id="slider_s2" type="range" style="width: 80px; display: none;" min="1" max="3" value="1" disabled=""><br>
+      </div>
+      
+      <div id="fig1_params_l3" style="position: absolute; top: 300px; right: 0px; text-align: right;">
+      <b>Convolution</b><br>
+      Kernel Size (k<sub>3</sub>): <span id="value_k3">1</span> <input id="slider_k3" type="range" style="width: 80px;" min="1" max="3" value="1"><br>
+      Padding (p<sub>3</sub>, q<sub>3</sub>): <span id="value_p3">0</span> <input id="slider_p3" type="range" style="width: 80px;" min="0" max="1" value="0"><br>
+      Stride (s<sub>3</sub>): <span id="value_s3">1</span> <input id="slider_s3" type="range" style="width: 80px;" min="1" max="2" value="1"><br>
+      <span id="value_error3" style="display: none; color: red;">Invalid setup! Decrease kernel<br>size or increase padding.</span>
+      </div>
+      
+      <div id="fig1_params_l4" style="position: absolute; top: 430px; right: 0px; text-align: right;">
+      <b>Max Pooling</b><br>
+      Kernel Size (k<sub>4</sub>): <span id="value_k4">1</span> <input id="slider_k4" type="range" style="width: 80px;" min="1" max="3" value="3"><br>
+      Padding (p<sub>4</sub>, q<sub>4</sub>): <span id="value_p4">0</span> <input id="slider_p4" type="range" style="width: 80px;" min="0" max="1" value="1"><br>
+      Stride (s<sub>4</sub>): <span id="value_s4">1</span> <input id="slider_s4" type="range" style="width: 80px;" min="1" max="2" value="2"><br>
+      <span id="value_error4" style="display: none; color: red;">Invalid setup! Decrease kernel<br>size or increase padding.</span>
+      </div>
+
+      <script type="text/javascript" src="assets/dynamic_visuals/fig1.js">
+      </script>
+
+    </figure>
+
+    <h2 id="single-path-networks">Single-path networks</h2>
+
+    <p>
+      In this section, we compute recurrence and closed-form expressions for
+      fully-convolutional networks with a single path from input to output
+      (e.g.,
+      AlexNet <d-cite key="krizhevsky2012imagenet"></d-cite>
+      or
+      VGG <d-cite key="simonyan2015very"></d-cite>).
+    </p>
+
+    <h3 id="computing-receptive-field-size">Computing receptive field size</h3>
+
+    <p>
+      Define \(r_l\) as the receptive field size of
+      the final output feature map \(f_{L}\), with respect to feature map \(f_l\). In
+      other words, \(r_l\) corresponds to the number of features in feature map
+      \(f_l\) which contribute to generate one feature in \(f_{L}\). Note
+      that \(r_{L}=1\).
+    </p>
+
+    <p>
+      As a simple example, consider layer \(L\), which takes features \(f_{L-1}\) as
+      input, and generates \(f_{L}\) as output. Here is an illustration:
+    </p>
+
+    <figure class="figure-contents" style="height: 200px">
+
+      <svg id="fig2b_svg" height="320" width="500" style="position: relative; top: -100px;">
+        Sorry, your browser does not support inline SVG.
+      </svg>
+      
+      <div id="fig2b_params_l1" style="position: absolute; top: 83px; right: 0px; text-align: right;">
+      <div style="height: 20px;">Kernel Size (k<sub>L</sub>): <span>2</span></div>
+      <div style="height: 20px;">Padding (p<sub>L</sub>, q<sub>L</sub>): <span>0</span></div>
+      <div style="height: 20px;">Stride (s<sub>L</sub>): <span>3</span></div>
+      </div>
+      <div style="position: absolute; top: -20px; left: 115px;">k<sub>L</sub></div>
+      <div style="position: absolute; top: -20px; left: 200px;">k<sub>L</sub></div>
+      <div id="fig2b_f0" style="position: absolute; top: 40px; left: 40px;">f<sub>L-1</sub></div>
+      <div id="fig2b_f1" style="position: absolute; top: 170px; left: 40px;">f<sub>L</sub></div>
+
+      <script type="text/javascript" src="assets/dynamic_visuals/fig2b.js">
+      </script>
+
+    </figure>
+
+    <p>
+      It is easy to see that \(k_{L}\)
+      features from \(f_{L-1}\) can influence one feature from \(f_{L}\), since each
+      feature from \(f_{L}\) is directly connected to \(k_{L}\) features from
+      \(f_{L-1}\). So, \(r_{L-1} = k_{L}\).
+    </p>
+
+    <p>
+      Now, consider the more general case where we know \(r_{l}\) and want to compute
+      \(r_{l-1}\). Each feature \(f_{l}\) is connected to \(k_{l}\) features from
+      \(f_{l-1}\).
+    </p>
+
+    <p>
+      First, consider the situation where \(k_l=1\): in this case, the \(r_{l}\)
+      features in \(f_{l}\) will cover \(r_{l-1}=s_l\cdot r_{l} - (s_l - 1)\) features
+      in in \(f_{l-1}\). This is illustrated in the figure below, where \(r_{l}=2\)
+      (highlighted in red). The first term \(s_l \cdot r_{l}\) (green) covers the
+      entire region where the
+      features come from, but it will cover \(s_l - 1\) too many features (purple),
+      which is why it needs to be deducted.
+      <d-footnote>
+        As in the illustration below, note that, in some cases, the receptive
+        field region may contain “holes”, i.e., some of the input features may be
+        unused for a given layer.
+      </d-footnote>
+    </p>
+
+    <figure class="figure-contents" style="height: 280px">
+
+      <svg id="fig2_svg" height="350" width="500" style="position: relative; top: -70px;">
+        Sorry, your browser does not support inline SVG.
+      </svg>
+      
+      <div id="fig2_params_l1" style="position: absolute; top: 113px; right: 0px; text-align: right;">
+      <div style="height: 20px;">Kernel Size (k<sub>l</sub>): <span>1</span></div>
+      <div style="height: 20px;">Padding (p<sub>l</sub>, q<sub>l</sub>): <span>0</span></div>
+      <div style="height: 20px;">Stride (s<sub>l</sub>): <span>3</span></div>
+      </div>
+      <div style="position: absolute; top: 10px; left: 130px;">s<sub>l</sub>⋅r<sub>l</sub></div>
+      <div style="position: absolute; top: -5px; left: 228px;">s<sub>l</sub>-1</div>
+      <div id="fig2_f0" style="position: absolute; top: 70px; left: 40px;">f<sub>l-1</sub></div>
+      <div id="fig2_f1" style="position: absolute; top: 200px; left: 40px;">f<sub>l</sub></div>
+      <div style="position: absolute; top: 255px; left: 170px;">r<sub>l</sub>=2</div>
+      
+      <script type="text/javascript" src="assets/dynamic_visuals/fig2.js">
+      </script>
+
+    </figure>
+
+    <p>
+      For the case where \(k_l &gt; 1\), we just need to add \(k_l-1\) features, which
+      will cover those from the left and the right of the region. For example, if we
+      use a kernel size of \(5\) (\(k_l=5\)), there would be \(2\) extra features used
+      on each side, adding \(4\) in total. If \(k_l\) is even, this works as well,
+      since the left and right padding will add to \(k_l-1\).
+      <d-footnote>
+        Due to border effects, note that the size of the region in the original
+        image which is used to compute each output feature may be different. This
+        happens if padding is used, in which case the receptive field for
+        border features includes the padded region. Later in the article, we
+        discuss how to compute the receptive field region for each feature,
+        which can be used to determine exactly which image pixels are used for
+        each output feature.
+      </d-footnote>
+    </p>
+
+    <figure class="figure-contents" style="height: 280px">
+
+      <svg id="fig2c_svg" height="350" width="800" style="position: relative; top: -60px;">
+        Sorry, your browser does not support inline SVG.
+      </svg>
+      
+      <div id="fig2c_params_l1" style="position: absolute; top: 113px; right: 0px; text-align: right;">
+      <div style="height: 20px;">Kernel Size (k<sub>l</sub>): <span>5</span></div>
+      <div style="height: 20px;">Padding (p<sub>l</sub>, q<sub>l</sub>): <span>0</span></div>
+      <div style="height: 20px;">Stride (s<sub>l</sub>): <span>3</span></div>
+      </div>
+      <div style="position: absolute; top: 20px; left: 175px;">s<sub>l</sub>⋅r<sub>l</sub> - (s<sub>l</sub>-1)</div>
+      <div style="position: absolute; top: 5px; left: 275px;">(k<sub>l</sub>-1)/2</div>
+      <div style="position: absolute; top: 5px; left: 95px;">(k<sub>l</sub>-1)/2</div>
+      <div id="fig2c_f0" style="position: absolute; top: 80px; left: 40px;">f<sub>l-1</sub></div>
+      <div id="fig2c_f1" style="position: absolute; top: 210px; left: 40px;">f<sub>l</sub></div>
+      <div style="position: absolute; top: 265px; left: 200px;">r<sub>l</sub>=2</div>
+
+      <script type="text/javascript" src="assets/dynamic_visuals/fig2c.js">
+      </script>
+
+    </figure>
+
+    <p>
+      So, we obtain the general recurrence equation (which is
+      <a href="https://en.wikipedia.org/wiki/Recurrence_relation#Solving_first-order_non-homogeneous_recurrence_relations_with_variable_coefficients">
+        first-order,
+        non-homogeneous, with variable
+        coefficients
+      </a>
+      ):
+    </p>
+
+    <p>
+      \(\begin{align}
+      r_{l-1} = s_l \cdot r_{l} + (k_l - s_l)
+      \label{eq:rf_recurrence}\
+      \end{align}\)
+    </p>
+
+    <p>
+      This equation can be used in a recursive algorithm to compute the receptive
+      field size of the network, \(r_0\). However, we can do even better: we can <a href="#solving-receptive-field-size" id="return-from-solving-receptive-field-size">solve
+      the recurrence equation</a> and obtain a solution in terms of the \(k_l\)’s and
+      \(s_l\)’s:
+    </p>
+
+    <p>
+      \begin{equation}
+      r_0 = \sum_{l=1}^{L} \left((k_l-1)\prod_{i=1}^{l-1}
+      s_i\right) + 1 \label{eq:rf_recurrence_final} \end{equation}
+    </p>
+
+    <p>
+      This expression makes intuitive sense, which can be seen by considering some
+      special cases. For example, if all kernels are of size 1, naturally the
+      receptive field is also of size 1. If all strides are 1, then the receptive
+      field will simply be the sum of \((k_l-1)\) over all layers, plus 1, which is
+      simple to see. If the stride is greater than 1 for a particular layer, the region
+      increases proportionally for all layers below that one. Finally, note that
+      padding does not need to be taken into account for this derivation.
+    </p>
+
+    <h3 id="computing-receptive-field-region">Computing receptive field region in input image</h3>
+
+    <p>
+      While it is important to know the size of the region which generates one feature
+      in the output feature map, in many cases it is also critical to precisely
+      localize the region which generated a feature. For example, given feature
+      \(f_{L}(i, j)\), what is the region in the input image which generated it? This
+      is addressed in this section.
+    </p>
+
+    <p>
+      Let’s denote \(u_l\) and \(v_l\) the left-most
+      and right-most coordinates (in \(f_l\)) of the region which is used to compute the
+      desired feature in \(f_{L}\). In these derivations, the coordinates are zero-indexed (i.e., the first feature in
+      each map is at coordinate \(0\)).
+
+      Note that \(u_{L} = v_{L}\) corresponds to the
+      location of the desired feature in \(f_{L}\). The figure below illustrates a
+      simple 2-layer network, where we highlight the region in \(f_0\) which is used
+      to compute the first feature from \(f_2\). Note that in this case the region
+      includes some padding. In this example, \(u_2=v_2=0\), \(u_1=0,v_1=1\), and
+      \(u_0=-1, v_0=4\).
+    </p>
+
+    <figure class="figure-contents">
+
+      <svg id="fig3_svg" height="450" width="500" style="position: relative; top: -20px;">
+        Sorry, your browser does not support inline SVG.
+      </svg>
+      
+      <div id="fig3_params_l1" style="position: absolute; top: 163px; right: 0px; text-align: right;">
+      <div style="height: 20px;">Kernel Size (k<sub>1</sub>): <span>3</span></div>
+      <div style="height: 20px;">Padding (p<sub>1</sub>, q<sub>1</sub>): <span>1</span></div>
+      <div style="height: 20px;">Stride (s<sub>1</sub>): <span>3</span></div>
+      </div>
+      <div id="fig3_params_l2" style="position: absolute; top: 293px; right: 0px; text-align: right;">
+      <div style="height: 20px;">Kernel Size (k<sub>2</sub>): <span>2</span></div>
+      <div style="height: 20px;">Padding (p<sub>2</sub>, q<sub>2</sub>): <span>0</span></div>
+      <div style="height: 20px;">Stride (s<sub>2</sub>): <span>1</span></div>
+      </div>
+      <div style="position: absolute; top: 35px; left: 53px;">u<sub>0</sub> = -1</div>
+      <div style="position: absolute; top: 35px; left: 203px;">v<sub>0</sub> = 4</div>
+      <div id="fig3_f0" style="position: absolute; top: 120px; left: 40px;">f<sub>0</sub></div>
+      <div id="fig3_f1" style="position: absolute; top: 250px; left: 40px;">f<sub>1</sub></div>
+      <div id="fig3_f2" style="position: absolute; top: 380px; left: 40px;">f<sub>2</sub></div>
+      
+      <script type="text/javascript" src="assets/dynamic_visuals/fig3.js">
+      </script>
+
+    </figure>
+
+    <p>
+      We’ll start by asking the following question: given \(u_{l}, v_{l}\), can we
+      compute \(u_{l-1},v_{l-1}\)?
+    </p>
+
+    <p>
+      Start with a simple case: let’s say \(u_{l}=0\) (this corresponds to the first
+      position in \(f_{l}\)). In this case, the left-most feature \(u_{l-1}\) will
+      clearly be located at \(-p_l\), since the first feature will be generated by
+      placing the left end of the kernel over that position. If \(u_{l}=1\), we’re
+      interested in the second feature, whose left-most position \(u_{l-1}\) is \(-p_l
+      + s_l\); for \(u_{l}=2\), \(u_{l-1}=-p_l + 2\cdot s_l\); and so on. In general:
+    </p>
+
+    <p>
+      \(\begin{align}
+      u_{l-1}&amp;= -p_l + u_{l}\cdot s_l \label{eq:rf_loc_recurrence_u} \\
+      v_{l-1}&amp;= -p_l + v_{l}\cdot s_l + k_l -1
+      \label{eq:rf_loc_recurrence_v}
+      \end{align}\)
+    </p>
+
+    <p>
+      where the computation of \(v_l\) differs only by adding \(k_l-1\), which is
+      needed since in this case we want to find the right-most position.
+    </p>
+
+    <p>
+      Note that these expressions are very similar to the recursion derived for the
+      receptive field size \eqref{eq:rf_recurrence}. Again, we could implement a
+      recursion over the network to obtain \(u_l,v_l\) for each layer; but we can also
+      <a href="#solving-receptive-field-region" id="return-from-solving-receptive-field-region">solve for \(u_0,v_0\)</a> and obtain closed-form expressions in terms of the
+      network parameters:
+    </p>
+
+    <p>
+      \(\begin{align}
+      u_0&amp;= u_{L}\prod_{i=1}^{L}s_i - \sum_{l=1}^{L}
+      p_l\prod_{i=1}^{l-1} s_i
+      \label{eq:rf_loc_recurrence_final_left}
+      \end{align}\)
+    </p>
+
+    <p>
+      This gives us the left-most feature position in the input image as a function of
+      the padding (\(p_l\)) and stride (\(s_l\)) applied in each layer of the network,
+      and of the feature location in the output feature map (\(u_{L}\)).
+    </p>
+
+    <p>
+      And for the right-most feature location \(v_0\):
+    </p>
+
+    <p>
+      \(\begin{align}
+      v_0&amp;= v_{L}\prod_{i=1}^{L}s_i -\sum_{l=1}^{L}(1 + p_l -
+      k_l)\prod_{i=1}^{l-1} s_i
+      \label{eq:rf_loc_recurrence_final_right}
+      \end{align}\)
+    </p>
+
+    <p>
+      Note that, different from \eqref{eq:rf_loc_recurrence_final_left}, this
+      expression also depends on the kernel sizes (\(k_l\)) of each layer.
+    </p>
+
+    <p>
+      <strong>Relation between receptive field size and region.</strong>
+      You may be wondering that
+      the receptive field size \(r_0\) must be directly related to \(u_0\) and
+      \(v_0\). Indeed, this is the case; it is easy to show that \(r_0 = v_0 - u_0 +
+      1\), which we leave as a follow-up exercise for the curious reader. To
+      emphasize, this means that we can rewrite
+      \eqref{eq:rf_loc_recurrence_final_right} as:
+    </p>
+
+    <p>
+      \(\begin{align}
+      v_0&amp;= u_0 + r_0 - 1
+      \label{eq:rf_loc_recurrence_final_right_rewrite}
+      \end{align}\)
+    </p>
+
+    <p>
+      <strong>Effective stride and effective padding.</strong>
+      To compute \(u_0\) and \(v_0\) in practice, it
+      is convenient to define two other variables, which depend only on the paddings
+      and strides of the different layers:
+    </p>
+
+    <ul>
+      <li>
+        <em>effective stride</em>
+        \(S_l = \prod_{i=l+1}^{L}s_i\): the stride between a
+        given feature map \(f_l\) and the output feature map \(f_{L}\)
+      </li>
+      <li>
+        <em>effective padding</em>
+        \(P_l = \sum_{m=l+1}^{L}p_m\prod_{i=l+1}^{m-1} s_i\):
+        the padding between a given feature map \(f_l\) and the output feature map
+        \(f_{L}\)
+      </li>
+    </ul>
+
+    <p>
+      With these definitions, we can rewrite \eqref{eq:rf_loc_recurrence_final_left}
+      as:
+    </p>
+
+    <p>
+      \(\begin{align}
+      u_0&amp;= -P_0 + u_{L}\cdot S_0
+      \label{eq:rf_loc_recurrence_final_left_effective}
+      \end{align}\)
+    </p>
+
+    <p>
+      Note the resemblance between \eqref{eq:rf_loc_recurrence_final_left_effective}
+      and \eqref{eq:rf_loc_recurrence_u}. By using \(S_l\) and \(P_l\), one can
+      compute the locations \(u_l,v_l\) for feature map \(f_l\) given the location at
+      the output feature map \(u_{L}\). When one is interested in computing feature
+      locations for a given network, it is handy to pre-compute three variables:
+      \(P_0,S_0,r_0\). Using these three, one can obtain \(u_0\) using
+      \eqref{eq:rf_loc_recurrence_final_left_effective} and \(v_0\) using
+      \eqref{eq:rf_loc_recurrence_final_right_rewrite}. This allows us to obtain the
+      mapping from any output feature location to the input region which influences
+      it.
+    </p>
+
+    <p>
+      It is also possible to derive recurrence equations for the effective stride and
+      effective padding. It is straightforward to show that:
+    </p>
+
+    <p>
+      \(\begin{align}
+      S_{l-1}&amp;= s_l \cdot S_l \label{eq:effective_stride_recurrence} \\
+      P_{l-1}&amp;= s_l \cdot P_l + p_l \label{eq:effective_padding_recurrence}
+      \end{align}\)
+    </p>
+
+    <p>
+      These expressions will be handy when deriving an algorithm to solve the case
+      for arbitrary computation graphs, presented in the next section.
+    </p>
+
+    <p>
+      <strong>Center of receptive field region.</strong>
+      It is also interesting to derive an
+      expression for the center of the receptive field region which influences a
+      particular output feature. This can be used as the location of the feature in
+      the input image (as done for recent
+      deep learning-based local features <d-cite key="noh2017large"></d-cite>, for
+      example).
+    </p>
+
+    <p>
+      We define the center of the receptive field region for each layer \(l\) as
+      \(c_l = \frac{u_l + v_l}{2}\). Given the above expressions for \(u_0,v_0,r_0\),
+      it is straightforward to derive \(c_0\) (remember that \(u_{L}=v_{L}\)):
+    </p>
+
+    <p>
+      \(\begin{align}
+      c_0&amp;= u_{L}\prod_{i=1}^{L}s_i
+      - \sum_{l=1}^{L}
+      \left(p_l - \frac{k_l - 1}{2}\right)\prod_{i=1}^{l-1} s_i \nonumber \\&amp;= u_{L}\cdot S_0
+      - \sum_{l=1}^{L}
+      \left(p_l - \frac{k_l - 1}{2}\right)\prod_{i=1}^{l-1} s_i
+      \nonumber \\&amp;= -P_0 + u_{L}\cdot S_0 + \left(\frac{r_0 - 1}{2}\right)
+      \label{eq:rf_loc_recurrence_final_center_effective}
+      \end{align}\)
+    </p>
+
+    <p>
+      This expression can be compared to
+      \eqref{eq:rf_loc_recurrence_final_left_effective} to observe that the center is
+      shifted from the left-most pixel by \(\frac{r_0 - 1}{2}\), which makes sense.
+      Note that the receptive field centers for the different output features are
+      spaced by the effective stride \(S_0\), as expected. Also, it is interesting to
+      note that if \(p_l = \frac{k_l - 1}{2}\) for all \(l\), the centers of the
+      receptive field regions for the output features will be aligned to the first
+      image pixel and located at \({0, S_0, 2S_0, 3S_0, \ldots}\) (note that in this
+      case all \(k_l\)’s must be odd).
+    </p>
+
+    <p>
+      <strong>Other network operations.</strong>
+      The derivations provided in this section cover most basic operations at the
+      core of convolutional neural networks. A curious reader may be wondering
+      about other commonly-used operations, such as dilation, upsampling, etc. You
+      can find a discussion on these <a href="#other-network-operations" id="return-from-other-network-operations">in the appendix</a>.
+    </p>
+
+    <h2 id="arbitrary-computation-graphs">Arbitrary computation graphs</h2>
+
+    <p>
+      Most state-of-the-art convolutional neural networks today (e.g.,
+      ResNet <d-cite key="he2016deep"></d-cite> or
+      Inception <d-cite key="szegedy2016inception"></d-cite>) rely on models
+      where each layer may have more than one input, which
+      means that there might be several different paths from the input image to the
+      final output feature map. These architectures are usually represented using
+      directed acyclic computation graphs, where the set of nodes \(\mathcal{L}\)
+      represents the layers and the set of edges \(\mathcal{E}\) encodes the
+      connections between them (the feature maps flow through the edges).
+    </p>
+
+    <p>
+      The computation presented in the previous section can be used for each of the
+      possible paths from input to output independently. The situation becomes
+      trickier when one wants to take into account all different paths to find the
+      receptive field size of the network and the receptive field regions which
+      correspond to each of the output features.
+    </p>
+
+    <p>
+      <strong>Alignment issues.</strong>
+      The first potential issue is that one output feature may
+      be computed using misaligned regions of the input image, depending on the
+      path from input to output. Also, the relative position between the image regions
+      used for the computation of each output feature may vary. As a consequence,
+      <strong>the receptive field size may not be shift-invariant</strong>
+     &nbsp;. This is illustrated in the
+      figure below with a toy example, in which case the centers of the regions used
+      in the input image are different for the two paths from input to output.
+    </p>
+
+    <figure class="figure-contents" style="position: relative;">
+
+      <img style="position: absolute; right: 0; top: -10px; width: 27px;" height="27" width="27" src="https://distill.pub/2018/feature-wise-transformations/images/pointer.svg">
+      
+      <svg id="fig4_svg" height="450" width="800" style="position: relative; top: 0px;">
+        Sorry, your browser does not support inline SVG.
+      </svg>
+      
+      <div id="fig4_params_l1a" style="position: absolute; top: 53px; left: 0px; text-align: right;">
+      <div style="height: 20px;">Kernel Size (k<sub>1</sub>): <span>5</span></div>
+      <div style="height: 20px;">Left Pad (p<sub>1</sub>): <span>2</span></div>
+      <div style="height: 20px;">Right Pad (q<sub>1</sub>): <span>1</span></div>
+      <div style="height: 20px;">Stride (s<sub>1</sub>): <span>2</span></div>
+      </div>
+      <div id="fig4_params_l1b" style="position: absolute; top: 53px; right: 0px; text-align: right;">
+      <div style="height: 20px;">Kernel Size (k<sub>2</sub>): <span>3</span></div>
+      <div style="height: 20px;">Left Pad (p<sub>2</sub>): <span>0</span></div>
+      <div style="height: 20px;">Right Pad (q<sub>2</sub>): <span>0</span></div>
+      <div style="height: 20px;">Stride (s<sub>2</sub>): <span>1</span></div>
+      </div>
+      <div id="fig4_params_l2" style="position: absolute; top: 183px; right: 0px; text-align: right;">
+      <div style="height: 20px;">Kernel Size (k<sub>3</sub>): <span>3</span></div>
+      <div style="height: 20px;">Left Pad (p<sub>3</sub>): <span>0</span></div>
+      <div style="height: 20px;">Right Pad (q<sub>3</sub>): <span>0</span></div>
+      <div style="height: 20px;">Stride (s<sub>3</sub>): <span>1</span></div>
+      </div>
+      <div id="fig4_params_l3" style="position: absolute; top: 353px; right: 100px; text-align: right;">
+      <div style="height: 20px;">Add</div>
+      </div>
+      
+      <script type="text/javascript" src="assets/dynamic_visuals/fig4.js">
+      </script>
+
+    </figure>
+
+    <p>
+      In this example, padding is used only for the left branch. The first three layers
+      are convolutional, while the last layer performs a simple addition.
+      The relative position between the receptive field regions of the left and
+      right paths is inconsistent for different output features, which leads to a
+      lack of alignment (this can be seen by hovering over the different output features).
+      Also, note that the receptive field size for each output
+      feature may be different. For the second feature from the left, \(6\) input
+      samples are used, while only \(5\) are used for the third feature. This means
+      that the receptive field size may not be shift-invariant when the network is not
+      aligned.
+    </p>
+
+    <p>
+      For many computer vision tasks, it is highly desirable that output features be aligned:
+      “image-to-image translation” tasks (e.g., semantic segmentation, edge detection,
+      surface normal estimation, colorization, etc), local feature matching and
+      retrieval, among others.
+    </p>
+
+    <p>
+      When the network is aligned, all different paths lead to output features being
+      centered consistently in the same locations. All different paths must have the
+      same effective stride. It is easy to see that the receptive field size will be
+      the largest receptive field among all possible paths. Also, the effective
+      padding of the network corresponds to the effective padding for the path with
+      largest receptive field size, such that one can apply
+      \eqref{eq:rf_loc_recurrence_final_left_effective},
+      \eqref{eq:rf_loc_recurrence_final_center_effective} to localize the region which
+      generated an output feature.
+    </p>
+
+    <p>
+      The figure below gives one simple example of an aligned network. In this case,
+      the two different paths lead to the features being centered at the same
+      locations. The receptive field size is \(3\), the effective stride is \(4\) and
+      the effective padding is \(1\).
+    </p>
+
+    <figure class="figure-contents" style="position: relative;">
+
+      <img style="position: absolute; right: 0; top: -10px; width: 27px;" height="27" width="27" src="https://distill.pub/2018/feature-wise-transformations/images/pointer.svg">
+      
+      <svg id="fig5_svg" height="450" width="800" style="position: relative; top: 0px;">
+        Sorry, your browser does not support inline SVG.
+      </svg>
+      
+      <div id="fig5_params_l1a" style="position: absolute; top: 40px; left: 0px; text-align: right;">
+      <div style="height: 20px;">Kernel Size (k<sub>1</sub>): <span>1</span></div>
+      <div style="height: 20px;">Left Pad (p<sub>1</sub>): <span>0</span></div>
+      <div style="height: 20px;">Right Pad (q<sub>1</sub>): <span>0</span></div>
+      <div style="height: 20px;">Stride (s<sub>1</sub>): <span>4</span></div>
+      </div>
+      <div id="fig5_params_l1b" style="position: absolute; top: 40px; right: 0px; text-align: right;">
+      <div style="height: 20px;">Kernel Size (k<sub>2</sub>): <span>3</span></div>
+      <div style="height: 20px;">Left Pad (p<sub>2</sub>): <span>1</span></div>
+      <div style="height: 20px;">Right Pad (q<sub>2</sub>): <span>0</span></div>
+      <div style="height: 20px;">Stride (s<sub>2</sub>): <span>2</span></div>
+      </div>
+      <div id="fig5_params_l2" style="position: absolute; top: 170px; right: 0px; text-align: right;">
+      <div style="height: 20px;">Kernel Size (k<sub>3</sub>): <span>1</span></div>
+      <div style="height: 20px;">Left Pad (p<sub>3</sub>): <span>0</span></div>
+      <div style="height: 20px;">Right Pad (q<sub>3</sub>): <span>0</span></div>
+      <div style="height: 20px;">Stride (s<sub>3</sub>): <span>2</span></div>
+      </div>
+      <div id="fig5_params_l3" style="position: absolute; top: 340px; right: 100px; text-align: right;">
+      <div style="height: 20px;">Add</div>
+      </div>
+      
+      <script type="text/javascript" src="assets/dynamic_visuals/fig5.js">
+      </script>
+
+    </figure>
+
+    <p>
+      <strong>Alignment criteria</strong>
+     &nbsp;. More precisely, for a network to be aligned at every
+      layer, we need every possible pair of paths \(i\) and \(j\) to have
+      \(c_l^{(i)} = c_l^{(j)}\) for any layer \(l\) and output feature \(u_{L}\). For
+      this to happen, we can see from
+      \eqref{eq:rf_loc_recurrence_final_center_effective} that two conditions must be
+      satisfied:
+    </p>
+
+    <p>
+      \(\begin{align}
+      S_l^{(i)}&amp;= S_l^{(j)} \label{eq:align_crit_1} \\
+      -P_l^{(i)} + \left(\frac{r_l^{(i)} - 1}{2}\right)&amp;= -P_l^{(j)} + \left(\frac{r_l^{(j)} - 1}{2}\right)
+      \label{eq:align_crit_2}
+      \end{align}\)
+    </p>
+
+    <p>for all \(i,j,l\).</p>
+
+    <p>
+      <strong>Algorithm for computing receptive field parameters: sketch.</strong>
+      It is straightforward to develop an efficient algorithm that computes the receptive
+      field size and associated parameters for such computation graphs.
+      Naturally, a brute-force approach is to use the expressions presented above to
+      compute the receptive field parameters for each route from the input to output independently,
+      coupled with some bookkeeping in order to compute the parameters for the entire network.
+      This method has a worst-case complexity of
+      \(\mathcal{O}\left(\left|\mathcal{E}\right| \times \left|\mathcal{L}\right|\right)\).
+    </p>
+    <p>
+      <!-- People may be tempted to apply DFS to this problem, which fails. To -->
+      <!-- make the article more concise, we do not discuss this here. -->
+      But we can do better. Start by topologically sorting the computation graph.
+      The sorted representation arranges the layers in order of dependence: each
+      layer’s output only depends on layers that appear before it.
+      By visiting layers in reverse topological order, we ensure that all paths
+      from a given layer \(l\) to the output layer \(L\) have been taken into account
+      when \(l\) is visited. Once the input layer \(l=0\) is reached, all paths
+      have been considered and the receptive field parameters of the entire model
+      are obtained. The complexity of this algorithm is
+      \(\mathcal{O}\left(\left|\mathcal{E}\right| + \left|\mathcal{L}\right|\right)\),
+      which is much better than the brute-force alternative.
+    </p>
+    <p>
+      As each layer is visited, some bookkeeping must be done in order to keep
+      track of the network’s receptive field parameters. In particular, note that
+      there might be several different paths from layer \(l\) to the output layer
+      \(L\). In order to handle this situation, we keep track of the parameters
+      for \(l\) and update them if a new path with larger receptive field is found,
+      using expressions \eqref{eq:rf_recurrence}, \eqref{eq:effective_stride_recurrence}
+      and \eqref{eq:effective_padding_recurrence}.
+      Similarly, as the graph is traversed, it is important to check that the network is aligned.
+      This can be done by making sure that the receptive field parameters of different paths satisfy
+      \eqref{eq:align_crit_1} and \eqref{eq:align_crit_2}.
+    </p>
+
+    <h2 id="discussion">Discussion: receptive fields of modern networks</h2>
+
+    <p>
+      In this section, we present the receptive field parameters of modern
+      convolutional networks
+      <d-footnote>
+        The models used for receptive field computations, as well as the accuracy reported on ImageNet experiments,
+        are drawn from the <a href="https://github.com/tensorflow/models/tree/master/research/slim">TF-Slim
+          image classification model library</a>.
+      </d-footnote>
+     &nbsp;, which were computed using the new open-source
+      library (script
+      <a href="https://github.com/google-research/receptive_field/blob/master/receptive_field/python/util/examples/rf_benchmark.py">here</a>).
+      The pre-computed parameters for
+      AlexNet <d-cite key="krizhevsky2012imagenet"></d-cite>,
+      VGG <d-cite key="simonyan2015very"></d-cite>,
+      ResNet <d-cite key="he2016deep"></d-cite>,
+      Inception <d-cite key="szegedy2016inception"></d-cite>
+      and
+      MobileNet <d-cite key="howard2017mobilenets"></d-cite>
+      are presented in the table below.
+      For a more
+      comprehensive list, including intermediate network end-points, see
+      <a href="https://github.com/google-research/receptive_field/blob/master/receptive_field/RECEPTIVE_FIELD_TABLE.md">this
+        table</a>.
+    </p>
+
+    <p>
+      </p><table class="model_table" style="margin: 0px auto;">
+        <thead>
+          <tr>
+            <th align="center">ConvNet Model</th>
+            <th align="center">Receptive <br>Field (r)</th>
+            <th align="center">Effective <br>Stride (S)</th>
+            <th align="center">Effective <br>Padding (P)</th>
+            <th align="center">Model Year</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td align="center">alexnet_v2</td>
+            <td align="center">195</td>
+            <td align="center">32</td>
+            <td align="center">64</td>
+            <td align="center"><a href="https://arxiv.org/abs/1404.5997v2" target="_new">2014</a></td>
+          </tr>
+          <tr>
+            <td align="center">vgg_16</td>
+            <td align="center">212</td>
+            <td align="center">32</td>
+            <td align="center">90</td>
+            <td align="center"><a href="https://arxiv.org/abs/1409.1556" target="_new">2014</a></td>
+          </tr>
+          <tr>
+            <td align="center">mobilenet_v1</td>
+            <td align="center">315</td>
+            <td align="center">32</td>
+            <td align="center">126</td>
+            <td align="center"><a href="https://arxiv.org/abs/1704.04861" target="_new">2017</a></td>
+          </tr>
+          <tr>
+            <td align="center">mobilenet_v1_075</td>
+            <td align="center">315</td>
+            <td align="center">32</td>
+            <td align="center">126</td>
+            <td align="center"><a href="https://arxiv.org/abs/1704.04861" target="_new">2017</a></td>
+          </tr>
+          <tr>
+            <td align="center">resnet_v1_50</td>
+            <td align="center">483</td>
+            <td align="center">32</td>
+            <td align="center">239</td>
+            <td align="center"><a href="https://arxiv.org/abs/1512.03385" target="_new">2015</a></td>
+          </tr>
+          <tr>
+            <td align="center">inception_v2</td>
+            <td align="center">699</td>
+            <td align="center">32</td>
+            <td align="center">318</td>
+            <td align="center"><a href="https://arxiv.org/abs/1502.03167" target="_new">2015</a></td>
+          </tr>
+          <tr>
+            <td align="center">resnet_v1_101</td>
+            <td align="center">1027</td>
+            <td align="center">32</td>
+            <td align="center">511</td>
+            <td align="center"><a href="https://arxiv.org/abs/1512.03385" target="_new">2015</a></td>
+          </tr>
+          <tr>
+            <td align="center">inception_v3</td>
+            <td align="center">1311</td>
+            <td align="center">32</td>
+            <td align="center">618</td>
+            <td align="center"><a href="https://arxiv.org/abs/1512.00567" target="_new">2015</a></td>
+          </tr>
+          <tr>
+            <td align="center">resnet_v1_152</td>
+            <td align="center">1507</td>
+            <td align="center">32</td>
+            <td align="center">751</td>
+            <td align="center"><a href="https://arxiv.org/abs/1512.03385" target="_new">2015</a></td>
+          </tr>
+          <tr>
+            <td align="center">resnet_v1_200</td>
+            <td align="center">1763</td>
+            <td align="center">32</td>
+            <td align="center">879</td>
+            <td align="center"><a href="https://arxiv.org/abs/1512.03385" target="_new">2015</a></td>
+          </tr>
+          <tr>
+            <td align="center">inception_v4</td>
+            <td align="center">2071</td>
+            <td align="center">32</td>
+            <td align="center">998</td>
+            <td align="center"><a href="https://arxiv.org/abs/1602.07261" target="_new">2016</a></td>
+          </tr>
+          <tr>
+            <td align="center">inception_resnet_v2</td>
+            <td align="center">3039</td>
+            <td align="center">32</td>
+            <td align="center">1482</td>
+            <td align="center"><a href="https://arxiv.org/abs/1602.07261" target="_new">2016</a></td>
+          </tr>
+        </tbody>
+      </table>
+    <p></p>
+
+    <p>
+      As models evolved, from
+      AlexNet, to VGG, to ResNet and Inception, the receptive fields increased
+      (which is a natural consequence of the increased number of layers).
+      In the most recent networks, the receptive field usually covers the entire input image:
+      this means that the context used by each feature in the final output feature map
+      includes all of the input pixels.
+    </p>
+    <p>
+      We can also relate the growth in receptive fields to increased
+      classification accuracy. The figure below plots ImageNet
+      top-1 accuracy as a function of the network’s receptive field size, for
+      the same networks listed above. The circle size for each data point is
+      proportional to the number of floating-point operations (FLOPs) for each
+      architecture.
+    </p>
+
+    <p>
+      <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+      <script type="text/javascript">
+        google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.setOnLoadCallback(drawSeriesChart);
+
+        function drawSeriesChart() {
+
+          var data = google.visualization.arrayToDataTable([
+            ['ID', 'Receptive field size (pixels)', 'ImageNet top-1 accuracy', 'Family', 'FLOPS (Billion)'],
+            ['alexnet_v2', 195, 0.5720, 'alexnet', 1.38],
+            ['vgg_16', 212, 0.7150, 'vgg_16', 30.71],
+            ['inception_v2', 699, 0.7390, 'inception', 3.88],
+            ['inception_v3', 1311, 0.7800, 'inception', 5.69],
+            ['inception_v4', 2071, 0.8020, 'inception', 12.27],
+            ['inception_resnet_v2', 3039, 0.8040, 'inception_resnet', 12.96],
+            ['resnet_v1_50', 483, 0.7520, 'resnet', 6.97],
+            ['resnet_v1_101', 1027, 0.7640, 'resnet', 14.40],
+            ['resnet_v1_152', 1507, 0.7680, 'resnet', 21.82],
+            ['mobilenet_v1', 315, 0.7090, 'mobilenet', 1.14]
+          ]);
+
+          var options = {
+            title: '',
+            hAxis: { title: 'Receptive field size (pixels)', gridlines: { count: 10 } },
+            vAxis: { title: 'ImageNet top-1 accuracy', format: 'percent' },
+            sizeAxis: { maxSize: 10 },
+            legend: { position: 'bottom', textStyle: { fontSize: 12 } },
+            bubble: { textStyle: { fontSize: 11 } }
+          };
+
+          var chart = new google.visualization.BubbleChart(document.getElementById('series_chart_div'));
+          chart.draw(data, options);
+        }
+      </script>
+      </p><div style="width: 100%; max-width: 680px; height: 500px; position: relative;">
+        <div id="series_chart_div" style="position: relative; width: 100%; height: 500px;"></div>
+      </div>
+    <p></p>
+
+    <p>
+      We observe a logarithmic relationship between
+      classification accuracy and receptive field size, which suggests
+      that large receptive fields are necessary for high-level
+      recognition tasks, but with diminishing rewards.
+      For example, note how MobileNets achieve high recognition performance even
+      if using a very compact architecture: with depth-wise convolutions,
+      the receptive field is increased with a small compute footprint.
+      In comparison, VGG-16 requires 27X more FLOPs than MobileNets, but produces
+      a smaller receptive field size; even if much more complex, VGG’s accuracy
+      is only slightly better than MobileNet’s.
+      This suggests that networks which can efficiently generate large receptive
+      fields may enjoy enhanced recognition performance.
+    </p>
+    <p>
+      Let us emphasize, though, that the receptive field size is not the only factor contributing
+      to the improved performance mentioned above. Other factors play a very important
+      role: network depth (i.e., number of layers) and width (i.e., number of filters per layer),
+      residual connections, batch normalization, to name only a few.
+      In other words, while we conjecture that a large receptive field is necessary,
+      by no means it is sufficient.
+      <d-footnote>
+        Additional experimentation is needed to confirm this hypothesis: for
+        example, researchers may experimentally investigate how classification
+        accuracy changes as kernel sizes and strides vary for different
+        architectures. This may indicate if, at least for those architectures, a
+        large receptive field is necessary.
+      </d-footnote>
+    </p>
+    <p>
+      Finally, note that a given feature is not equally impacted by all input pixels within
+      its receptive field region: the input pixels near the center of the receptive field have more “paths” to influence
+      the feature, and consequently carry more weight.
+      The relative importance of each input pixel defines the
+      <i>effective receptive field</i> of the feature.
+      Recent work <d-cite key="luo2016understanding"></d-cite>
+      provides a mathematical formulation and a procedure to measure effective
+      receptive fields, experimentally observing a Gaussian shape,
+      with the peak at the receptive field center. Better understanding the
+      relative importance of input pixels in convolutional neural networks is
+      an active research topic.
+    </p>
+
+  </d-article>
+
+  <d-appendix>
+    <h3 id="solving-receptive-field-size">Solving recurrence equations: receptive field size</h3>
+    <p>
+      The first trick to solve
+      \eqref{eq:rf_recurrence} is to multiply it by \(\prod_{i=1}^{l-1} s_i\):
+    </p>
+
+    <p>
+      \(\begin{align}
+      r_{l-1}\prod_{i=1}^{l-1} s_i&amp; = s_l \cdot r_{l}\prod_{i=1}^{l-1} s_i + (k_l - s_l)\prod_{i=1}^{l-1} s_i
+      \nonumber \\&amp; = r_{l}\prod_{i=1}^{l} s_i + k_l\prod_{i=1}^{l-1} s_i - \prod_{i=1}^{l} s_i
+      \label{eq:rf_recurrence_mult}\
+      \end{align}\)
+    </p>
+
+    <p>
+      Then, define \(A_l = r_l\prod_{i=1}^{l}s_i\), and note that
+      \(\prod_{i=1}^{0}s_i = 1\) (since \(1\) is the neutral element for
+      multiplication), so \(A_0 = r_0\). Using this definition,
+      \eqref{eq:rf_recurrence_mult} can be rewritten as:
+    </p>
+
+    <p>
+      \begin{equation}
+      A_{l} - A_{l-1} = \prod_{i=1}^{l} s_i - k_l\prod_{i=1}^{l-1} s_i
+      \label{eq:rf_recurrence_adef}
+      \end{equation}
+    </p>
+
+    <p>Now, sum it from \(l=1\) to \(l=L\):</p>
+
+    <p>
+      \(\begin{align}
+      \sum_{l=1}^{L} \left(A_{l} - A_{l-1} \right) = A_{L} - A_0 = \sum_{l=1}^{L}
+      \left(\prod_{i=1}^{l} s_i - k_l\prod_{i=1}^{l-1} s_i \right)
+      \label{eq:rf_recurrence_sum_a}
+      \end{align}\)
+    </p>
+
+    <p>
+      Note that \(A_0 = r_0\) and \(A_{L} = r_{L}\prod_{i=1}^{L}s_i =
+      \prod_{i=1}^{L}s_i\). Thus, we can compute:
+    </p>
+
+    <p>
+      \(\begin{align}
+      r_0&amp;= \prod_{i=1}^{L}s_i + \sum_{l=1}^{L} \left(k_l\prod_{i=1}^{l-1} s_i
+      - \prod_{i=1}^{l} s_i \right) \nonumber \\&amp;= \sum_{l=1}^{L}k_l\prod_{i=1}^{l-1}
+      s_i-\sum_{l=1}^{L-1}\prod_{i=1}^{l} s_i
+      \nonumber \\&amp;= \sum_{l=1}^{L}k_l\prod_{i=1}^{l-1} s_i-\sum_{l=1}^{L}\prod_{i=1}^{l-1}s_i
+      + 1 \label{eq:rf_recurrence_almost_final}
+      \end{align}\)
+    </p>
+
+    <p>where the last step is done by a change of variables for the right term.</p>
+
+    <p>
+      Finally, rewriting \eqref{eq:rf_recurrence_almost_final}, we obtain the
+      expression for the receptive field size \(r_0\) of an FCN at the input image,
+      given the parameters of each layer:
+    </p>
+
+    <p>
+      \begin{equation}
+      r_0 = \sum_{l=1}^{L} \left((k_l-1)\prod_{i=1}^{l-1} s_i\right) + 1
+      \end{equation}
+    </p>
+
+    <p><a href="#return-from-solving-receptive-field-size">Navigate back to the main text</a></p><p>
+
+    </p><h3 id="solving-receptive-field-region">Solving recurrence equations: receptive field region</h3>
+    <p>
+      The derivations are similar to the one we use
+      to solve \eqref{eq:rf_recurrence}. Let’s consider the computation of \(u_0\).
+      First, multiply \eqref{eq:rf_loc_recurrence_u} by \(\prod_{i=1}^{l-1} s_i\).
+    </p>
+
+    <p>
+      \(\begin{align}
+      u_{l-1}\prod_{i=1}^{l-1} s_i&amp; = u_{l} \cdot s_l\prod_{i=1}^{l-1} s_i - p_l\prod_{i=1}^{l-1} s_i\nonumber
+      \\&amp; = u_{l}\prod_{i=1}^{l} s_i - p_l\prod_{i=1}^{l-1} s_i
+      \label{eq:rf_loc_recurrence_mult}\
+      \end{align}\)
+    </p>
+
+    <p>
+      Then, define \(B_l = u_l\prod_{i=1}^{l}s_i\), and rewrite
+      \eqref{eq:rf_loc_recurrence_mult} as:
+    </p>
+
+    <p>
+      \begin{equation}
+      B_{l} - B_{l-1} = p_l\prod_{i=1}^{l-1} s_i
+      \label{eq:rf_loc_recurrence_adef}
+      \end{equation}
+    </p>
+
+    <p>And sum it from \(l=1\) to \(l=L\):</p>
+
+    <p>
+      \(\begin{align}
+      \sum_{l=1}^{L} \left(B_{l} - B_{l-1} \right) = B_{L} - B_0 =
+      \sum_{l=1}^{L} p_l\prod_{i=1}^{l-1} s_i \label{eq:rf_loc_recurrence_sum_a}\
+      \end{align}\)
+    </p>
+
+    <p>
+      Note that \(B_0 = u_0\) and \(B_{L} = u_{L}\prod_{i=1}^{L}s_i\). Thus, we can
+      compute:
+    </p>
+
+    <p>
+      \(\begin{align}
+      u_0&amp;= u_{L}\prod_{i=1}^{L}s_i - \sum_{l=1}^{L}
+      p_l\prod_{i=1}^{l-1} s_i
+      \end{align}\)
+    </p>
+
+    <p><a href="#return-from-solving-receptive-field-region">Navigate back to the main text</a></p><p>
+
+    </p><h3 id="other-network-operations">Other network operations</h3>
+    <p>
+      <strong>Dilated (atrous) convolution.</strong>
+      Dilations introduce “holes” in a convolutional kernel. While the number of
+      weights in the kernel is unchanged, they are no longer applied to spatially
+      adjacent
+      samples. Dilating a kernel by a factor of \(\alpha\) introduces striding of
+      \(\alpha\) between the samples used when computing the convolution. This
+      means that the spatial span of the kernel (\(k&gt;0\)) is increased to \(\alpha (k-1) + 1\).
+      The above derivations can be reused by simply replacing the kernel size
+      \(k\) by \(\alpha (k-1) + 1\) for all layers using dilations.
+    </p>
+
+    <p>
+      <strong>Upsampling.</strong>
+      Upsampling is frequently done using interpolation (e.g., bilinear, bicubic
+      or nearest-neighbor methods), resulting in an equal or larger receptive
+      field — since it relies on one or multiple features from the input.
+      Upsampling layers generally produce output features which depend locally on
+      input features, and for receptive field computation purposes can be
+      considered to have a kernel size equal to the number of input features
+      involved in the computation of an output feature.
+    </p>
+
+    <p>
+      <strong>Separable convolutions.</strong>
+      Convolutions may be separable in terms of spatial or channel dimensions.
+      The receptive field properties of the separable convolution are
+      identical to its corresponding equivalent non-separable convolution. For
+      example, a \(3 \times 3\) depth-wise separable convolution has a kernel
+      size of \(3\) for receptive field computation purposes.
+    </p>
+
+    <p>
+      <strong>Batch normalization.</strong>
+      At inference time, batch normalization consists of feature-wise operations
+      which do not alter the receptive field of the network. During training,
+      however, batch normalization parameters are computed based on all
+      activations from a specific layer, which means that its receptive field is
+      the whole input image.
+    </p>
+
+    <p><a href="#return-from-other-network-operations">Navigate back to the main text</a></p><p>
+
+    </p><h3>Acknowledgments</h3>
+    <p>
+      We would like to thank Yuning Chai and George Papandreou for their careful
+      review of early drafts of this manuscript.
+      Regarding the open-source library, we thank Mark Sandler for helping with
+      the starter code, Liang-Chieh Chen and Iaroslav Tymchenko for careful
+      code review, and Till Hoffman for improving upon the original code release.
+      Thanks also to Mark Sandler for assistance with model profiling.
+    </p>
+
+    <d-footnote-list></d-footnote-list>
+    <d-bibliography><script type="text/json">[["chizat2018onthe",{"title":"On the Global Convergence of Gradient Descent for Over-parameterized Models using Optimal Transport","author":"Lenaic Chizat and Francis Bach","year":"2018","booktitle":"Proc. NIPS","url":"http://papers.nips.cc/paper/7567-on-the-global-convergence-of-gradient-descent-for-over-parameterized-models-using-optimal-transport.pdf","type":"inproceedings"}],["erhan2009visualizing",{"title":"Visualizing higher-layer features of a deep network","author":"Erhan, Dumitru and Bengio, Yoshua and Courville, Aaron and Vincent, Pascal","journal":"University of Montreal","volume":"1341","pages":"3","year":"2009","url":"https://www.researchgate.net/profile/Aaron_Courville/publication/265022827_Visualizing_Higher-Layer_Features_of_a_Deep_Network/links/53ff82b00cf24c81027da530.pdf","type":"article"}],["haeffele2017global",{"title":"Global Optimality in Neural Network Training","author":"Haeffele, B. and Vidal, R.","year":"2017","booktitle":"Proc. CVPR","url":"http://openaccess.thecvf.com/content_cvpr_2017/papers/Haeffele_Global_Optimality_in_CVPR_2017_paper.pdf","type":"inproceedings"}],["he2016deep",{"title":"Deep Residual Learning for Image Recognition","author":"He, Kaiming and Zhang, Xiangyu and Ren, Shaoqing and Sun, Jian","year":"2016","booktitle":"Proc. CVPR","url":"https://arxiv.org/abs/1512.03385","type":"inproceedings"}],["hien2017aguide",{"title":"A Guide to Receptive Field Arithmetic for Convolutional Neural Networks","author":"The-Hien Dang-Ha","year":"2017","url":"https://medium.com/mlreview/a-guide-to-receptive-field-arithmetic-for-convolutional-neural-networks-e0f514068807","type":"article"}],["howard2017mobilenets",{"title":"MobileNets: Efficient Convolutional Neural Networks for Mobile Vision Applications","author":"Howard, Andrew and Zhu, Menglong and Chen, Bo and Kalenichenko, Dmitry and Wang, Weijun and Weyand, Tobias and Andreetto, Marco and Adam, Hartwig","year":"2017","url":"https://arxiv.org/abs/1704.04861","type":"article"}],["krizhevsky2012imagenet",{"title":"ImageNet Classification with Deep Convolutional Neural Networks","author":"Krizhevsky, Alex and Sutskever, Ilya and Hinton, Geoffrey","year":"2012","booktitle":"Proc. NIPS","url":"https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf","type":"inproceedings"}],["le2017what",{"title":"What are the Receptive, Effective Receptive, and Projective Fields of Neurons in Convolutional Neural Networks?","author":"Hung Le and Ali Borji","year":"2017","url":"https://arxiv.org/abs/1705.07049","type":"article"}],["luo2016understanding",{"title":"Understanding the Effective Receptive Field in Deep Convolutional Neural Networks","author":"Luo, Wenjie and Li, Yujia and Urtasun, Raquel and Zemel, Richard","year":"2016","booktitle":"Proc. NIPS","url":"https://arxiv.org/abs/1701.04128","type":"inproceedings"}],["neyshabur2014insearch",{"title":"In Search of the Real Inductive Bias: On the Role of Implicit Regularization in Deep Learning","author":"Behnam Neyshabur and Ryota Tomioka and Nathan Srebro","year":"2014","url":"https://arxiv.org/abs/1412.6614","type":"article"}],["noh2017large",{"title":"Large-Scale Image Retrieval with Attentive Deep Local Features","author":"Noh, Hyeonwoo and Araujo, Andre and Sim, Jack and Weyand, Tobias and Han, Bohyung","year":"2017","booktitle":"Proc. ICCV","url":"https://arxiv.org/abs/1612.06321","type":"inproceedings"}],["simonyan2015very",{"title":"Very Deep Convolutional Networks for Large-Scale Image Recognition","author":"Simonyan, Karen and Zisserman, Andrew","year":"2015","booktitle":"Proc. ICLR","url":"https://arxiv.org/abs/1409.1556","type":"inproceedings"}],["szegedy2016inception",{"title":"Inception-v4, Inception-ResNet and the Impact of Residual Connections on Learning","author":"Szegedy, Christian and Ioffe, Sergey and Vanhoucke, Vincent and Alemi, Alex","year":"2016","url":"https://arxiv.org/abs/1602.07261","type":"article"}],["zeiler2014visualizing",{"title":"Visualizing and Understanding Convolutional Networks","author":"M. D. Zeiler and R. Fergus","year":"2014","booktitle":"Proc. ECCV","url":"https://arxiv.org/abs/1311.2901","type":"inproceedings"}],["zhang2017understanding",{"title":"Understanding Deep Learning Requires Rethinking Generalization","author":"Zhang, Chiyuan and Bengio, Samy and Hardt, Moritz and Recht, Benjamin and Vinyals, Oriol","year":"2017","booktitle":"Proc. ICLR","url":"https://arxiv.org/abs/1611.03530","type":"inproceedings"}],["zhou2015object",{"title":"Object Detectors Emerge in Deep Scene CNNs","author":"B. Zhou, A. Khosla, A. Lapedriza, A. Oliva, and A. Torralba","year":"2015","booktitle":"Proc. ICLR","url":"https://arxiv.org/abs/1412.6856","type":"inproceedings"}],["zhou2018interpreting",{"title":"Interpreting Deep Visual Representations via Network Dissection","author":"Zhou, B. and Bau, D. and Oliva, A. and Torralba, A.","year":"2018","journal":"IEEE Transactions on Pattern Analysis and Machine Intelligence","url":"https://arxiv.org/abs/1711.05611","type":"article"}]]</script></d-bibliography>
+
+  <d-citation-list distill-prerendered="true"><style>
+d-citation-list {
+  contain: style;
+}
+
+d-citation-list .references {
+  grid-column: text;
+}
+
+d-citation-list .references .title {
+  font-weight: 500;
+}
+</style><h3 id="references">References</h3><ol id="references-list" class="references"><li id="erhan2009visualizing"><span class="title">Visualizing higher-layer features of a deep network</span>   <a href="https://www.researchgate.net/profile/Aaron_Courville/publication/265022827_Visualizing_Higher-Layer_Features_of_a_Deep_Network/links/53ff82b00cf24c81027da530.pdf">[PDF]</a><br>Erhan, D., Bengio, Y., Courville, A. and Vincent, P., 2009. University of Montreal, Vol 1341, pp. 3. </li><li id="zeiler2014visualizing"><span class="title">Visualizing and Understanding Convolutional Networks</span>   <a href="http://arxiv.org/pdf/1311.2901.pdf">[PDF]</a><br>Zeiler, M.D. and Fergus, R., 2014. Proc. ECCV. </li><li id="haeffele2017global"><span class="title">Global Optimality in Neural Network Training</span>   <a href="http://openaccess.thecvf.com/content_cvpr_2017/papers/Haeffele_Global_Optimality_in_CVPR_2017_paper.pdf">[PDF]</a><br>Haeffele, B. and Vidal, R., 2017. Proc. CVPR. </li><li id="chizat2018onthe"><span class="title">On the Global Convergence of Gradient Descent for Over-parameterized Models using Optimal Transport</span>   <a href="http://papers.nips.cc/paper/7567-on-the-global-convergence-of-gradient-descent-for-over-parameterized-models-using-optimal-transport.pdf">[PDF]</a><br>Chizat, L. and Bach, F., 2018. Proc. NIPS. </li><li id="zhou2015object"><span class="title">Object Detectors Emerge in Deep Scene CNNs</span>   <a href="http://arxiv.org/pdf/1412.6856.pdf">[PDF]</a><br>B. Zhou, A.K. and Torralba, A., 2015. Proc. ICLR. </li><li id="zhou2018interpreting"><span class="title">Interpreting Deep Visual Representations via Network Dissection</span>   <a href="http://arxiv.org/pdf/1711.05611.pdf">[PDF]</a><br>Zhou, B., Bau, D., Oliva, A. and Torralba, A., 2018. IEEE Transactions on Pattern Analysis and Machine Intelligence. </li><li id="neyshabur2014insearch"><span class="title">In Search of the Real Inductive Bias: On the Role of Implicit Regularization in Deep Learning</span>   <a href="http://arxiv.org/pdf/1412.6614.pdf">[PDF]</a><br>Neyshabur, B., Tomioka, R. and Srebro, N., 2014. </li><li id="zhang2017understanding"><span class="title">Understanding Deep Learning Requires Rethinking Generalization</span>   <a href="http://arxiv.org/pdf/1611.03530.pdf">[PDF]</a><br>Zhang, C., Bengio, S., Hardt, M., Recht, B. and Vinyals, O., 2017. Proc. ICLR. </li><li id="hien2017aguide"><span class="title">A Guide to Receptive Field Arithmetic for Convolutional Neural Networks</span>   <a href="https://medium.com/mlreview/a-guide-to-receptive-field-arithmetic-for-convolutional-neural-networks-e0f514068807">[link]</a><br>Dang-Ha, T., 2017. </li><li id="le2017what"><span class="title">What are the Receptive, Effective Receptive, and Projective Fields of Neurons in Convolutional Neural Networks?</span>   <a href="http://arxiv.org/pdf/1705.07049.pdf">[PDF]</a><br>Le, H. and Borji, A., 2017. </li><li id="krizhevsky2012imagenet"><span class="title">ImageNet Classification with Deep Convolutional Neural Networks</span>   <a href="https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf">[PDF]</a><br>Krizhevsky, A., Sutskever, I. and Hinton, G., 2012. Proc. NIPS. </li><li id="simonyan2015very"><span class="title">Very Deep Convolutional Networks for Large-Scale Image Recognition</span>   <a href="http://arxiv.org/pdf/1409.1556.pdf">[PDF]</a><br>Simonyan, K. and Zisserman, A., 2015. Proc. ICLR. </li><li id="he2016deep"><span class="title">Deep Residual Learning for Image Recognition</span>   <a href="http://arxiv.org/pdf/1512.03385.pdf">[PDF]</a><br>He, K., Zhang, X., Ren, S. and Sun, J., 2016. Proc. CVPR. </li><li id="szegedy2016inception"><span class="title">Inception-v4, Inception-ResNet and the Impact of Residual Connections on Learning</span>   <a href="http://arxiv.org/pdf/1602.07261.pdf">[PDF]</a><br>Szegedy, C., Ioffe, S., Vanhoucke, V. and Alemi, A., 2016. </li><li id="noh2017large"><span class="title">Large-Scale Image Retrieval with Attentive Deep Local Features</span>   <a href="http://arxiv.org/pdf/1612.06321.pdf">[PDF]</a><br>Noh, H., Araujo, A., Sim, J., Weyand, T. and Han, B., 2017. Proc. ICCV. </li><li id="howard2017mobilenets"><span class="title">MobileNets: Efficient Convolutional Neural Networks for Mobile Vision Applications</span>   <a href="http://arxiv.org/pdf/1704.04861.pdf">[PDF]</a><br>Howard, A., Zhu, M., Chen, B., Kalenichenko, D., Wang, W., Weyand, T., Andreetto, M. and Adam, H., 2017. </li><li id="luo2016understanding"><span class="title">Understanding the Effective Receptive Field in Deep Convolutional Neural Networks</span>   <a href="http://arxiv.org/pdf/1701.04128.pdf">[PDF]</a><br>Luo, W., Li, Y., Urtasun, R. and Zemel, R., 2016. Proc. NIPS. </li></ol></d-citation-list><distill-appendix>
+<style>
+  distill-appendix {
+    contain: layout style;
+  }
+
+  distill-appendix .citation {
+    font-size: 11px;
+    line-height: 15px;
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    padding-left: 18px;
+    border: 1px solid rgba(0,0,0,0.1);
+    background: rgba(0, 0, 0, 0.02);
+    padding: 10px 18px;
+    border-radius: 3px;
+    color: rgba(150, 150, 150, 1);
+    overflow: hidden;
+    margin-top: -12px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  distill-appendix > * {
+    grid-column: text;
+  }
+</style>
+
+    <h3 id="updates-and-corrections">Updates and Corrections</h3>
+    <p>
+    If you see mistakes or want to suggest changes, please <a href="https://github.com/distillpub/post--receptive-field/issues/new">create an issue on GitHub</a>. </p>
+    
+    <h3 id="reuse">Reuse</h3>
+    <p>Diagrams and text are licensed under Creative Commons Attribution <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a> with the <a class="github" href="https://github.com/distillpub/post--receptive-field">source available on GitHub</a>, unless noted otherwise. The figures that have been reused from other sources don’t fall under this license and can be recognized by a note in their caption: “Figure from …”.</p>
+    
+    <h3 id="citation">Citation</h3>
+    <p>For attribution in academic contexts, please cite this work as</p>
+    <pre class="citation short">Araujo, et al., "Computing Receptive Fields of Convolutional Neural Networks", Distill, 2019.</pre>
+    <p>BibTeX citation</p>
+    <pre class="citation long">@article{araujo2019computing,
+  author = {Araujo, André and Norris, Wade and Sim, Jack},
+  title = {Computing Receptive Fields of Convolutional Neural Networks},
+  journal = {Distill},
+  year = {2019},
+  note = {https://distill.pub/2019/computing-receptive-fields},
+  doi = {10.23915/distill.00021}
+}</pre>
+    </distill-appendix></d-appendix>
+
+
+<distill-footer>
+<style>
+
+:host {
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 300;
+  padding: 2rem 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: hsl(180, 5%, 15%); /*hsl(200, 60%, 15%);*/
+  text-align: left;
+  contain: content;
+}
+
+.footer-container .logo svg {
+  width: 24px;
+  position: relative;
+  top: 4px;
+  margin-right: 2px;
+}
+
+.footer-container .logo svg path {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.8);
+  stroke-width: 3px;
+}
+
+.footer-container .logo {
+  font-size: 17px;
+  font-weight: 200;
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  margin-right: 6px;
+}
+
+.footer-container {
+  grid-column: text;
+}
+
+.footer-container .nav {
+  font-size: 0.9em;
+  margin-top: 1.5em;
+}
+
+.footer-container .nav a {
+  color: rgba(255, 255, 255, 0.8);
+  margin-right: 6px;
+  text-decoration: none;
+}
+
+</style>
+
+<div class="footer-container">
+
+  <a href="/" class="logo">
+    <svg viewBox="-607 419 64 64">
+  <path d="M-573.4,478.9c-8,0-14.6-6.4-14.6-14.5s14.6-25.9,14.6-40.8c0,14.9,14.6,32.8,14.6,40.8S-565.4,478.9-573.4,478.9z"></path>
+</svg>
+
+    Distill
+  </a> is dedicated to clear explanations of machine learning
+
+  <div class="nav">
+    <a href="https://distill.pub/about/">About</a>
+    <a href="https://distill.pub/journal/">Submit</a>
+    <a href="https://distill.pub/prize/">Prize</a>
+    <a href="https://distill.pub/archive/">Archive</a>
+    <a href="https://distill.pub/rss.xml">RSS</a>
+    <a href="https://github.com/distillpub">GitHub</a>
+    <a href="https://twitter.com/distillpub">Twitter</a>
+    &nbsp;&nbsp;&nbsp;&nbsp; ISSN 2476-0757
+  </div>
+
+</div>
+
+</distill-footer><script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-83741880-1', 'auto');
+  ga('send', 'pageview');
+</script></body></html>
