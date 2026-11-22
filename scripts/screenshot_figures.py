@@ -6,9 +6,13 @@ Usage:
 
 Figures are the page's <figure> and <d-figure> elements, numbered from 0 in page order.
 Each capture is saved as figNN.png and shows the figure's default state, including labels
-that stick a little out of the figure box. Existing files are not overwritten. A figure that
-fails is reported and skipped; after a timeout the browser can be left in a bad state, so
-rerun failed figures one per call and check every image.
+that stick a little out of the figure box. Only what is on screen is captured: capturing
+beyond the window makes pages that draw figures on scroll (Distill) re-layout mid-capture,
+so a figure taller than the window is reported as failed. A shot is kept only once the
+figure's images have loaded and its position stayed the same while it was taken.
+Existing files are not overwritten.
+A figure that fails is reported and skipped; after a timeout the browser can be left in a bad
+state, so rerun failed figures one per call and check every image.
 Requires Microsoft Edge and the websocket-client package.
 """
 import argparse
@@ -30,6 +34,14 @@ DEVICE_SCALE = 2
 LOAD_WAIT_S = 8
 FIGURE_WAIT_S = 2
 CALL_TIMEOUT_S = 30
+CAPTURE_TRIES = 10
+# Count images in the figure that have not arrived yet: <img> tags, and CSS background images
+# with no finished request (the resource-timing buffer is enlarged so none are dropped).
+PENDING_IMAGES_JS = (
+    "els.filter(e => e.tagName === 'IMG' && !e.complete).length"
+    " + (() => { const done = new Set(performance.getEntriesByType('resource').map(r => r.name));"
+    " return els.flatMap(e => [...getComputedStyle(e).backgroundImage.matchAll(/url\\(\"?([^\")]+)\"?\\)/g)])"
+    ".filter(m => !m[1].startsWith('data:') && !done.has(new URL(m[1], location.href).href)).length; })()")
 FIGURES = "document.querySelectorAll('figure, d-figure')"
 PAD_PX = 8            # blank space kept around the figure
 MAX_OVERFLOW_PX = 24  # how far labels may stick out of the figure box and still be captured
@@ -53,6 +65,30 @@ def capture_box(figure, parts, pad=PAD_PX, max_overflow=MAX_OVERFLOW_PX):
     left, top = max(left - pad, 0), max(top - pad, 0)
     right, bottom = right + pad, bottom + pad
     return {"x": left, "y": top, "w": right - left, "h": bottom - top}
+
+
+def fits_viewport(box, scroll_y, height=VIEWPORT[1]):
+    """True if the box lies within the visible part of the page (page pixels)."""
+    return box["y"] >= scroll_y and box["y"] + box["h"] <= scroll_y + height
+
+
+def capture_when_still(read, capture, ready=lambda layout: True, tries=CAPTURE_TRIES,
+                       wait=lambda: time.sleep(FIGURE_WAIT_S)):
+    """Once the figure is ready, capture, then read the layout again; keep the shot only if
+    nothing moved meanwhile.
+
+    Images loading above the figure push it down after it was measured, which leaves the
+    shot showing whatever slid into its place; images still loading inside it leave holes.
+    Returns None if the figure never gets ready and holds still.
+    """
+    for _ in range(tries):
+        before = read()
+        if ready(before):
+            shot = capture(before)
+            if read() == before:
+                return shot
+        wait()
+    return None
 
 
 class Browser:
@@ -110,6 +146,9 @@ def main():
         try:
             browser.call("Emulation.setDeviceMetricsOverride", width=VIEWPORT[0], height=VIEWPORT[1],
                          deviceScaleFactor=DEVICE_SCALE, mobile=False)
+            browser.call("Emulation.setScrollbarsHidden", hidden=True)
+            browser.call("Page.addScriptToEvaluateOnNewDocument",
+                         source="performance.setResourceTimingBufferSize(100000)")
             browser.call("Page.navigate", url=args.url)
             time.sleep(LOAD_WAIT_S)
             count = browser.js(f"{FIGURES}.length")
@@ -129,16 +168,31 @@ def main():
                     failed += 1
                     continue
                 try:
-                    browser.js(f"{FIGURES}[{i}].scrollIntoView({{block: 'start'}})")
+                    browser.js(f"{FIGURES}[{i}].scrollIntoView({{block: 'center'}})")
                     time.sleep(FIGURE_WAIT_S)
-                    boxes = browser.js(f"(() => {{ const f = {FIGURES}[{i}];"
-                                       " return [f, ...f.querySelectorAll('*')].map(e => {"
-                                       " const r = e.getBoundingClientRect();"
-                                       " return {x: r.left + scrollX, y: r.top + scrollY, w: r.width, h: r.height}; }); })()")
-                    box = capture_box(boxes[0], boxes[1:])
-                    shot = browser.call("Page.captureScreenshot", format="png", captureBeyondViewport=True,
-                                        clip={"x": box["x"], "y": box["y"], "width": box["w"],
-                                              "height": box["h"], "scale": 1})
+
+                    def read_layout():
+                        return browser.js(f"(() => {{ const f = {FIGURES}[{i}]; const els = [f, ...f.querySelectorAll('*')];"
+                                          f" return {{scrollY, pending: {PENDING_IMAGES_JS}, boxes: els.map(e => {{"
+                                          " const r = e.getBoundingClientRect();"
+                                          " return {x: r.left + scrollX, y: r.top + scrollY, w: r.width, h: r.height};"
+                                          " })}; })()")
+
+                    def capture(layout):
+                        box = capture_box(layout["boxes"][0], layout["boxes"][1:])
+                        if not fits_viewport(box, layout["scrollY"]):
+                            raise RuntimeError(f"taller than the {VIEWPORT[1]}px window")
+                        shot = browser.call("Page.captureScreenshot", format="png", captureBeyondViewport=False,
+                                            clip={"x": box["x"], "y": box["y"], "width": box["w"],
+                                                  "height": box["h"], "scale": 1})
+                        return shot, box
+
+                    result = capture_when_still(read_layout, capture, ready=lambda layout: layout["pending"] == 0)
+                    if result is None:
+                        print(f"fig {i:02d}: failed (images kept loading or layout kept moving)")
+                        failed += 1
+                        continue
+                    shot, box = result
                     path.write_bytes(base64.b64decode(shot["data"]))
                     print(f"fig {i:02d}: {box['w']:.0f}x{box['h']:.0f} -> {path.name}")
                 except (OSError, RuntimeError, websocket.WebSocketException) as e:

@@ -39,5 +39,59 @@ class CaptureBoxTest(unittest.TestCase):
         self.assertEqual(got, box(92, 492, 716, 296))
 
 
+class FitsViewportTest(unittest.TestCase):
+    def test_box_inside_view_fits(self):
+        self.assertTrue(screenshot_figures.fits_viewport(box(92, 492, 716, 296), scroll_y=300, height=1000))
+
+    def test_box_starting_above_view_does_not_fit(self):
+        self.assertFalse(screenshot_figures.fits_viewport(box(92, 492, 716, 296), scroll_y=500, height=1000))
+
+    def test_box_ending_below_view_does_not_fit(self):
+        self.assertFalse(screenshot_figures.fits_viewport(box(92, 492, 716, 296), scroll_y=0, height=700))
+
+    def test_box_touching_both_edges_fits(self):
+        self.assertTrue(screenshot_figures.fits_viewport(box(0, 100, 50, 1000), scroll_y=100, height=1000))
+
+
+class CaptureWhenStillTest(unittest.TestCase):
+    def run_capture(self, positions, tries=3, ready=lambda layout: True):
+        reads = iter(positions)
+        captured = []
+
+        def capture(layout):
+            captured.append(layout)
+            return f"shot at {layout}"
+
+        result = screenshot_figures.capture_when_still(lambda: next(reads), capture, ready=ready,
+                                                       tries=tries, wait=lambda: None)
+        return result, captured
+
+    def test_figure_still_loading_is_not_captured_yet(self):
+        loaded = lambda layout: layout.endswith("loaded")  # noqa: E731
+        result, captured = self.run_capture(["100 loading", "100 loaded", "100 loaded"], ready=loaded)
+        self.assertEqual(result, "shot at 100 loaded")
+        self.assertEqual(captured, ["100 loaded"])
+
+    def test_figure_that_never_loads_gives_none(self):
+        result, captured = self.run_capture(["loading"] * 3, ready=lambda layout: False)
+        self.assertIsNone(result)
+        self.assertEqual(captured, [])
+
+    def test_still_layout_is_captured_once(self):
+        result, captured = self.run_capture([100, 100])
+        self.assertEqual(result, "shot at 100")
+        self.assertEqual(captured, [100])
+
+    def test_layout_that_moves_during_capture_is_retried(self):
+        result, captured = self.run_capture([100, 685, 685, 685])
+        self.assertEqual(result, "shot at 685")
+        self.assertEqual(captured, [100, 685])
+
+    def test_layout_that_never_settles_gives_none(self):
+        result, captured = self.run_capture([1, 2, 3, 4, 5, 6], tries=3)
+        self.assertIsNone(result)
+        self.assertEqual(len(captured), 3)
+
+
 if __name__ == "__main__":
     unittest.main()
