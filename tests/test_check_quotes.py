@@ -177,6 +177,19 @@ class RealSourcesTest(unittest.TestCase):
         self.assertTrue(src.has_section("Solving recurrence equations: receptive field size"))
         self.assertFalse(src.has_section("Receptive field arithmetic"))
 
+    def test_d2l_titles_ignore_numbers_and_notebook_buttons(self):
+        src = check_quotes.Source("d2l-ch7", check_quotes.ROOT / "raw")
+        self.assertTrue(src.has_section("Convolutions for Images"))
+        self.assertTrue(src.has_section("7.2. Convolutions for Images"))
+        self.assertTrue(src.has_section("Feature Map and Receptive Field"))
+        self.assertFalse(src.has_section("Convolutions for Images colab"))
+
+    def test_d2l_title_with_inline_math(self):
+        src = check_quotes.Source("d2l-ch7", check_quotes.ROOT / "raw")
+        self.assertTrue(src.has_section("1×1 Convolutional Layer"))
+        self.assertTrue(src.has_section("7.4.3. 1×1 Convolutional Layer"))
+        self.assertFalse(src.has_section("2×2 Convolutional Layer"))
+
 
 if __name__ == "__main__":
     unittest.main()

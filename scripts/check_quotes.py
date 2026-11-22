@@ -35,6 +35,8 @@ QUOTE_RE = re.compile(r"^>\s*原文（(?P<slug>[a-z0-9-]+)）：\s*(?P<text>.+?)
 LIST_ITEM_RE = re.compile(r"^\s*(?:[-*+]|\d+\.)\s+")
 TABLE_SEPARATOR_RE = re.compile(r"^\|?\s*:?-{3,}")
 SECTION_NUMBER_RE = re.compile(r"^\d+(?:\.\d+)*\.?\s+")
+INLINE_MATH_RE = re.compile(r"\\[()]")
+TIMES_RE = re.compile(r"\s*\\times\s*")
 
 QUOTE_CHARS = str.maketrans({"‘": "'", "’": "'", "“": '"', "”": '"',
                              " ": " ", " ": " ", " ": " "})
@@ -46,7 +48,12 @@ def normalize(text):
 
 
 def normalize_heading(text):
-    text = normalize(text).rstrip("¶").strip()
+    """Heading text without its section number or anything after a ¶ permalink (d2l puts notebook buttons there).
+
+    Inline math is reduced to plain text so a page can cite d2l's "\\(1\\times 1\\) Convolutional Layer" as "1×1 ...".
+    """
+    text = normalize(text).split("¶", 1)[0].strip()
+    text = INLINE_MATH_RE.sub("", TIMES_RE.sub("×", text))
     return SECTION_NUMBER_RE.sub("", text).casefold()
 
 
