@@ -2,12 +2,12 @@
 
 ## 是什麼
 
-CNN 的每一層建立在前一層的激活值上；越往後，表示的東西越具體、越複雜，也越接近輸出類別（[Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md) § Looking at Multiple Layers）。各篇的描述：
+CNN 每一層的激活值建立在前一層的激活值上；越往後的層似乎越具體、越複雜，也越接近輸出類別（[Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md) § Looking at Multiple Layers）。各篇的描述：
 
 - **d2l：** 直覺上，靠近輸入的低層可能有些通道專門辨認邊緣，有些辨認紋理（[d2l](../sources/d2l-ch7.md) § 7.1.4. Channels）。
 - **Feature Visualization：** 用最佳化畫出 GoogLeNet 各層的通道，由低到高依序像邊緣（conv2d0）、紋理（mixed3a）、圖案（mixed4a）、部件（mixed4b、mixed4c）、物體（mixed4d、mixed4e）（[Feature Visualization](../sources/feature-visualization.md) § Feature Visualization）。
 - **Building Blocks：** 比較 mixed3a、mixed4a、mixed4d、mixed5a 的[激活網格](../methods/activation-grid.md)，網路的理解從前面幾層的邊緣，變成後面幾層更複雜的形狀和物件部位（[The Building Blocks of Interpretability](../sources/building-blocks.md) § What Does the Network See?）。
-- **Activation Atlas：** 比較三層的[激活圖譜](../methods/activation-atlas.md)，前面的層（例如 mixed3b）表示紋理和簡單圖案；中間的層（例如 mixed4c）的圖示是眼睛、葉子、水這類很多類別共用的概念；最後的層（例如 mixed5b）的抽象概念和輸出類別更接近（[Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md) § Looking at Multiple Layers）。
+- **Activation Atlas：** 比較三層的[激活圖譜](../methods/activation-atlas.md)，前面的層（例如 mixed3b）似乎表示紋理和簡單圖案；中間的層（例如 mixed4c）的圖示是眼睛、葉子、水這類很多類別共用的概念；最後的層（例如 mixed5b）的抽象概念和輸出類別更接近（[Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md) § Looking at Multiple Layers）。
 
 > 原文（d2l-ch7）：Intuitively, you might imagine that at lower layers that are closer to inputs, some channels could become specialized to recognize edges while others could recognize textures.
 
@@ -67,7 +67,7 @@ CNN 的每一層建立在前一層的激活值上；越往後，表示的東西�
 
 **mixed3a 是邊緣還是紋理。** Building Blocks 說前面的層偵測邊緣，比較的最前一層是 mixed3a（[The Building Blocks of Interpretability](../sources/building-blocks.md) § What Does the Network See?）。Feature Visualization 的圖把 mixed3a 標成紋理，邊緣標在更前面的 conv2d0（[Feature Visualization](../sources/feature-visualization.md) § Feature Visualization）。
 
-本 Wiki 以 Feature Visualization 的層名對照為主：它逐層標出各層像什麼；Activation Atlas 說 mixed3b 表示紋理和簡單圖案，和它一致；Building Blocks 的句子描述的是整體趨勢，沒有逐層標出（[Feature Visualization](../sources/feature-visualization.md) § Feature Visualization；[Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md) § Looking at Multiple Layers；[The Building Blocks of Interpretability](../sources/building-blocks.md) § What Does the Network See?）。
+本 Wiki 以 Feature Visualization 的層名對照為主：它逐層標出各層像什麼；Activation Atlas 說 mixed3b 似乎表示紋理和簡單圖案，和它一致；Building Blocks 的句子描述的是整體趨勢，沒有逐層標出（[Feature Visualization](../sources/feature-visualization.md) § Feature Visualization；[Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md) § Looking at Multiple Layers；[The Building Blocks of Interpretability](../sources/building-blocks.md) § What Does the Network See?）。
 
 > 原文（activation-atlas）：In early layers (eg. mixed3b), the network seems to represents textures and simple patterns.
 

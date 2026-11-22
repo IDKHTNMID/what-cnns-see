@@ -18,7 +18,7 @@ Activation Atlas 說激活值有組合結構（compositional structure）：混�
 
 ## 為什麼重要
 
-加上多樣性項之後，有些例子同時回應好幾種不相干的東西，例如 mixed4e 層 unit 55 同時回應兩種動物的臉和車身；作者認為這暗示神經元不一定是理解網路的正確語意單位（[Feature Visualization](../sources/feature-visualization.md) § Achieving Diversity with Optimization）。實際上，是神經元的組合一起在網路裡表示影像，激活空間提供了思考這些組合的幾何方式（[Feature Visualization](../sources/feature-visualization.md) § Interaction between Neurons）。
+加上多樣性項之後，有些例子是好幾種概念奇怪地混在一起，例如 mixed4e 層 unit 55 同時回應兩種動物的臉和車身；作者認為這暗示神經元不一定是理解網路的正確語意單位（[Feature Visualization](../sources/feature-visualization.md) § Achieving Diversity with Optimization）。實際上，是神經元的組合一起在網路裡表示影像，激活空間提供了思考這些組合的幾何方式（[Feature Visualization](../sources/feature-visualization.md) § Interaction between Neurons）。
 
 > 原文（feature-visualization）：In real life, combinations of neurons work together to represent images in neural networks.
 
@@ -28,9 +28,9 @@ Activation Atlas 用字母比喻：26 個字母是英文的基底，但看字母
 
 ![四個單一神經元的特徵視覺化](../../raw/activation-atlas/assets/images/overview-neuron.jpg)
 ![兩個神經元的特徵視覺化合成一張](../../raw/activation-atlas/assets/images/overview-pairwise.jpg)
-圖：Activation Atlas 開頭比較看隱藏層的方法。上圖是單一神經元，看不到神經元之間的互動，只是高維激活空間裡一維、互相正交的探針；下圖是兩兩神經元的互動，看得到互動效果，但只是數百維空間裡的二維切片，很多組合也不會實際出現（[Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md) § Introduction）
+圖：Activation Atlas 開頭比較看隱藏層的方法。上圖是單一神經元，看不到神經元之間的互動，只是高維激活空間裡一維、互相正交的探針；下圖是兩兩神經元的互動，看得到互動效果，但只是數百維空間裡的二維切片，很多組合也不真實（[Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md) § Introduction）
 
-Building Blocks 把同時回應幾種不相干概念的神經元叫多義神經元（poly-semantic neurons），例如同時回應貓和車（[The Building Blocks of Interpretability](../sources/building-blocks.md) § How Trustworthy Are These Interfaces?）。介面可以這樣應對：用多樣性的視覺化顯示一個神經元的各種意義，或旋轉[語意字典](semantic-dictionary.md)，讓各成分更分得開（[The Building Blocks of Interpretability](../sources/building-blocks.md) § How Trustworthy Are These Interfaces?）。
+Building Blocks 把同時回應幾種顯著概念的神經元叫多義神經元（poly-semantic neurons），例如同時回應貓和車（[The Building Blocks of Interpretability](../sources/building-blocks.md) § How Trustworthy Are These Interfaces?）。介面可以這樣應對：用多樣性的視覺化顯示一個神經元的各種意義，或旋轉[語意字典](semantic-dictionary.md)，讓各成分更分得開（[The Building Blocks of Interpretability](../sources/building-blocks.md) § How Trustworthy Are These Interfaces?）。
 
 > 原文（building-blocks）：There are natural ways that interfaces could respond to this: we could use diversity visualizations to reveal the variety of meanings the neuron can take, or rotate our semantic dictionaries so their components are more disentangled.
 

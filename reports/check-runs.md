@@ -110,3 +110,8 @@ Append-only record of every `scripts/check_all.py` run.
 - check_quotes: 0 problem(s)
 - check_links: 0 problem(s)
 
+## [2026-11-23 04:37] tighten activation-atlas wording | PASS
+
+- check_quotes: 0 problem(s)
+- check_links: 0 problem(s)
+

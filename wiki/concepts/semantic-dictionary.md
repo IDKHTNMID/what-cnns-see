@@ -32,7 +32,7 @@
 
 > 原文（building-blocks）：For example, besides the one-way attribution that we currently perform with the input and output layers, semantic dictionaries allow us to attribute to-and-from specific hidden layers.
 
-語意字典的前提是：神經元在不同輸入影像之間的意義大致一致，而且特徵視覺化如實呈現了這個意義（[The Building Blocks of Interpretability](../sources/building-blocks.md) § How Trustworthy Are These Interfaces?）。作者在 Feature Visualization 裡發現 GoogLeNet 很多神經元對應到有意義的概念，但也有多義神經元（poly-semantic neurons），同時回應幾種不相干的概念，例如貓和車（[The Building Blocks of Interpretability](../sources/building-blocks.md) § How Trustworthy Are These Interfaces?）。
+語意字典的前提是：神經元在不同輸入影像之間的意義大致一致，而且特徵視覺化如實呈現了這個意義（[The Building Blocks of Interpretability](../sources/building-blocks.md) § How Trustworthy Are These Interfaces?）。作者在 Feature Visualization 裡發現 GoogLeNet 很多神經元對應到有意義的概念，但也有多義神經元（poly-semantic neurons），同時回應幾種顯著概念，例如貓和車（[The Building Blocks of Interpretability](../sources/building-blocks.md) § How Trustworthy Are These Interfaces?）。
 
 > 原文（building-blocks）：Semantic dictionaries, and the interfaces that build on top of them, are premised off this question being true.
 
@@ -50,7 +50,7 @@
 - [歸因](../methods/attribution.md)：通道歸因的介面用語意字典的圖示代表通道（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Channel Attribution）。
 - [激活空間](activation-space.md)：語意字典可以用在任何激活值的基底上；遇到多義神經元時，也可以旋轉語意字典（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Making Sense of Hidden Layers；[The Building Blocks of Interpretability](../sources/building-blocks.md) § How Trustworthy Are These Interfaces?）。
 - [矩陣分解](../methods/matrix-factorization.md)：神經元群組是另一種基底；作者說用其他基底提供更好的理解單位，才剛開始探索（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Making Things Human-Scale）。
-- [多用途特徵](multi-use-features.md)：多義神經元是單一神經元同時回應幾種不相干的概念；Activation Atlas 的多用途特徵是類別激活圖譜上的一個偵測器，回應幾種很不一樣、但看起來相似的概念（[The Building Blocks of Interpretability](../sources/building-blocks.md) § How Trustworthy Are These Interfaces?；[Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md) § Further Isolating Classes）。
+- [多用途特徵](multi-use-features.md)：多義神經元是單一神經元同時回應幾種顯著概念；Activation Atlas 的多用途特徵是類別激活圖譜上的一個偵測器，回應幾種很不一樣、但看起來相似的概念（[The Building Blocks of Interpretability](../sources/building-blocks.md) § How Trustworthy Are These Interfaces?；[Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md) § Further Isolating Classes）。
 
 > 原文（building-blocks）：Our visualizations have only begun to explore the potential of alternate bases in providing better atoms for understanding neural networks.
 

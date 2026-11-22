@@ -48,9 +48,9 @@
 ## 和其他概念的關係
 
 - [激活圖譜](../methods/activation-atlas.md)：多用途特徵是比較兩個類別的類別激活圖譜時找到的；比較圖的橫軸是兩類的歸因差（[Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md) § Further Isolating Classes）。
-- [語意字典](semantic-dictionary.md)：Building Blocks 說的多義神經元（poly-semantic neurons）是單一神經元同時回應幾種不相干的概念，例如貓和車；Activation Atlas 的多用途特徵是圖譜上的一個偵測器回應幾種很不一樣、但看起來相似的概念（[The Building Blocks of Interpretability](../sources/building-blocks.md) § How Trustworthy Are These Interfaces?；[Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md) § Further Isolating Classes）。
+- [語意字典](semantic-dictionary.md)：Building Blocks 說的多義神經元（poly-semantic neurons）是單一神經元同時回應幾種顯著概念，例如貓和車；Activation Atlas 的多用途特徵是圖譜上的一個偵測器回應幾種很不一樣、但看起來相似的概念（[The Building Blocks of Interpretability](../sources/building-blocks.md) § How Trustworthy Are These Interfaces?；[Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md) § Further Isolating Classes）。
 - 對抗樣本（adversarial examples）：作者把這些攻擊放在一個更大的趨勢裡，也就是研究傳統 epsilon ball 對抗樣本以外的輸入攻擊；最像的是對抗補丁（adversarial patch），也是在影像上加一小塊補丁（[Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md) § Testing dozens of patches on thousands of images）。對抗補丁有效、可靠得多；作者覺得自己的攻擊有意思的地方，是人根據對模型的理解做出來的，而且似乎在更高的抽象層次攻擊模型（[Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md) § Testing dozens of patches on thousands of images）。對抗樣本也出現在[正則化與預條件](../methods/regularization-and-preconditioning.md)：特徵視覺化完全不正則化時，得到的就是對抗樣本（[Feature Visualization](../sources/feature-visualization.md) § The Spectrum of Regularization）。
-- [歸因](../methods/attribution.md)：圖示標的類別和補丁的效果都看歸因；麵條圖示的歸因差較小，補丁的效果也較差（[Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md) § Further Isolating Classes）。
+- [歸因](../methods/attribution.md)：比較圖的橫軸是兩類的歸因差；麵條圖示畫得比較靠中間，歸因差較小，補丁降低原本分類的效果也比較差（[Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md) § Further Isolating Classes）。
 
 > 原文（activation-atlas）：From this perspective, adversarial patches are far more effective, working much more reliably.
 

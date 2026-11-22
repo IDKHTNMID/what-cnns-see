@@ -129,7 +129,7 @@ h_{x,y} \cdot \nabla_{h_{x,y}} \text{logit}_c
 |---|---|---|---|
 | 看的資料 | 一張影像每個位置的激活向量（[The Building Blocks of Interpretability](../sources/building-blocks.md) § What Does the Network See?） | 一張影像的激活值，分成少數幾個神經元群組（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Making Things Human-Scale） | 一百萬張影像，每張取一個位置的激活向量（[Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md) § Aggregating Multiple Images） |
 | 怎麼整理 | 照影像上的位置排成網格（[The Building Blocks of Interpretability](../sources/building-blocks.md) § What Does the Network See?） | 把特徵圖攤平成矩陣，做矩陣分解（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Making Things Human-Scale） | 降維到二維後畫格子，每格取平均（[Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md) § Aggregating Multiple Images） |
-| 看到什麼 | 網路怎麼看這一張影像（[Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md) § Aggregating Multiple Images） | 這一張影像的少數幾個概念（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Making Things Human-Scale） | 網路在一層能表示的概念的全貌（[Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md) § Introduction） |
+| 看到什麼 | 網路怎麼看這一張影像（[Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md) § Aggregating Multiple Images） | 少數幾個神經元群組，濃縮成網路在這張影像上的簡短故事（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Making Things Human-Scale） | 從網路的眼睛看出去的全局地圖，呈現神經元的常見組合（[Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md) § Introduction） |
 
 ### 降維後分格和分群
 
