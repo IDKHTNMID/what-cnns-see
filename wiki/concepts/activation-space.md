@@ -12,11 +12,23 @@ d2l 有類似的說法：不一定是單一通道對應邊緣偵測器，可能�
 
 > 原文（d2l-ch7）：This means that rather than mapping a single channel to an edge detector, it may simply mean that some direction in channel space corresponds to detecting edges.
 
+Activation Atlas 說激活值有組合結構（compositional structure）：混合幾百個基底神經元就能得到任何激活向量；但這個空間大到指數級，很難找到有意思的激活向量（[Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md) § Doesn't Surface Compositionality）。
+
+> 原文（activation-atlas）：We can mix together a couple hundred basis neurons to get any activation vector.
+
 ## 為什麼重要
 
 加上多樣性項之後，有些例子同時回應好幾種不相干的東西，例如 mixed4e 層 unit 55 同時回應兩種動物的臉和車身；作者認為這暗示神經元不一定是理解網路的正確語意單位（[Feature Visualization](../sources/feature-visualization.md) § Achieving Diversity with Optimization）。實際上，是神經元的組合一起在網路裡表示影像，激活空間提供了思考這些組合的幾何方式（[Feature Visualization](../sources/feature-visualization.md) § Interaction between Neurons）。
 
 > 原文（feature-visualization）：In real life, combinations of neurons work together to represent images in neural networks.
+
+Activation Atlas 用字母比喻：26 個字母是英文的基底，但看字母怎麼組成單字，比只看字母更能看出能表達哪些概念；同樣地，網路很少單獨使用一個神經元，要看神經元的常見組合（[Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md) § Introduction）。
+
+> 原文（activation-atlas）：As an analogy, while the 26 letters in the alphabet provide a basis for English, seeing how letters are commonly combined to make words gives far more insight into the concepts that can be expressed than the letters alone.
+
+![四個單一神經元的特徵視覺化](../../raw/activation-atlas/assets/images/overview-neuron.jpg)
+![兩個神經元的特徵視覺化合成一張](../../raw/activation-atlas/assets/images/overview-pairwise.jpg)
+圖：Activation Atlas 開頭比較看隱藏層的方法。上圖是單一神經元，看不到神經元之間的互動，只是高維激活空間裡一維、互相正交的探針；下圖是兩兩神經元的互動，看得到互動效果，但只是數百維空間裡的二維切片，很多組合也不會實際出現（[Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md) § Introduction）
 
 Building Blocks 把同時回應幾種不相干概念的神經元叫多義神經元（poly-semantic neurons），例如同時回應貓和車（[The Building Blocks of Interpretability](../sources/building-blocks.md) § How Trustworthy Are These Interfaces?）。介面可以這樣應對：用多樣性的視覺化顯示一個神經元的各種意義，或旋轉[語意字典](semantic-dictionary.md)，讓各成分更分得開（[The Building Blocks of Interpretability](../sources/building-blocks.md) § How Trustworthy Are These Interfaces?）。
 
@@ -41,8 +53,12 @@ Building Blocks 也提到，很多前人研究發現神經網路裡的方向有�
 - [語意字典](semantic-dictionary.md)：語意字典以神經元介紹，但可以用在任何激活值的基底上（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Making Sense of Hidden Layers）。
 - [激活網格](../methods/activation-grid.md)：把一個元素上所有通道的激活值當成一個激活向量（activation vector）一起畫，看的是神經元的組合，不是單一神經元（[The Building Blocks of Interpretability](../sources/building-blocks.md) § What Does the Network See?）。
 - [矩陣分解](../methods/matrix-factorization.md)：分出來的神經元群組是另一種基底；作者說用其他基底提供更好的理解單位，才剛開始探索（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Making Things Human-Scale）。
+- [激活圖譜](../methods/activation-atlas.md)：把大量激活向量降到二維；圖譜上畫出的路徑只在低維投影裡是平滑的，不知道它們在原本的高維激活空間裡怎麼走；圖譜靠取樣找出有意思的激活向量，卻完全失去組合結構（[Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md) § Aggregating Multiple Images；[Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md) § Doesn't Surface Compositionality）。
+- [多用途特徵](multi-use-features.md)：多義神經元說的是單一神經元；多用途特徵說的是類別激活圖譜上的一個偵測器，也就是一格的平均激活向量，回應幾種很不一樣、但看起來相似的概念（[The Building Blocks of Interpretability](../sources/building-blocks.md) § How Trustworthy Are These Interfaces?；[Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md) § Further Isolating Classes）。
 
 > 原文（feature-visualization）：For example, if we add a "black and white" neuron to a "mosaic" neuron, we obtain a black and white version of the mosaic.
+
+> 原文（activation-atlas）：They are smooth paths in this reduced projection but we don't necessarily know how the paths operate in the original higher-dimensional activation space.
 
 圖見原文：[Feature Visualization：Interaction between Neurons（兩個神經元一起最佳化）](https://distill.pub/2017/feature-visualization/#linear-combinations)（[Feature Visualization](../sources/feature-visualization.md) § Interaction between Neurons）
 
@@ -62,3 +78,6 @@ Building Blocks 也提到，很多前人研究發現神經網路裡的方向有�
 - [語意字典](semantic-dictionary.md)
 - [激活網格](../methods/activation-grid.md)
 - [矩陣分解](../methods/matrix-factorization.md)
+- [Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md)
+- [激活圖譜](../methods/activation-atlas.md)
+- [多用途特徵](multi-use-features.md)

@@ -51,6 +51,7 @@ computing-receptive-fields 把感受野直接定義成「產生該元素的輸�
 - [池化](../methods/pooling.md)：降低空間解析度會加快感受野變大，因為卷積核蓋住的有效面積變大了（[d2l](../sources/d2l-ch7.md) § 7.5. Pooling）。
 - [通道](channel.md)：感受野是對特徵圖裡的元素定義的，特徵圖就是一層的輸出（[d2l](../sources/d2l-ch7.md) § 7.2.6. Feature Map and Receptive Field）。通道數不影響感受野的計算（[Computing Receptive Fields](../sources/computing-receptive-fields.md) § Problem setup）。
 - [填充與步幅](../methods/padding-and-stride.md)：某一層的步幅大於 1 時，它底下所有層的區域都按比例變大；填充不影響感受野大小，但感受野區域的位置和填充有關（[Computing Receptive Fields](../sources/computing-receptive-fields.md) § Computing receptive field size；[Computing Receptive Fields](../sources/computing-receptive-fields.md) § Computing receptive field region in input image）。
+- [逐層抽象](layer-abstraction.md)：Activation Atlas 說後面的層感受野通常比前面的層大，看到影像中較大的範圍，所以概念似乎涵蓋物體較完整的部分（[Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md) § Looking at Multiple Layers）。
 
 > 原文（d2l-ch7）：Reducing spatial resolution accelerates this process, since the convolution kernels cover a larger effective area.
 
@@ -63,3 +64,5 @@ computing-receptive-fields 把感受野直接定義成「產生該元素的輸�
 - [卷積運算](../methods/convolution-operation.md)
 - [填充與步幅](../methods/padding-and-stride.md)
 - [池化](../methods/pooling.md)
+- [逐層抽象](layer-abstraction.md)
+- [Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md)

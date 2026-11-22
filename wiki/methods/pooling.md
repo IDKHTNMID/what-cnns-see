@@ -74,6 +74,10 @@
 
 降低解析度不只有池化：隨機池化（stochastic pooling）和分數最大池化（fractional max-pooling）把匯總和隨機化結合，有時能稍微提高準確率（[d2l](../sources/d2l-ch7.md) § 7.5.4. Summary）。
 
+- Activation Atlas 算[歸因](attribution.md)時，也把最大池化的梯度做連續的放寬（continuous relaxation），減少梯度裡的雜訊（[Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md) § Aggregating Multiple Images）。
+
+> 原文（activation-atlas）：Instead, we reduce noise in the gradient by using a continuous relaxation of the gradient for max pooling in computing the gradient
+
 ## 相關頁面
 
 - [d2l 第 7 章](../sources/d2l-ch7.md)
@@ -88,3 +92,4 @@
 - [Deconvolution and Checkerboard Artifacts](../sources/deconv-checkerboard.md)
 - [歸因](attribution.md)
 - [The Building Blocks of Interpretability](../sources/building-blocks.md)
+- [Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md)

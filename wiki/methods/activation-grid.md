@@ -4,6 +4,7 @@
 
 - 一張輸入影像，以及要看的那一層；Building Blocks 用 GoogLeNet，比較 mixed3a、mixed4a、mixed4d、mixed5a 四層（[The Building Blocks of Interpretability](../sources/building-blocks.md) § What Does the Network See?）。
 - 那一層的特徵圖（feature map）：每個元素（原文叫 spatial position）上有一個激活向量（activation vector），由這個位置上所有通道的激活值（activation）組成（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Making Sense of Hidden Layers）。
+- Activation Atlas 的說明：GoogLeNet 是卷積網路，同一組通道在前一層的每個重疊區塊（patch）上都算一次（原文說同樣的 neurons），所以一張影像在一層有好幾百個激活向量；把每個區塊的激活向量分開畫，就得到這個網格（[Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md) § Looking at a Single Image）。
 
 ## 步驟
 
@@ -46,6 +47,10 @@
 
 > 原文（building-blocks）：These visualizations, however, omit a crucial piece of information: the magnitude of the activations.
 
+**只看得到一張影像。** 激活網格顯示網路怎麼看一張影像；想看網路怎麼回應幾百萬張影像，就要整理、匯總激活值，這是[激活圖譜](activation-atlas.md)的出發點（[Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md) § Aggregating Multiple Images）。
+
+> 原文（activation-atlas）：Activation grids show how the network sees a single image, but what if we want to see more?
+
 ## 相關頁面
 
 - [The Building Blocks of Interpretability](../sources/building-blocks.md)
@@ -54,3 +59,5 @@
 - [特徵視覺化](feature-visualization.md)
 - [激活空間](../concepts/activation-space.md)
 - [歸因](attribution.md)
+- [激活圖譜](activation-atlas.md)
+- [Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md)

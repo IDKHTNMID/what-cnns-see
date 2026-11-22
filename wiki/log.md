@@ -108,3 +108,31 @@
 - 檢查：第 1 輪通過。寫頁面時先用 `check_quotes.py` 自查，把 4 處 `$$…$$` 的展示公式改成 math 區塊（`$$` 會被當成沒有出處的段落）。
 - 修正（同日）：逐句對原文，拿掉 3 處推論過頭的說法：激活空間頁和語意字典頁的「旋轉後的成分是激活空間裡的其他方向」（原文只說讓成分更分得開）；通道頁「通道不一定乾淨」改回原文說的神經元，並拿掉對 "being run" 的引申；名詞表 ReLU 的「所以適合用 NMF」改成「NMF 的非負限制沒有問題」。SOURCES 的 9 張 JS 圖對照截圖確認過都畫在輸入照片上。檢查再跑一次，通過。
 - lint 待辦：新頁把「空間位置」當一般用語（矩陣分解頁、來源頁、特徵圖頁、名詞表的矩陣分解列），它現在是元素的別名，lint 時和舊頁的「元素」用法一起掃。
+
+## [2026-11-23] ingest | Exploring Neural Networks with Activation Atlases
+
+- 新增：`sources/activation-atlas.md`；方法頁 `activation-atlas`（激活圖譜，含聚焦單一類別、類別激活圖譜兩小節，以及兩張比較表）；概念頁 `multi-use-features`（多用途特徵）、`layer-abstraction`（逐層抽象，使用者要求加的跨篇整合頁）。
+- 更新：`methods/activation-grid.md`（這篇對激活網格的說明、只看一張影像的限制）、`methods/attribution.md`（激活圖譜的歸因向量小節、比較表加一列、Grad-CAM 原文句）、`methods/pooling.md`（這篇也放寬最大池化的梯度）、`methods/feature-visualization.md`（這篇的目標函數；從神經元到激活值的演進）、`methods/regularization-and-preconditioning.md`（沿用變換穩健性；白化激活空間）、`methods/matrix-factorization.md`（矩陣分解或許能呈現組合結構）、`concepts/activation-space.md`（組合結構、字母比喻、開頭的兩張圖、路徑只在投影裡平滑、和多用途特徵的區別）、`concepts/receptive-field.md`（後面的層感受野較大）、`concepts/semantic-dictionary.md`（多義神經元和多用途特徵）；BB、FV 來源頁的相關頁面。
+- 名詞決定（使用者已確認）：
+  - 主名詞 GoogLeNet，InceptionV1 收為別名：FV 和 BB 都叫 GoogLeNet，這篇叫 InceptionV1，並註明又叫 GoogLeNet。
+  - activation atlas＝激活圖譜，class activation atlas＝類別激活圖譜。
+  - 這篇的 spatial activation 用既有的激活向量，收為別名；feature inversion 收為特徵視覺化的別名。
+  - 原文說同樣的 neurons 在每個區塊上都算一次，頁面寫通道，並註明原文叫 neurons；激活向量裡的每個值仍叫神經元。
+  - 這篇的 detector 寫偵測器，指類別激活圖譜上的圖示（一格的平均激活向量），和 BB 指通道的 detector 不同。
+  - patch 分開翻：神經元在前一層看的那一塊叫區塊，貼進影像的叫補丁；adversarial patch＝對抗補丁。
+  - grid cell＝格子，和元素區分。
+  - multi-use features＝多用途特徵，和多義神經元分開，兩頁互相連結。
+  - 新譯名：歸因向量、流形、組合結構、分群、餘弦相似度、超參數、取樣。
+  - 保留英文：t-SNE、UMAP、k-means、Grad-CAM；spherical k-means、DBSCAN、ImageNet 和層名只在頁面出現。
+  - 寫名詞表時補一列「偵測器」：名詞決定裡有，但提案沒有列成名詞表的一列。
+  - 最大池化梯度的 relaxation 沿用 BB 頁的「放寬」。
+- 說法不一致：
+  - 提案時判斷這篇和前幾篇沒有衝突。這篇描述歸因的那句話沒寫「激活值 ×」，但公式 $h_{x,y} \cdot \nabla_{h_{x,y}} \text{logit}_c$ 和 BB 一致，原文也說沿用 BB，所以照公式寫，不引那句。最大池化的放寬只說是為了減少雜訊，寫在池化頁，不放進棋盤狀假影的說法不一致段。
+  - 寫逐層抽象頁時新發現一處：BB 說前面的層偵測邊緣（比較的最前一層是 mixed3a），FV 的圖把 mixed3a 標成紋理、邊緣標在 conv2d0。主流取 FV 的層名對照：FV 逐層標出，這篇說 mixed3b 是紋理和簡單圖案，兩篇一致；BB 那句描述的是整體趨勢。寫在逐層抽象頁的說法不一致段。
+- 圖：
+  - 下載 10 張作者產生的靜態圖，都打開看過：`overview-neuron.jpg`、`overview-pairwise.jpg`、`overview-atlas.jpg`、`mixed4c-layout.jpg`、`renders/focus-1-1.jpg`、`renders/focus-2-1.jpg`、`renders/focus-3-1.jpg`、`grid-size-2x2.png`、`grid-size-8x8.png`、`grid-size-32x32.png`。
+  - 取樣數比較的三張圖（`#samples`）檔名很長而且含 `%3D`，只附原文連結。
+  - 照片列進 Figures not stored here：開頭圖的子流形照片（`manifold-1～4.jpg`）、單張影像段的輸入照片 `dogcat.jpg`、消防船和路面電車的 ImageNet 範例照片、三組補丁示範照片；混了照片的 7 張 JS 圖只附原文連結。
+  - 沒有截圖：其餘互動圖（圖譜瀏覽、各層比較、類別比較）只附原文連結。
+- 寫法：開頭比較圖的說明文字，以及 mixed5b 消防船那一群的描述，只出現在 JS 產生的文字裡，只改寫並標出處，不附原文句。dump 裡有 4 行把註腳黏進正文（第 35、66、139、148 行），引用時避開。
+- 檢查：第 1 輪通過。寫完頁面先用 `check_quotes.py` 自查，把方法頁 3 行單獨的粗體標題改成 `###` 小標（單獨的粗體行會被當成沒有出處的段落）。之後修了 1 處措辭（逐層抽象頁開頭「各篇看到的東西」改成「表示的東西」），再跑一次也通過。

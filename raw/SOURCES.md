@@ -30,6 +30,11 @@ These figures are other authors' work or contain dataset photos. They are not do
 | d2l-ch7 | `_static/logo-with-text.png` | Site logo, not a figure |
 | building-blocks | JS figures `#Teaser`, `#ActivationCube`, `#SemanticDict`, `#ActivationVecVis`, `#AttributionSpatial`, `#AttributionChannel`, `#CubeGroups`, `#ActivationGroups`, `#AttributionGroups` | Figures that combine the input photo of a Labrador puppy and a kitten with the authors' results |
 | building-blocks | `images/teaser-1.png`, `images/teaser-2.png`, `images/teaser-3.png` | Step thumbnails in The Space of Interpretability Interfaces, built on the same input photo |
+| activation-atlas | `assets/images/manifold-1.jpg`, `assets/images/manifold-2.jpg`, `assets/images/manifold-3.jpg`, `assets/images/manifold-4.jpg` | Photo by Alexandru-Bogdan Ghita used to illustrate a sub-manifold in the Introduction figure |
+| activation-atlas | `assets/images/dogcat.jpg` | ImageNet input photo in Looking at a Single Image |
+| activation-atlas | `assets/images/fireboat-*.jpg`, `assets/images/streetcar-*.jpg` | ImageNet example photos in Focusing on a Single Classification |
+| activation-atlas | `assets/images/snorkel-train*.png`, `assets/images/whale-baseball*.png`, `assets/images/frying-pan-noodles*.png` | ImageNet photos with the authors' patches added |
+| activation-atlas | JS figures `#overview`, `#grid-detail`, `#adversarial-teaser`, `#snorkel-scuba-diver`, `#shark-grey-whale`, `#frying-pan-wok`, `#patch-examples` | Figures that combine these photos with the authors' results |
 
 ## Screenshots
 

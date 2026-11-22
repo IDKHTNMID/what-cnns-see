@@ -80,3 +80,5 @@
 - [The Building Blocks of Interpretability](building-blocks.md)
 - [語意字典](../concepts/semantic-dictionary.md)
 - [歸因](../methods/attribution.md)
+- [Exploring Neural Networks with Activation Atlases](activation-atlas.md)
+- [逐層抽象](../concepts/layer-abstraction.md)

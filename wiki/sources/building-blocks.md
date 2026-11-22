@@ -89,3 +89,5 @@
 - [激活空間](../concepts/activation-space.md)
 - [棋盤狀假影](../concepts/checkerboard-artifacts.md)
 - [Feature Visualization](feature-visualization.md)
+- [Exploring Neural Networks with Activation Atlases](activation-atlas.md)
+- [激活圖譜](../methods/activation-atlas.md)

@@ -72,6 +72,10 @@
 
 > 原文（feature-visualization）：It's hard to do really fair comparisons because of hyperparameters, but the resulting visualizations seem a lot better — and develop faster, too.
 
+- Activation Atlas 畫圖譜時沿用這裡的正則化，特別是變換穩健性；另外把激活空間白化，作者說這有助於特徵視覺化，但還不完全理解原因（上面預條件的白化是對影像做的），見[激活圖譜](activation-atlas.md)（[Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md) § Aggregating Multiple Images；[Feature Visualization](../sources/feature-visualization.md) § Preconditioning and Parameterization）。
+
+> 原文（activation-atlas）：We perform feature visualization with the regularizations described in Feature Visualization (in particular, transformation robustness).
+
 ## 公式與參數
 
 除非另外註明，原文的圖片都在顏色去相關、傅立葉轉換後的空間裡最佳化 2560 步，用 Adam、學習率 0.05，每一步依序做以下變換（[Feature Visualization](../sources/feature-visualization.md) § Preconditioning and Parameterization）：
@@ -145,3 +149,5 @@
 - [填充與步幅](padding-and-stride.md)
 - [池化](pooling.md)
 - [棋盤狀假影](../concepts/checkerboard-artifacts.md)
+- [激活圖譜](activation-atlas.md)
+- [Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md)

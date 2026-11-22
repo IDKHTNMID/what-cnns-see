@@ -71,6 +71,8 @@ C_{\text{diversity}} = - \sum_{a} \sum_{b\neq a} ~ \frac{\text{vec}(G_a) \cdot \
 
 文中圖片的最佳化步數、學習率和變換設定，寫在[正則化與預條件](regularization-and-preconditioning.md)（[Feature Visualization](../sources/feature-visualization.md) § Preconditioning and Parameterization）。
 
+Activation Atlas 畫激活向量時改用另一種目標：把內積乘上餘弦相似度（cosine similarity），讓角度的權重更大；另外把激活空間白化。公式見[激活圖譜](activation-atlas.md)（[Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md) § Aggregating Multiple Images）。
+
 ## 為什麼這樣設計
 
 **為什麼用最佳化，不直接在資料集裡找。** 最佳化能把真正造成行為的東西，和只是跟原因一起出現的東西分開（[Feature Visualization](../sources/feature-visualization.md) § Why visualize by optimization?）。它也比較有彈性：例如可以問一個例子要怎麼改，才會讓另一個神經元也激發；也能看特徵在訓練過程中怎麼演變（[Feature Visualization](../sources/feature-visualization.md) § Why visualize by optimization?）。
@@ -82,6 +84,12 @@ C_{\text{diversity}} = - \sum_{a} \sum_{b\neq a} ~ \frac{\text{vec}(G_a) \cdot \
 Building Blocks 做[語意字典](../concepts/semantic-dictionary.md)時也用以最佳化為基礎的特徵視覺化，理由同樣是避免假相關；作者說也可以用其他方法（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Making Sense of Hidden Layers）。[激活網格](activation-grid.md)和[矩陣分解](matrix-factorization.md)的神經元群組，也都用特徵視覺化畫出來（[The Building Blocks of Interpretability](../sources/building-blocks.md) § What Does the Network See?；[The Building Blocks of Interpretability](../sources/building-blocks.md) § Making Things Human-Scale）。
 
 > 原文（building-blocks）：We use optimization-based feature visualization to avoid spurious correlation, but one could use other methods.
+
+**研究怎麼一步步走到激活值。** Activation Atlas 回顧：特徵視覺化從畫單一神經元開始；因為神經元不是單獨運作，接著畫簡單的神經元組合；再來自然的答案是畫激活值，也就是某個輸入讓神經元一起激發的組合（[Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md) § Introduction）。它把特徵視覺化說成反方向使用網路：從某一層的激活向量出發，用反覆最佳化做出一張網路認為會產生這個激活向量的理想影像；原文也把這個做法叫 feature inversion（[Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md) § Looking at a Single Image；[Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md) § Aggregating Multiple Images）。
+
+> 原文（activation-atlas）：Because neurons don't work in isolation, this led to applying feature visualization to simple combinations of neurons.
+
+> 原文（activation-atlas）：Roughly speaking, we can think of feature visualization as creating an idealized image of what the network thinks would produce a particular activation vector.
 
 **為什麼類別目標多用 logits。** 要提高 softmax 給某一類的機率，最容易的做法常常是壓低其他類，而不是讓這一類更像；作者的經驗是最佳化 softmax 之前的 logits，影像的視覺品質比較好（[Feature Visualization](../sources/feature-visualization.md) § Optimization Objectives）。
 
@@ -111,3 +119,6 @@ Building Blocks 做[語意字典](../concepts/semantic-dictionary.md)時也用�
 - [語意字典](../concepts/semantic-dictionary.md)
 - [激活網格](activation-grid.md)
 - [矩陣分解](matrix-factorization.md)
+- [激活圖譜](activation-atlas.md)
+- [逐層抽象](../concepts/layer-abstraction.md)
+- [Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md)

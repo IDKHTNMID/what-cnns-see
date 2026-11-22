@@ -37,6 +37,16 @@
 
 圖見原文：[The Building Blocks of Interpretability：Channel Attribution（通道歸因的互動圖）](https://distill.pub/2018/building-blocks/#AttributionChannel)（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Channel Attribution）
 
+### 激活圖譜的歸因向量
+
+1. Activation Atlas 沿用 Building Blocks 的線性近似：位置 $(x,y)$ 的激活向量和類別 logit 對它的梯度做內積，公式見[激活圖譜](activation-atlas.md)（[Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md) § Aggregating Multiple Images）。
+2. 每個激活向量算一個歸因向量（attribution vector），每個類別一個值；歸因向量通常依賴周圍的脈絡（[Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md) § Aggregating Multiple Images）。
+3. 激活圖譜上一格的歸因是格子裡歸因向量的平均，可以看成這一格傾向支持哪些類別，把不同的脈絡平均掉（[Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md) § Aggregating Multiple Images）。
+4. 最大池化的梯度做連續的放寬（continuous relaxation），減少雜訊（[Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md) § Aggregating Multiple Images）。
+5. 和輸出之間隔了好幾層時，用後面那幾層的線性近似來估計；mixed5b 和 logit 之間本來就是線性關係（[Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md) § Focusing on a Single Classification）。
+
+> 原文（activation-atlas）：Attribution vectors generally depend on the surrounding context.
+
 ## 輸出
 
 - 空間歸因：疊在激活網格上的多方向顯著圖，以及每個位置最支持的類別（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Spatial Attribution with Saliency Maps）。
@@ -105,8 +115,11 @@ Feature Visualization 說文獻偏好 attribution 和 saliency maps 這類叫法
 | Class Activation Mapping（CAM） | 結果映回輸入影像 | 和空間歸因類似，但沒有用隱藏層的行為來說明（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Spatial Attribution with Saliency Maps） |
 | 空間歸因 | 隱藏層的元素 | 1,000 個類別降維成多方向顯著圖，疊在激活網格上（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Spatial Attribution with Saliency Maps） |
 | 通道歸因 | 隱藏層的通道 | 語意字典的圖示，加上層到層的連結（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Channel Attribution） |
+| 激活圖譜的歸因向量 | 一個位置的激活向量 | 每個類別一個值，圖譜上每格取平均；和 Grad-CAM 類似，但梯度不做空間平均（[Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md) § Aggregating Multiple Images） |
 
 > 原文（building-blocks）：This approach is similar to what Class Activation Mapping (CAM) methods do but, because they interpret their results back onto the input image, they miss the opportunity to communicate in terms of the rich behavior of a network's hidden layers.
+
+> 原文（activation-atlas）：This is similar to Grad-CAM , but without the spatial averaging of the gradient.
 
 ## 相關頁面
 
@@ -119,3 +132,6 @@ Feature Visualization 說文獻偏好 attribution 和 saliency maps 這類叫法
 - [矩陣分解](matrix-factorization.md)
 - [池化](pooling.md)
 - [棋盤狀假影](../concepts/checkerboard-artifacts.md)
+- [激活圖譜](activation-atlas.md)
+- [多用途特徵](../concepts/multi-use-features.md)
+- [Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md)

@@ -17,6 +17,8 @@
 - [棋盤狀假影](concepts/checkerboard-artifacts.md) — 產生影像時來自轉置卷積的不均勻重疊，梯度裡來自卷積層的反向傳播；池化的說法不一致
 - [特徵圖](concepts/feature-map.md) — 一層的整個輸出，也就是激活立方體；四種切法：神經元、元素、通道、神經元群組
 - [語意字典](concepts/semantic-dictionary.md) — 每個神經元的激活值配上它的特徵視覺化，讓隱藏層有意義；多義神經元
+- [多用途特徵](concepts/multi-use-features.md) — 一個偵測器回應幾種很不一樣但看起來相似的概念；照它做的補丁能改變分類
+- [逐層抽象](concepts/layer-abstraction.md) — 越後面的層越具體、越接近類別；四篇的描述、組合出新概念、mixed3a 的說法不一致
 
 ## 方法
 
@@ -27,6 +29,7 @@
 - [激活網格](methods/activation-grid.md) — 把每個元素的激活向量畫出來排成網格，看網路在每個位置看到什麼
 - [歸因](methods/attribution.md) — 激活值乘梯度的線性近似；空間歸因、通道歸因、層到層歸因，和顯著圖的比較
 - [矩陣分解](methods/matrix-factorization.md) — 用 NMF 把特徵圖分成少數神經元群組，把資訊壓到人看得完；跨層相容
+- [激活圖譜](methods/activation-atlas.md) — 取樣一百萬個激活向量，降維、分格平均後畫成圖譜；聚焦單一類別、類別激活圖譜
 
 ## 來源
 
@@ -35,6 +38,7 @@
 - [Feature Visualization（2017）](sources/feature-visualization.md) — 用最佳化看 GoogLeNet 各層在找什麼：目標、多樣性、神經元互動、正則化光譜、預條件
 - [Deconvolution and Checkerboard Artifacts（2016）](sources/deconv-checkerboard.md) — 棋盤狀假影的成因與 resize-convolution 解法；梯度裡的假影
 - [The Building Blocks of Interpretability（2018）](sources/building-blocks.md) — 把特徵視覺化、歸因、矩陣分解組成可解釋性介面；語意字典、激活網格、神經元群組
+- [Exploring Neural Networks with Activation Atlases（2019）](sources/activation-atlas.md) — 激活圖譜：一層能表示的概念全貌、逐層變化、類別激活圖譜、多用途特徵與補丁
 
 ## 名詞表
 

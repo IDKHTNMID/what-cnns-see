@@ -82,6 +82,10 @@
 
 > 原文（building-blocks）：We formalize this "compatibility" in a manner described below, although we're not confident it's the best formalization and won't be surprised if it is superseded in future work.
 
+**和激活圖譜的關係。** Activation Atlas 說激活圖譜完全失去激活值的組合結構；要部分呈現組合結構，可以像 Feature Visualization 的神經元相加圖那樣做；作者也隱約覺得巧妙地用矩陣分解或許能做到，但還不知道怎麼做，見[激活圖譜](activation-atlas.md)（[Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md) § Doesn't Surface Compositionality）。
+
+> 原文（activation-atlas）：We vaguely suspect that there may be a way to thread the needle with clever use of matrix factorization, but we do not yet know how.
+
 ## 相關頁面
 
 - [The Building Blocks of Interpretability](../sources/building-blocks.md)
@@ -90,3 +94,5 @@
 - [歸因](attribution.md)
 - [特徵視覺化](feature-visualization.md)
 - [激活空間](../concepts/activation-space.md)
+- [激活圖譜](activation-atlas.md)
+- [Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md)
