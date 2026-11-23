@@ -11,7 +11,7 @@ OUTLINE = """# 大綱
 
 ## 第 6 頁：怎麼知道一個神經元在找什麼？
 
-- 段落：一個神經元
+- 段落：看神經元
 - Wiki：`methods/fv.md`
 - 圖：`raw/demo/fig.png`
 - 地圖位置：中層
@@ -38,7 +38,7 @@ GLOSSARY = """# 名詞表
 
 VALID_DRAFT = """# 怎麼知道一個神經元在找什麼？
 
-- 區段：一個神經元
+- 區段：看神經元
 - 地圖：中層
 
 ## 重點
@@ -77,7 +77,7 @@ class ParseDraftTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             draft = deck_draft.parse_draft(make_repo(tmp) / "deck/drafts/p06.md")
         self.assertEqual(draft.number, 6)
-        self.assertEqual(draft.section, "一個神經元")
+        self.assertEqual(draft.section, "看神經元")
         self.assertEqual(draft.map_nodes, ["中層"])
         figure = draft.block("圖")[0]
         self.assertEqual(figure.file, "raw/demo/fig.png")
@@ -149,7 +149,7 @@ class EvidenceCheckTests(unittest.TestCase):
                 deck_draft.parse_draft(root / "deck/drafts/p06.md")
 
     def test_section_must_match_page(self):
-        self.assert_problem(VALID_DRAFT.replace("區段：一個神經元", "區段：一張圖"), "section")
+        self.assert_problem(VALID_DRAFT.replace("區段：看神經元", "區段：看一張圖"), "section")
 
     def test_missing_figure_fails(self):
         self.assert_problem(VALID_DRAFT.replace("raw/demo/fig.png", "raw/demo/none.png"), "figure")

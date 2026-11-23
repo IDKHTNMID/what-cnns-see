@@ -151,3 +151,15 @@
 
 檢查 15 頁，視窗 1280×720。
 
+## [2026-11-23 22:26] minimal 13-slide pass round 1 | PASS
+
+檢查 13 頁，視窗 1280×720。
+
+## [2026-11-23 22:35] minimal 13-slide pass round 2 after review | PASS
+
+檢查 13 頁，視窗 1280×720。
+
+## [2026-11-23 22:38] minimal 13-slide pass final | PASS
+
+檢查 13 頁，視窗 1280×720。
+

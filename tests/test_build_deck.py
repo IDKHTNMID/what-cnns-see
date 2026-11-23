@@ -29,7 +29,7 @@ WIKI = "# 特徵視覺化（Feature Visualization）\n\n## 步驟\n\n從隨機�
 
 DRAFT = """# 怎麼知道一個神經元在找什麼？
 
-- 區段：一個神經元
+- 區段：看神經元
 - 地圖：中層
 
 ## 重點
@@ -218,7 +218,7 @@ class BridgeAndBadgeTests(unittest.TestCase):
 
     def test_rail_lists_clickable_sections(self):
         slide = self.slide(DRAFT)
-        self.assertIn('<li class="here"><a href="#6">一個神經元</a></li>', slide.html)
+        self.assertIn('<li class="here"><a href="#5">看神經元</a></li>', slide.html)
         self.assertIn('<li><a href="#1">開始之前</a></li>', slide.html)
 
 
