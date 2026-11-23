@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>簡報製作流程圖</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; }
+body { background: #f6f8fa; color: #17212b; font-family: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif; padding: 32px 16px; }
+main { max-width: 1008px; margin: 0 auto; }
+h1 { font-size: 28px; line-height: 1.3; font-weight: 700; padding: 0 40px; }
+.diagram-container { width: 100%; overflow-x: auto; }
+svg { width: 100%; min-width: 1008px; display: block; font-family: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif; }
+@media print {
+  .diagram-container { overflow-x: visible; }
+  svg { min-width: 0; }
+}
+</style>
+</head>
+<body>
+<main>
+  <h1>從 LLM Wiki 到教學簡報的流程</h1>
+  <div class="diagram-container">
+    <svg viewBox="0 0 1008 1040" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="workflow-diagram-title workflow-diagram-desc">
+      <title id="workflow-diagram-title">從 LLM Wiki 到教學簡報的流程</title>
+      <desc id="workflow-diagram-desc">使用者、AI 和程式分工的八關流程，內容、忠實度和版面的問題各自退回不同關卡，使用者最後確認才公開。</desc>
+      <defs>
+        <marker id="arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#17212b"/></marker>
+        <marker id="arrow-return" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#4d5a67"/></marker>
+      </defs>
+      <rect width="100%" height="100%" fill="#f6f8fa"/>
+      <rect x="40" y="40" width="304" height="912" fill="none" stroke="#cdd6de" stroke-width="1"/><rect x="40" y="40" width="304" height="44" fill="#e9eef2" stroke="#cdd6de" stroke-width="1"/><text x="192" y="68" text-anchor="middle" fill="#17212b" font-size="14" font-weight="600">使用者</text>
+      <rect x="344" y="40" width="312" height="912" fill="none" stroke="#cdd6de" stroke-width="1"/><rect x="344" y="40" width="312" height="44" fill="#e9eef2" stroke="#cdd6de" stroke-width="1"/><text x="500" y="68" text-anchor="middle" fill="#17212b" font-size="14" font-weight="600">AI</text>
+      <rect x="656" y="40" width="312" height="912" fill="none" stroke="#cdd6de" stroke-width="1"/><rect x="656" y="40" width="312" height="44" fill="#e9eef2" stroke="#cdd6de" stroke-width="1"/><text x="812" y="68" text-anchor="middle" fill="#17212b" font-size="14" font-weight="600">程式</text>
+      <g class="edge" data-from="start" data-to="outline" data-label=""><path d="M276 152 L416 152" fill="none" stroke="#17212b" stroke-width="1.2" marker-end="url(#arrow)"/></g>
+      <g class="edge" data-from="outline" data-to="confirm" data-label=""><path d="M456 184 L456 248 A8 8 0 0 1 448 256 L276 256" fill="none" stroke="#17212b" stroke-width="1.2" marker-end="url(#arrow)"/></g>
+      <g class="edge" data-from="confirm" data-to="outline" data-label="要改"><path d="M276 288 L492 288 A8 8 0 0 0 500 280 L500 184" fill="none" stroke="#4d5a67" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#arrow-return)"/></g>
+      <g class="edge" data-from="confirm" data-to="draft" data-label="同意"><path d="M228 304 L228 368 A8 8 0 0 0 236 376 L416 376" fill="none" stroke="#17212b" stroke-width="1.2" marker-end="url(#arrow)"/></g>
+      <g class="edge" data-from="draft" data-to="outline" data-label="Wiki 沒有依據"><path d="M544 360 L544 184" fill="none" stroke="#4d5a67" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#arrow-return)"/></g>
+      <g class="edge" data-from="draft" data-to="evidence" data-label=""><path d="M584 376 L728 376" fill="none" stroke="#17212b" stroke-width="1.2" marker-end="url(#arrow)"/></g>
+      <g class="edge" data-from="evidence" data-to="draft" data-label="依據不符：只退該頁"><path d="M728 408 L584 408" fill="none" stroke="#4d5a67" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#arrow-return)"/></g>
+      <g class="edge" data-from="evidence" data-to="review" data-label="通過"><path d="M812 424 L812 520 A8 8 0 0 1 804 528 L584 528" fill="none" stroke="#17212b" stroke-width="1.2" marker-end="url(#arrow)"/></g>
+      <g class="edge" data-from="review" data-to="draft" data-label="說過頭：只退該頁"><path d="M500 496 L500 424" fill="none" stroke="#4d5a67" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#arrow-return)"/></g>
+      <g class="edge" data-from="review" data-to="build" data-label="通過"><path d="M500 560 L500 632 A8 8 0 0 0 508 640 L728 640" fill="none" stroke="#17212b" stroke-width="1.2" marker-end="url(#arrow)"/></g>
+      <g class="edge" data-from="build" data-to="render" data-label=""><path d="M840 672 L840 752" fill="none" stroke="#17212b" stroke-width="1.2" marker-end="url(#arrow)"/></g>
+      <g class="edge" data-from="render" data-to="build" data-label="版面問題：只改樣板"><path d="M784 752 L784 672" fill="none" stroke="#4d5a67" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#arrow-return)"/></g>
+      <g class="edge" data-from="render" data-to="draft" data-label="字太多：退該頁"><path d="M728 768 L380 768 A8 8 0 0 1 372 760 L372 416 A8 8 0 0 1 380 408 L416 408" fill="none" stroke="#4d5a67" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#arrow-return)"/></g>
+      <g class="edge" data-from="render" data-to="final" data-label="通過"><path d="M728 800 L276 800" fill="none" stroke="#17212b" stroke-width="1.2" marker-end="url(#arrow)"/></g>
+      <g class="edge" data-from="final" data-to="draft" data-label="單頁文字要改"><path d="M156 752 L156 400 A8 8 0 0 1 164 392 L416 392" fill="none" stroke="#4d5a67" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#arrow-return)"/></g>
+      <g class="edge" data-from="final" data-to="outline" data-label="結構要改"><path d="M108 784 L72 784 A8 8 0 0 1 64 776 L64 108 A8 8 0 0 1 72 100 L492 100 A8 8 0 0 1 500 108 L500 120" fill="none" stroke="#4d5a67" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#arrow-return)"/></g>
+      <g class="edge" data-from="final" data-to="publish" data-label="同意"><path d="M192 816 L192 872" fill="none" stroke="#17212b" stroke-width="1.2" marker-end="url(#arrow)"/></g>
+      <rect x="344" y="296" width="32" height="16" rx="2" fill="#f6f8fa"/><text x="360" y="308" text-anchor="middle" fill="#4d5a67" font-size="12" font-weight="500">要改</text>
+      <rect x="304" y="352" width="32" height="16" rx="2" fill="#f6f8fa"/><text x="320" y="364" text-anchor="middle" fill="#4d5a67" font-size="12" font-weight="500">同意</text>
+      <rect x="554" y="264" width="92" height="16" rx="2" fill="#f6f8fa"/><text x="600" y="276" text-anchor="middle" fill="#4d5a67" font-size="12" font-weight="500">Wiki 沒有依據</text>
+      <rect x="598" y="416" width="116" height="16" rx="2" fill="#f6f8fa"/><text x="656" y="428" text-anchor="middle" fill="#4d5a67" font-size="12" font-weight="500">依據不符：只退該頁</text>
+      <rect x="684" y="504" width="32" height="16" rx="2" fill="#f6f8fa"/><text x="700" y="516" text-anchor="middle" fill="#4d5a67" font-size="12" font-weight="500">通過</text>
+      <rect x="508" y="452" width="104" height="16" rx="2" fill="#f6f8fa"/><text x="560" y="464" text-anchor="middle" fill="#4d5a67" font-size="12" font-weight="500">說過頭：只退該頁</text>
+      <rect x="604" y="616" width="32" height="16" rx="2" fill="#f6f8fa"/><text x="620" y="628" text-anchor="middle" fill="#4d5a67" font-size="12" font-weight="500">通過</text>
+      <rect x="658" y="704" width="116" height="16" rx="2" fill="#f6f8fa"/><text x="716" y="716" text-anchor="middle" fill="#4d5a67" font-size="12" font-weight="500">版面問題：只改樣板</text>
+      <rect x="506" y="744" width="92" height="16" rx="2" fill="#f6f8fa"/><text x="552" y="756" text-anchor="middle" fill="#4d5a67" font-size="12" font-weight="500">字太多：退該頁</text>
+      <rect x="484" y="808" width="32" height="16" rx="2" fill="#f6f8fa"/><text x="500" y="820" text-anchor="middle" fill="#4d5a67" font-size="12" font-weight="500">通過</text>
+      <rect x="164" y="572" width="80" height="16" rx="2" fill="#f6f8fa"/><text x="204" y="584" text-anchor="middle" fill="#4d5a67" font-size="12" font-weight="500">單頁文字要改</text>
+      <rect x="72" y="592" width="56" height="16" rx="2" fill="#f6f8fa"/><text x="100" y="604" text-anchor="middle" fill="#4d5a67" font-size="12" font-weight="500">結構要改</text>
+      <rect x="200" y="836" width="32" height="16" rx="2" fill="#f6f8fa"/><text x="216" y="848" text-anchor="middle" fill="#4d5a67" font-size="12" font-weight="500">同意</text>
+      <g class="node" data-id="start"><rect x="108" y="120" width="168" height="64" rx="6" fill="#f6f8fa"/><rect x="108" y="120" width="168" height="64" rx="6" fill="#17212b" stroke="#17212b" stroke-width="1"/><text x="192" y="158" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="600"><tspan>使用者給簡報主題</tspan></text></g>
+      <g class="node" data-id="outline"><rect x="416" y="120" width="168" height="64" rx="6" fill="#f6f8fa"/><rect x="416" y="120" width="168" height="64" rx="6" fill="#ffffff" stroke="#17212b" stroke-width="1"/><text x="500" y="158" text-anchor="middle" fill="#17212b" font-size="16" font-weight="600"><tspan font-family="'Cascadia Mono', 'SFMono-Regular', Consolas, monospace" fill="#4d5a67">1</tspan><tspan dx="6">大綱與樣式</tspan></text></g>
+      <g class="node" data-id="confirm"><rect x="108" y="240" width="168" height="64" rx="6" fill="#f6f8fa"/><rect x="108" y="240" width="168" height="64" rx="6" fill="#e9eef2" stroke="#4d5a67" stroke-width="1"/><text x="192" y="278" text-anchor="middle" fill="#17212b" font-size="16" font-weight="600"><tspan font-family="'Cascadia Mono', 'SFMono-Regular', Consolas, monospace" fill="#4d5a67">2</tspan><tspan dx="6">確認大綱與樣式</tspan></text></g>
+      <g class="node" data-id="draft"><rect x="416" y="360" width="168" height="64" rx="6" fill="#f6f8fa"/><rect x="416" y="360" width="168" height="64" rx="6" fill="#ffffff" stroke="#17212b" stroke-width="1"/><text x="500" y="388" text-anchor="middle" fill="#17212b" font-size="16" font-weight="600"><tspan font-family="'Cascadia Mono', 'SFMono-Regular', Consolas, monospace" fill="#4d5a67">3</tspan><tspan dx="6">逐頁稿</tspan></text><text x="500" y="410" text-anchor="middle" fill="#4d5a67" font-size="12">每句白話配 Wiki 依據</text></g>
+      <g class="node" data-id="evidence"><rect x="728" y="360" width="168" height="64" rx="6" fill="#f6f8fa"/><rect x="728" y="360" width="168" height="64" rx="6" fill="#e3f1f1" stroke="#0b6e6e" stroke-width="1.2"/><text x="812" y="398" text-anchor="middle" fill="#17212b" font-size="16" font-weight="600"><tspan font-family="'Cascadia Mono', 'SFMono-Regular', Consolas, monospace" fill="#0b6e6e">4</tspan><tspan dx="6">依據檢查</tspan></text></g>
+      <g class="node" data-id="review"><rect x="416" y="496" width="168" height="64" rx="6" fill="#f6f8fa"/><rect x="416" y="496" width="168" height="64" rx="6" fill="#e3f1f1" stroke="#0b6e6e" stroke-width="1.2"/><text x="500" y="524" text-anchor="middle" fill="#17212b" font-size="16" font-weight="600"><tspan font-family="'Cascadia Mono', 'SFMono-Regular', Consolas, monospace" fill="#0b6e6e">5</tspan><tspan dx="6">忠實度審查</tspan></text><text x="500" y="546" text-anchor="middle" fill="#4d5a67" font-size="12">新對話 AI</text></g>
+      <g class="node" data-id="build"><rect x="728" y="608" width="168" height="64" rx="6" fill="#f6f8fa"/><rect x="728" y="608" width="168" height="64" rx="6" fill="#ffffff" stroke="#17212b" stroke-width="1"/><text x="812" y="636" text-anchor="middle" fill="#17212b" font-size="16" font-weight="600"><tspan font-family="'Cascadia Mono', 'SFMono-Regular', Consolas, monospace" fill="#4d5a67">6</tspan><tspan dx="6">組成 HTML</tspan></text><text x="812" y="658" text-anchor="middle" fill="#4d5a67" font-size="12">不改字</text></g>
+      <g class="node" data-id="render"><rect x="728" y="752" width="168" height="64" rx="6" fill="#f6f8fa"/><rect x="728" y="752" width="168" height="64" rx="6" fill="#e9eef2" stroke="#4d5a67" stroke-width="1"/><text x="812" y="790" text-anchor="middle" fill="#17212b" font-size="16" font-weight="600"><tspan font-family="'Cascadia Mono', 'SFMono-Regular', Consolas, monospace" fill="#4d5a67">7</tspan><tspan dx="6">渲染檢查</tspan></text></g>
+      <g class="node" data-id="final"><rect x="108" y="752" width="168" height="64" rx="6" fill="#f6f8fa"/><rect x="108" y="752" width="168" height="64" rx="6" fill="#e9eef2" stroke="#4d5a67" stroke-width="1"/><text x="192" y="790" text-anchor="middle" fill="#17212b" font-size="16" font-weight="600"><tspan font-family="'Cascadia Mono', 'SFMono-Regular', Consolas, monospace" fill="#4d5a67">8</tspan><tspan dx="6">最後確認</tspan></text></g>
+      <g class="node" data-id="publish"><rect x="108" y="872" width="168" height="64" rx="6" fill="#f6f8fa"/><rect x="108" y="872" width="168" height="64" rx="6" fill="#17212b" stroke="#17212b" stroke-width="1"/><text x="192" y="910" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="600"><tspan>公開並交件</tspan></text></g>
+      <line x1="40" y1="972" x2="968" y2="972" stroke="#cdd6de" stroke-width="0.8"/>
+      <line x1="40" y1="996" x2="76" y2="996" stroke="#17212b" stroke-width="1.2" marker-end="url(#arrow)"/>
+      <text x="84" y="1000" fill="#4d5a67" font-size="12" font-weight="500">往下走</text>
+      <line x1="144" y1="996" x2="180" y2="996" stroke="#4d5a67" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#arrow-return)"/>
+      <text x="188" y="1000" fill="#4d5a67" font-size="12" font-weight="500">退回修改</text>
+      <rect x="264" y="988" width="24" height="16" rx="3" fill="#ffffff" stroke="#17212b"/>
+      <text x="296" y="1000" fill="#4d5a67" font-size="12" font-weight="500">做出內容</text>
+      <rect x="368" y="988" width="24" height="16" rx="3" fill="#e9eef2" stroke="#4d5a67"/>
+      <text x="400" y="1000" fill="#4d5a67" font-size="12" font-weight="500">檢查或確認</text>
+      <rect x="484" y="988" width="24" height="16" rx="3" fill="#e3f1f1" stroke="#0b6e6e" stroke-width="1.2"/>
+      <text x="516" y="1000" fill="#4d5a67" font-size="12" font-weight="500">比對 Wiki</text>
+      <text x="968" y="1000" text-anchor="end" fill="#4d5a67" font-size="12" font-weight="500">任何一關超過修改上限，就停下來回報</text>
+    </svg>
+  </div>
+</main>
+</body>
+</html>

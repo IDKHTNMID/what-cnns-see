@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CNN 看到什麼</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f6f8fa;
+  --grid: #e4e9ee;
+  --card: #ffffff;
+  --ink: #17212b;
+  --muted: #4d5a67;
+  --line: #cdd6de;
+  --accent: #0b6e6e;
+  --tint: #e3f1f1;
+  --tint-strong: #cfe7e7;
+  --t-xs: 15px;
+  --t-sm: 17px;
+  --t-md: 20px;
+  --t-lg: 24px;
+  --t-xl: 30px;
+  --t-2xl: 36px;
+  --sans: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+  --mono: "Cascadia Mono", "SFMono-Regular", Consolas, monospace;
+}
+* { box-sizing: border-box; margin: 0; }
+html, body { width: 100%; height: 100%; overflow: hidden; background: #dfe5ea; }
+#stage { position: absolute; top: 0; left: 0; width: 1280px; height: 720px; transform-origin: 0 0; overflow: hidden; }
+.slide {
+  position: absolute; inset: 0; display: none; grid-template-columns: 178px minmax(0, 1fr);
+  color: var(--ink); font-family: var(--sans);
+  background-color: var(--bg);
+  background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+.slide.on { display: grid; }
+.off { visibility: hidden; }
+
+.rail { background: var(--card); border-right: 1px solid var(--line); padding: 24px 14px 16px; display: flex; flex-direction: column; gap: 16px; min-height: 0; }
+.rail .pg { font-family: var(--mono); font-size: var(--t-sm); color: var(--muted); }
+.map { list-style: none; padding: 0; display: flex; flex-direction: column; flex: 1; justify-content: space-between; position: relative; min-height: 0; }
+.map::before { content: ""; position: absolute; left: 13px; top: 18px; bottom: 18px; width: 2px; background: var(--line); }
+.map li { position: relative; padding: 7px 6px 7px 32px; font-size: var(--t-sm); color: var(--muted); border-radius: 6px; }
+.map li::before { content: ""; position: absolute; left: 8px; top: 50%; width: 12px; height: 12px; margin-top: -6px; border-radius: 50%; background: var(--card); border: 2px solid var(--line); }
+.map .here { background: var(--tint); color: var(--accent); font-weight: 700; }
+.map .here::before { background: var(--accent); border-color: var(--accent); }
+.pager { display: flex; gap: 8px; }
+.pager button, .step-nav button {
+  width: 44px; height: 44px; display: grid; place-items: center; cursor: pointer;
+  background: var(--card); border: 1px solid var(--line); border-radius: 8px; color: var(--accent);
+}
+.pager button { flex: 1; }
+.pager button:hover, .step-nav button:hover { background: var(--tint); }
+button:focus-visible, a:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+button:disabled { opacity: .35; cursor: default; }
+button svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+
+.body { padding: 20px 36px 14px; display: grid; grid-template-rows: auto minmax(0, 1fr); grid-auto-rows: auto; gap: 12px; min-width: 0; min-height: 0; height: 720px; }
+.terms { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 12px; align-items: center; background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 6px 14px; font-size: var(--t-sm); line-height: 1.4; }
+.terms > b { color: var(--accent); }
+.terms ul { list-style: none; padding: 0; display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 14px; }
+.terms li + li { border-left: 1px solid var(--line); padding-left: 14px; }
+.terms dfn { font-style: normal; font-weight: 700; margin-right: 6px; }
+.terms span { color: var(--muted); }
+.part { font-family: var(--mono); font-size: var(--t-sm); color: var(--accent); }
+h1 { font-size: var(--t-2xl); line-height: 1.4; font-weight: 700; }
+.take { background: var(--accent); color: #fff; border-radius: 8px; padding: 9px 18px; font-size: var(--t-md); font-weight: 500; line-height: 1.4; }
+.take b { font-weight: 700; margin-right: 10px; }
+.src { font-size: var(--t-xs); line-height: 1.35; color: var(--muted); }
+.src a { color: inherit; }
+
+.content { min-height: 0; min-width: 0; display: grid; gap: 12px; }
+.content.stack { grid-template-rows: minmax(0, 1fr) auto; }
+.content.side { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+.content.side-wide { grid-template-columns: minmax(0, 1.75fr) minmax(0, 1fr); }
+.figs { display: grid; gap: 12px; min-height: 0; min-width: 0; }
+.figs-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.figs-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 30px; }
+.figs-col { grid-template-columns: minmax(0, 1fr); grid-auto-rows: minmax(0, 1fr); }
+.fig { position: relative; background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px 6px; display: flex; flex-direction: column; gap: 4px; min-height: 0; min-width: 0; }
+.fig img, .fig svg.crop { flex: 1 1 0; min-height: 0; width: 100%; object-fit: contain; display: block; }
+.fig figcaption { flex: none; font-size: var(--t-sm); line-height: 1.35; color: var(--muted); text-align: center; }
+.figs-4 .fig figcaption { font-family: var(--mono); }
+.figs-4 .fig + .fig::before { content: "→"; position: absolute; left: -26px; top: 50%; margin-top: -18px; width: 22px; text-align: center; font-size: var(--t-lg); color: var(--accent); }
+
+.how { list-style: none; padding: 0; display: grid; gap: 10px; counter-reset: s; min-height: 0; }
+.stack > .how { grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); }
+.side > .how, .side-wide > .how { align-content: center; }
+.how.cols { grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); }
+.how li { counter-increment: s; background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 10px 14px; font-size: var(--t-md); line-height: 1.45; display: flex; gap: 10px; align-items: center; }
+.how li::before { content: counter(s); flex: none; font-family: var(--mono); font-weight: 700; color: var(--accent); font-size: var(--t-lg); }
+
+/* p1 */
+.opening { grid-template-rows: auto auto auto; align-content: space-evenly; }
+.flow { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 18px; }
+.flow li { position: relative; background: var(--card); border: 1px solid var(--line); border-radius: 8px; min-height: 72px; padding: 8px 4px; display: grid; place-items: center; text-align: center; font-size: var(--t-md); font-weight: 700; line-height: 1.3; }
+.flow li:first-child, .flow li:last-child { background: var(--tint); border-color: var(--accent); color: var(--accent); }
+.flow li + li::before { content: "→"; position: absolute; left: -17px; top: 50%; margin-top: -14px; width: 16px; text-align: center; font-size: var(--t-md); font-weight: 400; color: var(--accent); }
+.sections { list-style: none; padding: 0; display: flex; gap: 10px; flex: 1; }
+.sections li { flex: 1; }
+.sections a { display: block; text-align: center; padding: 9px 6px; background: var(--tint); color: var(--accent); border-radius: 6px; font-size: var(--t-md); font-weight: 700; text-decoration: none; }
+.sections a:hover { background: var(--tint-strong); }
+.road { display: grid; gap: 10px; }
+.skip { justify-self: end; color: var(--accent); font-size: var(--t-md); font-weight: 500; }
+
+/* p2 */
+.params { grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); grid-template-rows: minmax(0, 1fr); }
+.drop { list-style: none; padding: 0; display: grid; grid-template-rows: repeat(3, minmax(0, 1fr)); gap: 20px; min-height: 0; }
+.drop li { position: relative; background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 8px 16px; display: grid; grid-template-columns: 158px minmax(0, 1fr); grid-template-rows: auto auto; column-gap: 16px; align-content: center; min-height: 0; }
+.drop li + li::before { content: "↓"; position: absolute; left: 70px; top: -21px; width: 22px; line-height: 20px; text-align: center; font-size: var(--t-md); color: var(--accent); }
+.drop b { grid-column: 1; font-size: var(--t-sm); line-height: 1.4; }
+.drop strong { grid-column: 1; font-size: var(--t-xl); line-height: 1.5; color: var(--accent); }
+.drop li:first-child strong { color: var(--ink); }
+.drop p { grid-column: 2; grid-row: 1 / span 2; align-self: center; font-size: var(--t-md); line-height: 1.5; color: var(--muted); }
+
+/* p3 */
+.conv { grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); grid-template-rows: minmax(0, 1fr) auto; }
+.panel { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; min-height: 0; min-width: 0; }
+.grids { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.grids .op { font-size: var(--t-xl); color: var(--accent); }
+.grids .op::before { content: "⋆"; }
+.grids .op.eq::before { content: "="; }
+.g > p { text-align: center; font-size: var(--t-sm); color: var(--muted); margin-bottom: 4px; }
+.grid { display: grid; gap: 3px; justify-content: center; }
+.g3 { grid-template-columns: repeat(3, 52px); }
+.g2 { grid-template-columns: repeat(2, 52px); }
+.cell { height: 52px; display: grid; place-items: center; font-family: var(--mono); font-size: var(--t-lg); background: var(--bg); border: 1px solid var(--line); border-radius: 4px; }
+.cell.hit { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 700; }
+.calc-panel { display: grid; grid-template-rows: 1fr auto; gap: 6px; }
+.calc { list-style: none; padding: 0; display: grid; gap: 3px; align-content: center; }
+.calc li { font-family: var(--mono); font-size: var(--t-md); padding: 4px 10px; border-radius: 4px; white-space: nowrap; }
+.calc li.now { background: var(--tint); color: var(--accent); font-weight: 700; }
+.step-nav { display: flex; align-items: center; justify-content: flex-end; gap: 8px; }
+.dots { display: flex; gap: 6px; margin-right: auto; align-items: center; }
+.dots i { width: 10px; height: 10px; border-radius: 50%; background: var(--line); }
+.dots i.now { background: var(--accent); }
+.edge { grid-column: 1 / -1; display: grid; grid-template-columns: 150px auto minmax(0, 1fr); gap: 2px 14px; align-items: center; }
+.edge .lbl { font-size: var(--t-sm); color: var(--muted); text-align: right; }
+.row { display: grid; grid-auto-flow: column; grid-auto-columns: 40px; gap: 2px; }
+.row .cell { height: 36px; font-size: var(--t-md); }
+.row.bw .cell[data-v="0"] { background: var(--ink); color: #fff; border-color: var(--ink); }
+.row.bw .cell[data-v="1"] { background: #fff; }
+.row.out { margin-left: 21px; }
+.row.out .cell:not([data-v="0"]) { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 700; }
+.edge .say { grid-column: 3; grid-row: 1 / span 2; font-size: var(--t-md); line-height: 1.45; padding-left: 8px; }
+
+/* p4 */
+.cube-page { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); grid-template-rows: minmax(0, 1fr) auto; }
+.cube-wrap { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 14px; align-items: center; }
+.cube { position: relative; width: 190px; height: 190px; margin: 4px; }
+.cube i { position: absolute; width: 130px; height: 130px; background-color: var(--tint); background-image: linear-gradient(var(--accent) 1px, transparent 1px), linear-gradient(90deg, var(--accent) 1px, transparent 1px); background-size: 26px 26px; border: 1px solid var(--accent); }
+.cube i:nth-child(1) { left: 54px; top: 0; opacity: .45; }
+.cube i:nth-child(2) { left: 36px; top: 18px; opacity: .65; }
+.cube i:nth-child(3) { left: 18px; top: 36px; opacity: .85; }
+.cube i:nth-child(4) { left: 0; top: 54px; background-color: #fff; }
+.axis { font-size: var(--t-md); line-height: 1.6; font-weight: 500; }
+.axis span { display: block; }
+.cuts { grid-column: 1 / -1; list-style: none; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.cuts li { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 9px 14px; font-size: var(--t-md); line-height: 1.45; }
+.cuts b { display: block; color: var(--accent); font-size: var(--t-md); }
+.cuts.basics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+/* p9, p10 */
+#p9 .content.stack, #p10 .content.stack { grid-template-rows: minmax(0, 1fr) 150px; }
+
+/* p11 */
+.attr { grid-template-rows: minmax(0, 4fr) minmax(0, 5fr); }
+.attr .how li, .patch .how li { font-size: var(--t-md); padding: 16px 18px; }
+.formula { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1.5fr); gap: 12px; align-items: stretch; background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; }
+.formula div { display: grid; place-items: center; text-align: center; padding: 10px; border-radius: 6px; background: var(--tint); color: var(--accent); font-size: var(--t-xl); font-weight: 700; line-height: 1.35; }
+.formula .sign { background: none; padding: 0; font-family: var(--mono); font-size: var(--t-xl); color: var(--ink); }
+.formula .sign.x::before { content: "×"; }
+.formula .sign.approx::before { content: "≈"; }
+.formula div.res { background: var(--card); border: 2px solid var(--accent); color: var(--accent); }
+
+/* p14 */
+.patch { grid-template-rows: minmax(0, 4fr) minmax(0, 5fr); }
+.patch-flow { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr); gap: 12px; align-items: stretch; background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; }
+.patch-flow div { display: grid; place-items: center; text-align: center; padding: 14px 8px; border-radius: 6px; background: var(--tint); color: var(--accent); font-size: var(--t-xl); font-weight: 700; line-height: 1.35; }
+.patch-flow .sign { background: none; padding: 0; font-size: var(--t-xl); color: var(--ink); font-weight: 400; }
+.patch-flow .sign.plus::before { content: "+"; }
+.patch-flow .sign.to::before { content: "→"; }
+.patch-flow div.res { background: var(--card); border: 2px solid var(--accent); color: var(--accent); }
+
+/* p15 */
+.limits { grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: minmax(0, 1fr) auto; }
+.limit { background: var(--card); border: 1px solid var(--line); border-top: 5px solid var(--accent); border-radius: 8px; padding: 28px 24px; display: flex; flex-direction: column; justify-content: flex-start; gap: 16px; min-height: 0; }
+.limit h2 { font-size: var(--t-2xl); line-height: 1.4; color: var(--accent); }
+.limit p { font-size: var(--t-xl); line-height: 1.5; }
+.wide-note { grid-column: 1 / -1; background: var(--tint); border-radius: 8px; padding: 12px 18px; font-size: var(--t-lg); line-height: 1.45; font-weight: 500; color: var(--ink); }
+</style>
+</head>
+<body>
+<main id="stage"><section class="slide" id="p1" aria-label="第 1 頁"><nav class="rail" aria-label="全程地圖，目前在影像、低層、中層、高層、類別機率"><span class="pg">01 / 15</span><ol class="map"><li class="here">影像</li><li class="here">低層</li><li class="here">中層</li><li class="here">高層</li><li class="here">類別機率</li></ol><div class="pager"><button type="button" data-go="-1" aria-label="上一頁"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button><button type="button" data-go="1" aria-label="下一頁"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button></div></nav><div class="body"><header><p class="part">開始之前</p><h1>CNN 到底看到什麼？</h1></header><div class="content opening">
+<ol class="flow"><li>影像</li><li>低層</li><li>中層</li><li>高層</li><li>類別機率</li></ol>
+<ul class="cuts basics">
+<li><b>神經網路</b>可以把很多層疊起來，每一層把結果交給下一層，直到產生輸出。</li>
+<li><b>參數</b>決定程式行為的數字，可以想成能轉動的旋鈕。</li>
+<li><b>訓練</b>用資料找出最好的參數值。</li>
+<li><b>CNN</b>含有卷積層的神經網路；卷積層讓窗口滑過輸入，把對應的值相乘再加總，輸出叫特徵圖。</li>
+</ul>
+<div class="road"><ol class="sections"><li><a href="#2">CNN 怎麼看圖</a></li><li><a href="#6">一個神經元</a></li><li><a href="#10">一張圖</a></li><li><a href="#12">一整層</a></li><li><a href="#15">能信多少</a></li></ol><a class="skip" href="#6">學過 CNN 的人可以從第 6 頁開始</a></div>
+</div>
+<p class="take"><b>重點</b>每一層建立在前一層上；越往後的層似乎越具體、越複雜，也越接近輸出類別。</p><p class="src">資料來源：Wiki〈<a href="https://github.com/IDKHTNMID/what-cnns-see/blob/main/wiki/concepts/layer-abstraction.md">逐層抽象</a>〉〈<a href="https://github.com/IDKHTNMID/what-cnns-see/blob/main/wiki/concepts/neural-network-basics.md">神經網路基礎</a>〉〈<a href="https://github.com/IDKHTNMID/what-cnns-see/blob/main/wiki/methods/gradient-descent.md">訓練與梯度下降</a>〉〈<a href="https://github.com/IDKHTNMID/what-cnns-see/blob/main/wiki/glossary.md">名詞表</a>〉〈<a href="https://github.com/IDKHTNMID/what-cnns-see/blob/main/wiki/concepts/feature-map.md">特徵圖</a>〉</p></div></section>
+<section class="slide" id="p2" aria-label="第 2 頁"><nav class="rail" aria-label="全程地圖，目前在影像、低層"><span class="pg">02 / 15</span><ol class="map"><li class="here">影像</li><li class="here">低層</li><li>中層</li><li>高層</li><li>類別機率</li></ol><div class="pager"><button type="button" data-go="-1" aria-label="上一頁"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button><button type="button" data-go="1" aria-label="下一頁"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button></div></nav><div class="body"><header><p class="part">CNN 怎麼看圖</p><h1>把每個像素都接起來，為什麼行不通？</h1></header><div class="content params">
+<figure class="fig"><img src="../raw/d2l-basics/_images/mlp.svg" alt="由下到上：4 個輸入、中間一層 5 個神經元、3 個輸出；每個輸入都連到中間這層的每個神經元"><figcaption>由下到上：4 個輸入、中間一層 5 個神經元、3 個輸出；每個輸入都連到中間這層的每個神經元</figcaption></figure>
+<ol class="drop">
+<li><b>全連接層</b><strong>10¹²</strong><p>1000×1000 的影像接到同樣大小的下一層，一層就要這麼多參數。</p></li>
+<li><b>加上平移不變性</b><strong>4×10⁶</strong><p>同一塊圖案不管出現在影像的哪裡，都要有相似的反應。</p></li>
+<li><b>再加局部性</b><strong>4Δ²</strong><p>只看局部區域，不管影像遠處的內容；看的範圍 Δ 通常小於 10。</p></li>
+</ol>
+</div>
+<aside class="terms"><b>名詞</b><ul class="terms-2"><li><dfn>全連接層</dfn><span>每個輸入都影響這一層每個神經元的層。</span></li><li><dfn>神經元</dfn><span>全連接網路裡，一層中算出來的一個單位。</span></li></ul></aside><p class="take"><b>重點</b>加上平移不變性和局部性兩個限制，一層的參數從 10¹² 降到 4Δ²。</p><p class="src">資料來源：Wiki〈<a href="https://github.com/IDKHTNMID/what-cnns-see/blob/main/wiki/concepts/translation-invariance.md">平移不變性</a>〉〈<a href="https://github.com/IDKHTNMID/what-cnns-see/blob/main/wiki/concepts/locality.md">局部性</a>〉〈<a href="https://github.com/IDKHTNMID/what-cnns-see/blob/main/wiki/concepts/neural-network-basics.md">神經網路基礎</a>〉〈<a href="https://github.com/IDKHTNMID/what-cnns-see/blob/main/wiki/concepts/convolutional-layer.md">卷積層</a>〉〈<a href="https://github.com/IDKHTNMID/what-cnns-see/blob/main/wiki/glossary.md">名詞表</a>〉｜圖：Zhang et al., <a href="https://d2l.ai/">Dive into Deep Learning, Sections 1.1–1.2, 2.4, 3.1 and 5.1</a> (2023), CC BY-SA 4.0</p></div></section>
+<section class="slide" id="p3" aria-label="第 3 頁"><nav class="rail" aria-label="全程地圖，目前在影像、低層"><span class="pg">03 / 15</span><ol class="map"><li class="here">影像</li><li class="here">低層</li><li>中層</li><li>高層</li><li>類別機率</li></ol><div class="pager"><button type="button" data-go="-1" aria-label="上一頁"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button><button type="button" data-go="1" aria-label="下一頁"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button></div></nav><div class="body"><header><p class="part">CNN 怎麼看圖</p><h1>卷積實際上怎麼算？</h1></header><div class="content conv stepper" data-steps="5">
+<div class="panel grids">
+<div class="g"><p>輸入</p><div class="grid g3" data-hl="[[0,1,3,4],[1,2,4,5],[3,4,6,7],[4,5,7,8],[]]"><span class="cell" data-v="0">0</span><span class="cell" data-v="1">1</span><span class="cell" data-v="2">2</span><span class="cell" data-v="3">3</span><span class="cell" data-v="4">4</span><span class="cell" data-v="5">5</span><span class="cell" data-v="6">6</span><span class="cell" data-v="7">7</span><span class="cell" data-v="8">8</span></div></div>
+<span class="op"></span>
+<div class="g"><p>卷積核</p><div class="grid g2" data-hl="[[0,1,2,3],[0,1,2,3],[0,1,2,3],[0,1,2,3],[]]"><span class="cell" data-v="0">0</span><span class="cell" data-v="1">1</span><span class="cell" data-v="2">2</span><span class="cell" data-v="3">3</span></div></div>
+<span class="op eq"></span>
+<div class="g"><p>輸出</p><div class="grid g2" data-reveal="1" data-hl="[[0],[1],[2],[3],[]]"><span class="cell" data-v="19">19</span><span class="cell" data-v="25">25</span><span class="cell" data-v="37">37</span><span class="cell" data-v="43">43</span></div></div>
+</div>
+<div class="panel calc-panel">
+<ol class="calc">
+<li data-from="1" data-now="1">0×0 + 1×1 + 3×2 + 4×3 = 19</li>
+<li data-from="2" data-now="2">1×0 + 2×1 + 4×2 + 5×3 = 25</li>
+<li data-from="3" data-now="3">3×0 + 4×1 + 6×2 + 7×3 = 37</li>
+<li data-from="4" data-now="4">4×0 + 5×1 + 7×2 + 8×3 = 43</li>
+</ol>
+<div class="step-nav"><span class="dots"></span><button type="button" data-step="-1" aria-label="上一步"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button><button type="button" data-step="1" aria-label="下一步"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button></div>
+</div>
+<div class="panel edge" data-from="5">
+<span class="lbl">白 1、黑 0</span><div class="row bw"><span class="cell" data-v="1">1</span><span class="cell" data-v="1">1</span><span class="cell" data-v="0">0</span><span class="cell" data-v="0">0</span><span class="cell" data-v="0">0</span><span class="cell" data-v="0">0</span><span class="cell" data-v="1">1</span><span class="cell" data-v="1">1</span></div><p class="say">卷積核 [1, −1]：相鄰的值相同時輸出 0；白到黑輸出 1，黑到白輸出 −1。</p>
+<span class="lbl">輸出</span><div class="row out"><span class="cell" data-v="0">0</span><span class="cell" data-v="1">1</span><span class="cell" data-v="0">0</span><span class="cell" data-v="0">0</span><span class="cell" data-v="0">0</span><span class="cell" data-v="−1">−1</span><span class="cell" data-v="0">0</span></div>
+</div>
+</div>
+<aside class="terms"><b>名詞</b><ul class="terms-3"><li><dfn>卷積</dfn><span>窗口滑過輸入，窗口內對應的值相乘再加總的運算。</span></li><li><dfn>卷積核</dfn><span>卷積層裡可學習的參數，可以直接從資料學出來。</span></li><li><dfn>窗口</dfn><span>卷積核在輸入上蓋住的範圍。</span></li></ul></aside><p class="take"><b>重點</b>窗口滑過輸入，每個位置把對應的值相乘再加總；卷積核 [1, −1] 就能偵測垂直邊緣。</p><p class="src">資料來源：Wiki〈<a href="https://github.com/IDKHTNMID/what-cnns-see/blob/main/wiki/methods/convolution-operation.md">卷積運算</a>〉〈<a href="https://github.com/IDKHTNMID/what-cnns-see/blob/main/wiki/glossary.md">名詞表</a>〉〈<a href="https://github.com/IDKHTNMID/what-cnns-see/blob/main/wiki/concepts/convolutional-layer.md">卷積層</a>〉</p></div></section>
+<section class="slide" id="p4" aria-label="第 4 頁"><nav class="rail" aria-label="全程地圖，目前在低層"><span class="pg">04 / 15</span><ol class="map"><li>影像</li><li class="here">低層</li><li>中層</li><li>高層</li><li>類別機率</li></ol><div class="pager"><button type="button" data-go="-1" aria-label="上一頁"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button><button type="button" data-go="1" aria-label="下一頁"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button></div></nav><div class="body"><header><p class="part">CNN 怎麼看圖</p><h1>一層的輸出長什麼樣子？</h1></header><div class="content cube-page">
+<figure class="fig"><img src="../raw/d2l-ch7/_images/conv-multi-in.svg" alt="兩個輸入通道：各自做卷積，再把結果相加"><figcaption>兩個輸入通道：各自做卷積，再把結果相加</figcaption></figure>
+<div class="panel cube-wrap">
+<div class="cube" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+<p class="axis"><span>x、y 軸：影像上的位置</span><span>z 軸：通道</span></p>
+</div>
+<ul class="cuts">
+<li><b>神經元</b>在特徵圖上，指一個元素、一個通道上的一格</li>
+<li><b>元素</b>同一個位置上所有通道的值，合起來是一個激活向量</li>
+<li><b>通道</b>一個通道在所有元素上的值</li>
+</ul>
+</div>
+<aside class="terms"><b>名詞</b><ul class="terms-3"><li><dfn>通道</dfn><span>好幾張二維格子疊在一起，每一張就是一個通道。</span></li><li><dfn>元素</dfn><span>特徵圖上的一個位置。</span></li><li><dfn>激活值</dfn><span>每一格的值，也就是一個神經元激發的程度。</span></li></ul></aside><p class="take"><b>重點</b>一層的輸出叫特徵圖；x、y 軸是影像上的位置，z 軸是通道。</p><p class="src">資料來源：Wiki〈<a href="https://github.com/IDKHTNMID/what-cnns-see/blob/main/wiki/concepts/feature-map.md">特徵圖</a>〉〈<a href="https://github.com/IDKHTNMID/what-cnns-see/blob/main/wiki/methods/convolution-operation.md">卷積運算</a>〉〈<a href="https://github.com/IDKHTNMID/what-cnns-see/blob/main/wiki/concepts/channel.md">通道</a>〉〈<a href="https://github.com/IDKHTNMID/what-cnns-see/blob/main/wiki/glossary.md">名詞表</a>〉｜圖：Zhang et al., <a href="https://d2l.ai/chapter_convolutional-neural-networks/">Dive into Deep Learning, Chapter 7 (Sections 7.1–7.5)</a> (2023), CC BY-SA 4.0</p></div></section>
+<section class="slide" id="p5" aria-label="第 5 頁"><nav class="rail" aria-label="全程地圖，目前在低層、中層、高層"><span class="pg">05 / 15</span><ol class="map"><li>影像</li><li class="here">低層</li><li class="here">中層</li><li class="here">高層</li><li>類別機率</li></ol><div class="pager"><button type="button" data-go="-1" aria-label="上一頁"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button><button type="button" data-go="1" aria-label="下一頁"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button></div></nav><div class="body"><header><p class="part">CNN 怎麼看圖</p><h1>後面的層為什麼看得到更大範圍？</h1></header><div class="content side"><div class="figs figs-1"><figure class="fig"><svg class="crop" viewBox="0 0 620 740" role="img" aria-label="兩層網路：f₂ 第一個元素在輸入上的區域是 −1 到 4，包含左邊的填充" style="aspect-ratio:620/740"><svg width="620" height="740" viewBox="90 130 620 740"><image href="../raw/screenshots/computing-receptive-fields/fig05.png" width="1440" height="992"/></svg></svg><figcaption>兩層網路：f₂ 第一個元素在輸入上的區域是 −1 到 4，包含左邊的填充</figcaption></figure></div><ol class="how how-3"><li>感受野：可能影響一個元素計算結果的所有前層元素。</li><li>步幅：窗口每次跨過固定的列數或行數，跳過中間的位置。</li><li>池化：取窗口內的最大值或平均值，逐步匯總資訊、讓圖越來越粗。</li></ol></div><aside class="terms"><b>名詞</b><ul class="terms-2"><li><dfn>填充</dfn><span>在輸入邊界外補額外的像素，通常補 0。</span></li><li><dfn>降採樣</dfn><span>降低空間解析度，讓圖越來越粗。</span></li></ul></aside><p class="take"><b>重點</b>網路越深，感受野越大；步幅和池化可以用來降採樣。</p><p class="src">資料來源：Wiki〈<a href="https://github.com/IDKHTNMID/what-cnns-see/blob/main/wiki/concepts/receptive-field.md">感受野</a>〉〈<a href="https://github.com/IDKHTNMID/what-cnns-see/blob/main/wiki/methods/padding-and-stride.md">填充與步幅</a>〉〈<a href="https://github.com/IDKHTNMID/what-cnns-see/blob/main/wiki/methods/pooling.md">池化</a>〉〈<a href="https://github.com/IDKHTNMID/what-cnns-see/blob/main/wiki/methods/receptive-field-computation.md">感受野的計算</a>〉〈<a href="https://github.com/IDKHTNMID/what-cnns-see/blob/main/wiki/glossary.md">名詞表</a>〉｜圖：Araujo et al., <a href="https://distill.pub/2019/computing-receptive-fields/">Computing Receptive Fields of Convolutional Neural Networks</a> (2019), CC BY 4.0，經裁切</p></div></section>
+<section class="slide" id="p6" aria-label="第 6 頁"><nav class="rail" aria-label="全程地圖，目前在中層"><span class="pg">06 / 15</span><ol class="map"><li>影像</li><li>低層</li><li class="here">中層</li><li>高層</li><li>類別機率</li></ol><div class="pager"><button type="button" data-go="-1" aria-label="上一頁"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button><button type="button" data-go="1" aria-label="下一頁"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button></div></nav><div class="body"><header><p class="part">一個神經元</p><h1>怎麼知道一個神經元在找什麼？</h1></header><div class="content stack"><div class="figs figs-4"><figure class="fig"><svg class="crop" viewBox="0 0 280 280" role="img" aria-label="第 0 步" style="aspect-ratio:280/280"><svg width="280" height="280" viewBox="16 17 280 280"><image href="../raw/screenshots/feature-visualization/fig03.png" width="1440" height="368"/></svg></svg><figcaption>第 0 步</figcaption></figure><figure class="fig"><svg class="crop" viewBox="0 0 280 280" role="img" aria-label="第 4 步" style="aspect-ratio:280/280"><svg width="280" height="280" viewBox="372 17 280 280"><image href="../raw/screenshots/feature-visualization/fig03.png" width="1440" height="368"/></svg></svg><figcaption>第 4 步</figcaption></figure><figure class="fig"><svg class="crop" viewBox="0 0 280 280" role="img" aria-label="第 48 步" style="aspect-ratio:280/280"><svg width="280" height="280" viewBox="726 17 280 280"><image href="../raw/screenshots/feature-visualization/fig03.png" width="1440" height="368"/></svg></svg><figcaption>第 48 步</figcaption></figure><figure class="fig"><svg class="crop" viewBox="0 0 280 280" role="img" aria-label="第 2048 步" style="aspect-ratio:280/280"><svg width="280" height="280" viewBox="1082 17 280 280"><image href="../raw/screenshots/feature-visualization/fig03.png" width="1440" height="368"/></svg></svg><figcaption>第 2048 步</figcaption></figure></div><ol class="how how-3"><li>從隨機雜訊開始，目標是讓 mixed4a 層的一個神經元（unit 11）激發。</li><li>算出目標對輸入影像的導數，再依導數一步步調整影像，往目標變大的方向走。</li><li>訓練時用導數調整模型的參數；這裡反過來，調整的是輸入影像。</li></ol></div><aside class="terms"><b>名詞</b><ul class="terms-3"><li><dfn>導數</dfn><span>函數隨輸入改變的變化率。</span></li><li><dfn>最佳化</dfn><span>這裡指用導數一步步調整輸入。</span></li><li><dfn>GoogLeNet</dfn><span>原文研究的影像分類網路，mixed4a 是它的一層。</span></li></ul></aside><p class="take"><b>重點</b>從雜訊出發，依導數一步步調整影像，得到一張讓目標反應很強的影像。</p><p class="src">資料來源：Wiki〈<a href="https://github.com/IDKHTNMID/what-cnns-see/blob/main/wiki/methods/feature-visualization.md">特徵視覺化</a>〉〈<a href="https://github.com/IDKHTNMID/what-cnns-see/blob/main/wiki/methods/gradient-descent.md">訓練與梯度下降</a>〉〈<a href="https://github.com/IDKHTNMID/what-cnns-see/blob/main/wiki/sources/feature-visualization.md">特徵視覺化</a>〉〈<a href="https://github.com/IDKHTNMID/what-cnns-see/blob/main/wiki/glossary.md">名詞表</a>〉〈<a href="https://github.com/IDKHTNMID/what-cnns-see/blob/main/wiki/concepts/layer-abstraction.md">逐層抽象</a>〉｜圖：Olah et al., <a href="https://distill.pub/2017/feature-visualization/">Feature Visualization</a> (2017), CC BY 4.0，經裁切</p></div></section>
+<section class="slide" id="p7" aria-label="第 7 頁"><nav class="rail" aria-label="全程地圖，目前在中層"><span class="pg">07 / 15</span><ol class="map"><li>影像</li><li>低層</li><li class="here">中層</li><li>高層</li><li>類別機率</li></ol><div class="pager"><button type="button" data-go="-1" aria-label="上一頁"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button><button type="button" data-go="1" aria-label="下一頁"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button></div></nav><div class="body"><header><p class="part">一個神經元</p><h1>為什麼直接最佳化只得到雜訊？</h1></header><div class="content side-wide">
+<div class="figs figs-col"><figure class="fig"><svg class="crop" viewBox="0 0 1400 272" role="img" aria-label="沒有正則化：第 1、32、128、256、2048 步，還是雜訊" style="aspect-ratio:1400/272"><svg width="1400" height="272" viewBox="16 157 1400 272"><image href="../raw/screenshots/feature-visualization/fig20.png" width="1440" height="489"/></svg></svg><figcaption>沒有正則化：第 1、32、128、256、2048 步，還是雜訊</figcaption></figure><figure class="fig"><svg class="crop" viewBox="0 0 1408 273" role="img" aria-label="加上預條件和變換穩健性" style="aspect-ratio:1408/273"><svg width="1408" height="273" viewBox="580 220 1408 273"><image href="../raw/screenshots/feature-visualization/fig30.png" width="2576" height="613"/></svg></svg><figcaption>加上預條件和變換穩健性</figcaption></figure></div>
+<ol class="how"><li>影像滿是雜訊和高頻圖樣，網路卻對它反應很強。</li><li>作者說原因還不完全了解；看起來重要的一部分是有步幅的卷積和池化。</li><li>變換穩健性：每一步最佳化之前，隨機抖動、旋轉或縮放影像。</li><li>預條件：可以看成換一種空間來表示要最佳化的影像；作者說很難公平比較，但結果看起來好很多。</li></ol>
+</div>
+<aside class="terms"><b>名詞</b><ul class="terms-3"><li><dfn>高頻圖樣</dfn><span>不加限制的最佳化產生的雜訊和沒有意義的圖樣。</span></li><li><dfn>正則化</dfn><span>給最佳化加上比較自然的結構。</span></li><li><dfn>抖動</dfn><span>把影像隨機平移幾個像素。</span></li></ul></aside><p class="take"><b>重點</b>不加限制的最佳化會得到雜訊和高頻圖樣，要用正則化或限制加上比較自然的結構。</p><p class="src">資料來源：Wiki〈<a href="https://github.com/IDKHTNMID/what-cnns-see/blob/main/wiki/methods/regularization-and-preconditioning.md">正則化與預條件</a>〉〈<a href="https://github.com/IDKHTNMID/what-cnns-see/blob/main/wiki/glossary.md">名詞表</a>〉｜圖：Olah et al., <a href="https://distill.pub/2017/feature-visualization/">Feature Visualization</a> (2017), CC BY 4.0，經裁切</p></div></section>
+<section class="slide" id="p8" aria-label="第 8 頁"><nav class="rail" aria-label="全程地圖，目前在低層、中層、高層"><span class="pg">08 / 15</span><ol class="map"><li>影像</li><li class="here">低層</li><li class="here">中層</li><li class="here">高層</li><li>類別機率</li></ol><div class="pager"><button type="button" data-go="-1" aria-label="上一頁"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button><button type="button" data-go="1" aria-label="下一頁"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button></div></nav><div class="body"><header><p class="part">一個神經元</p><h1>各層分別在看什麼？</h1></header><div class="content stack"><div class="figs figs-1"><figure class="fig"><svg class="crop" viewBox="0 0 2196 690" role="img" aria-label="GoogLeNet 由低到高各層的特徵視覺化：邊緣、紋理、圖案、部件、物體" style="aspect-ratio:2196/690"><svg width="2196" height="690" viewBox="176 6 2196 690"><image href="../raw/screenshots/feature-visualization/fig00.png" width="2576" height="819"/></svg></svg><figcaption>GoogLeNet 由低到高各層的特徵視覺化：邊緣、紋理、圖案、部件、物體</figcaption></figure></div><ol class="how how-3"><li>每一層建立在前一層上；越往後的層似乎越具體、越複雜，也越接近輸出類別。</li><li>直覺上，靠近輸入的低層可能有些通道專門辨認邊緣，有些辨認紋理。</li><li>但通道是一起發揮作用的，不一定是單一通道對應邊緣偵測器。</li></ol></div><aside class="terms"><b>名詞</b><ul class="terms-2"><li><dfn>特徵視覺化</dfn><span>用產生範例的方式，看網路或網路的某一部分在找什麼。</span></li><li><dfn>偵測器</dfn><span>偵測某種東西的單位。</span></li></ul></aside><p class="take"><b>重點</b>GoogLeNet 由低到高，各層的通道依序像邊緣、紋理、圖案、部件、物體。</p><p class="src">資料來源：Wiki〈<a href="https://github.com/IDKHTNMID/what-cnns-see/blob/main/wiki/concepts/layer-abstraction.md">逐層抽象</a>〉〈<a href="https://github.com/IDKHTNMID/what-cnns-see/blob/main/wiki/concepts/channel.md">通道</a>〉〈<a href="https://github.com/IDKHTNMID/what-cnns-see/blob/main/wiki/glossary.md">名詞表</a>〉｜圖：Olah et al., <a href="https://distill.pub/2017/feature-visualization/">Feature Visualization</a> (2017), CC BY 4.0，經裁切</p></div></section>
+<section class="slide" id="p9" aria-label="第 9 頁"><nav class="rail" aria-label="全程地圖，目前在高層"><span class="pg">09 / 15</span><ol class="map"><li>影像</li><li>低層</li><li>中層</li><li class="here">高層</li><li>類別機率</li></ol><div class="pager"><button type="button" data-go="-1" aria-label="上一頁"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button><button type="button" data-go="1" aria-label="下一頁"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button></div></nav><div class="body"><header><p class="part">一個神經元</p><h1>一個神經元只看一種東西嗎？</h1></header><div class="content stack"><div class="figs figs-1"><figure class="fig"><img src="../raw/feature-visualization/images/diversity/mixed4e_55_diversity.png" alt="mixed4e 層 unit 55 加上多樣性項後，出現貓、狐狸，也出現汽車"><figcaption>mixed4e 層 unit 55 加上多樣性項後，出現貓、狐狸，也出現汽車</figcaption></figure></div><ol class="how how-4"><li>最佳化通常只給一個極端的例子，可能只呈現特徵的一個面向。</li><li>在目標上加多樣性項，可以讓多個例子彼此不同。</li><li>作者認為這暗示神經元不一定是理解網路的正確語意單位。</li><li>作者也認為特徵不必是完美的偵測器，把它們當偵測器看仍然有用。</li></ol></div><p class="take"><b>重點</b>不一定；有些是多義神經元，同時回應幾種顯著概念，例如貓和車。</p><p class="src">資料來源：Wiki〈<a href="https://github.com/IDKHTNMID/what-cnns-see/blob/main/wiki/concepts/semantic-dictionary.md">語意字典</a>〉〈<a href="https://github.com/IDKHTNMID/what-cnns-see/blob/main/wiki/methods/feature-visualization.md">特徵視覺化</a>〉〈<a href="https://github.com/IDKHTNMID/what-cnns-see/blob/main/wiki/concepts/activation-space.md">激活空間</a>〉｜圖：Olah et al., <a href="https://distill.pub/2017/feature-visualization/">Feature Visualization</a> (2017), CC BY 4.0</p></div></section>
+<section class="slide" id="p10" aria-label="第 10 頁"><nav class="rail" aria-label="全程地圖，目前在低層、中層、高層"><span class="pg">10 / 15</span><ol class="map"><li>影像</li><li class="here">低層</li><li class="here">中層</li><li class="here">高層</li><li>類別機率</li></ol><div class="pager"><button type="button" data-go="-1" aria-label="上一頁"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button><button type="button" data-go="1" aria-label="下一頁"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button></div></nav><div class="body"><header><p class="part">一張圖</p><h1>這張圖的每個位置，網路看到什麼？</h1></header><div class="content stack"><div class="figs figs-1"><figure class="fig"><img src="../raw/screenshots/building-blocks/fig06.png" alt="mixed3a、mixed4a、mixed4d、mixed5a 四層的激活網格，每格的面積依激活向量的大小縮放"><figcaption>mixed3a、mixed4a、mixed4d、mixed5a 四層的激活網格，每格的面積依激活向量的大小縮放</figcaption></figure></div><ol class="how how-4"><li>取一個元素的激活向量。</li><li>用特徵視覺化把整個激活向量畫出來。</li><li>對所有元素做同樣的事，照位置排成網格。</li><li>依激活向量的大小縮放每一格的面積。</li></ol></div><p class="take"><b>重點</b>把每個元素的激活向量畫出來排成網格，就能看到網路在每個位置偵測到什麼。</p><p class="src">資料來源：Wiki〈<a href="https://github.com/IDKHTNMID/what-cnns-see/blob/main/wiki/methods/activation-grid.md">激活網格</a>〉｜圖：Olah et al., <a href="https://distill.pub/2018/building-blocks/">The Building Blocks of Interpretability</a> (2018), CC BY 4.0</p></div></section>
+<section class="slide" id="p11" aria-label="第 11 頁"><nav class="rail" aria-label="全程地圖，目前在高層、類別機率"><span class="pg">11 / 15</span><ol class="map"><li>影像</li><li>低層</li><li>中層</li><li class="here">高層</li><li class="here">類別機率</li></ol><div class="pager"><button type="button" data-go="-1" aria-label="上一頁"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button><button type="button" data-go="1" aria-label="下一頁"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button></div></nav><div class="body"><header><p class="part">一張圖</p><h1>網路為什麼判斷成這個類別？</h1></header><div class="content attr">
+<div class="formula"><div>激活值</div><div class="sign x"></div><div>提高它的激活值會讓輸出提高多快</div><div class="sign approx"></div><div class="res">一個神經元對輸出的影響</div></div>
+<ol class="how cols"><li>特徵視覺化回答網路偵測到什麼；歸因回答網路怎麼把這些組成後面的決定。</li><li>不問某個像素的顏色重不重要，而是問那個位置偵測到的高層概念重不重要，例如垂耳。</li><li>神經元太多時，用矩陣分解濃縮成少數幾個神經元群組。</li></ol>
+</div>
+<aside class="terms"><b>名詞</b><ul class="terms-3"><li><dfn>歸因</dfn><span>研究一個例子的哪個部分讓網路以某種方式激發。</span></li><li><dfn>梯度</dfn><span>提高神經元的激活值時，輸出跟著改變多快。</span></li><li><dfn>矩陣分解</dfn><span>把特徵圖攤成矩陣再分解，得到少數幾個神經元群組。</span></li></ul></aside><p class="take"><b>重點</b>歸因把神經元的影響估計成激活值乘上梯度；神經元太多時，可以用矩陣分解分成少數群組。</p><p class="src">資料來源：Wiki〈<a href="https://github.com/IDKHTNMID/what-cnns-see/blob/main/wiki/methods/attribution.md">歸因</a>〉〈<a href="https://github.com/IDKHTNMID/what-cnns-see/blob/main/wiki/methods/matrix-factorization.md">矩陣分解</a>〉〈<a href="https://github.com/IDKHTNMID/what-cnns-see/blob/main/wiki/glossary.md">名詞表</a>〉｜<a href="https://distill.pub/2018/building-blocks/#AttributionSpatial">圖見原文</a></p></div></section>
+<section class="slide" id="p12" aria-label="第 12 頁"><nav class="rail" aria-label="全程地圖，目前在中層"><span class="pg">12 / 15</span><ol class="map"><li>影像</li><li>低層</li><li class="here">中層</li><li>高層</li><li>類別機率</li></ol><div class="pager"><button type="button" data-go="-1" aria-label="上一頁"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button><button type="button" data-go="1" aria-label="下一頁"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button></div></nav><div class="body"><header><p class="part">一整層</p><h1>一整層能表示哪些概念？</h1></header><div class="content side"><div class="figs figs-1"><figure class="fig"><img src="../raw/activation-atlas/assets/images/mixed4c-layout.jpg" alt="mixed4c 的激活向量用 UMAP 降到二維後畫成點，相似的排在附近"><figcaption>mixed4c 的激活向量用 UMAP 降到二維後畫成點，相似的排在附近</figcaption></figure></div><ol class="how how-4"><li>一百萬張影像，每張隨機取一個位置的激活向量。</li><li>用 UMAP 這類方法投影到二維，相似的排在附近。</li><li>在二維圖上畫格子，每一格取平均。</li><li>對每一格的平均激活向量做特徵視覺化，得到這一格的圖示。</li></ol></div><aside class="terms"><b>名詞</b><ul class="terms-3"><li><dfn>取樣</dfn><span>從大量資料抽出一部分。</span></li><li><dfn>UMAP</dfn><span>一種把資料投影到二維的方法。</span></li><li><dfn>圖示</dfn><span>用特徵視覺化畫出來、代表激活值的圖。</span></li></ul></aside><p class="take"><b>重點</b>激活圖譜取樣一百萬個激活向量，降到二維、分格平均再畫出來，看一層能表示的概念全貌。</p><p class="src">資料來源：Wiki〈<a href="https://github.com/IDKHTNMID/what-cnns-see/blob/main/wiki/sources/activation-atlas.md">用激活圖譜探索神經網路</a>〉〈<a href="https://github.com/IDKHTNMID/what-cnns-see/blob/main/wiki/methods/activation-atlas.md">激活圖譜</a>〉〈<a href="https://github.com/IDKHTNMID/what-cnns-see/blob/main/wiki/glossary.md">名詞表</a>〉｜圖：Carter et al., <a href="https://distill.pub/2019/activation-atlas/">Exploring Neural Networks with Activation Atlases</a> (2019), CC BY 4.0</p></div></section>
+<section class="slide" id="p13" aria-label="第 13 頁"><nav class="rail" aria-label="全程地圖，目前在中層、高層"><span class="pg">13 / 15</span><ol class="map"><li>影像</li><li>低層</li><li class="here">中層</li><li class="here">高層</li><li>類別機率</li></ol><div class="pager"><button type="button" data-go="-1" aria-label="上一頁"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button><button type="button" data-go="1" aria-label="下一頁"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button></div></nav><div class="body"><header><p class="part">一整層</p><h1>同一個類別，不同層靠什麼判斷？</h1></header><div class="content side-wide">
+<div class="figs figs-2"><figure class="fig"><img src="../raw/activation-atlas/assets/images/renders/focus-1-1.jpg" alt="mixed5b：不透明度依對「消防船」的貢獻"><figcaption>mixed5b：不透明度依對「消防船」的貢獻</figcaption></figure><figure class="fig"><img src="../raw/activation-atlas/assets/images/renders/focus-2-1.jpg" alt="mixed4d：不透明度依對「消防船」的貢獻"><figcaption>mixed4d：不透明度依對「消防船」的貢獻</figcaption></figure></div>
+<ol class="how"><li>mixed5b：貢獻大的激活值集中在一群，紅色的船和噴濺的水。</li><li>mixed4d：分成好幾群，窗戶、間歇泉和水花、像起重機的東西。</li><li>這些像是網路在後面的層用來判斷消防船的組成概念。</li></ol>
+</div>
+<p class="take"><b>重點</b>同一個類別，不同層用不同的東西判斷。</p><p class="src">資料來源：Wiki〈<a href="https://github.com/IDKHTNMID/what-cnns-see/blob/main/wiki/concepts/layer-abstraction.md">逐層抽象</a>〉｜圖：Carter et al., <a href="https://distill.pub/2019/activation-atlas/">Exploring Neural Networks with Activation Atlases</a> (2019), CC BY 4.0</p></div></section>
+<section class="slide" id="p14" aria-label="第 14 頁"><nav class="rail" aria-label="全程地圖，目前在影像、低層、中層、高層、類別機率"><span class="pg">14 / 15</span><ol class="map"><li class="here">影像</li><li class="here">低層</li><li class="here">中層</li><li class="here">高層</li><li class="here">類別機率</li></ol><div class="pager"><button type="button" data-go="-1" aria-label="上一頁"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button><button type="button" data-go="1" aria-label="下一頁"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button></div></nav><div class="body"><header><p class="part">一整層</p><h1>看懂之後，能改變它的判斷嗎？</h1></header><div class="content patch">
+<div class="patch-flow"><div>灰鯨的照片</div><div class="sign plus"></div><div>一顆小棒球</div><div class="sign to"></div><div class="res">最高分類變成大白鯊</div></div>
+<ol class="how cols"><li>有一個偵測器同時偵測棒球的紅色縫線，以及鯊魚的白牙和粉紅色口腔。</li><li>十種補丁各在該類別 1,000 張 ImageNet 訓練影像上測試，約五分之二被翻成目標類別。</li><li>不是每對類別都找得到這種補丁，也只在一個模型上測過。</li></ol>
+</div>
+<aside class="terms"><b>名詞</b><ul class="terms-2"><li><dfn>補丁</dfn><span>貼進影像、用來改變分類的一小塊影像。</span></li><li><dfn>ImageNet</dfn><span>GoogLeNet 訓練時用的資料。</span></li></ul></aside><p class="take"><b>重點</b>把像圖示的東西貼進照片做成補丁，可以改變分類；但不是每個圖示都有效，也只在一個模型上測過。</p><p class="src">資料來源：Wiki〈<a href="https://github.com/IDKHTNMID/what-cnns-see/blob/main/wiki/concepts/multi-use-features.md">多用途特徵</a>〉〈<a href="https://github.com/IDKHTNMID/what-cnns-see/blob/main/wiki/glossary.md">名詞表</a>〉〈<a href="https://github.com/IDKHTNMID/what-cnns-see/blob/main/wiki/sources/feature-visualization.md">特徵視覺化</a>〉｜<a href="https://distill.pub/2019/activation-atlas/#shark-grey-whale">圖見原文</a></p></div></section>
+<section class="slide" id="p15" aria-label="第 15 頁"><nav class="rail" aria-label="全程地圖，目前在影像、低層、中層、高層、類別機率"><span class="pg">15 / 15</span><ol class="map"><li class="here">影像</li><li class="here">低層</li><li class="here">中層</li><li class="here">高層</li><li class="here">類別機率</li></ol><div class="pager"><button type="button" data-go="-1" aria-label="上一頁"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button><button type="button" data-go="1" aria-label="下一頁"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button></div></nav><div class="body"><header><p class="part">能信多少</p><h1>這些解釋能信到什麼程度？</h1></header><div class="content limits">
+<article class="limit"><h2>歸因</h2><p>近來的研究指出很多歸因技術不可靠。</p></article>
+<article class="limit"><h2>特徵視覺化</h2><p>正則化越強，例子越逼真，但越可能出現誤導的相關。</p></article>
+<article class="limit"><h2>激活圖譜</h2><p>只能顯示取樣到的激活值；資料要來自我們關心的分布，樣本也要夠多。</p></article>
+<p class="wide-note">作者認為可信的關鍵標誌是介面不會誤導：使用者看了介面明確顯示的資訊後，不應該對模型得出錯誤的判斷。</p>
+</div>
+<p class="take"><b>重點</b>特徵視覺化本身永遠不會帶來完全令人滿意的理解，要和其他工具結合。</p><p class="src">資料來源：Wiki〈<a href="https://github.com/IDKHTNMID/what-cnns-see/blob/main/wiki/sources/feature-visualization.md">特徵視覺化</a>〉〈<a href="https://github.com/IDKHTNMID/what-cnns-see/blob/main/wiki/sources/building-blocks.md">可解釋性的組成元件</a>〉〈<a href="https://github.com/IDKHTNMID/what-cnns-see/blob/main/wiki/sources/activation-atlas.md">用激活圖譜探索神經網路</a>〉</p></div></section></main>
+<script>
+(() => {
+  const SLIDE_W = 1280, SLIDE_H = 720, SWIPE_PX = 50;
+  const stage = document.getElementById("stage");
+  const slides = [...document.querySelectorAll(".slide")];
+  let current = 1;
+
+  function fit() {
+    const scale = Math.min(innerWidth / SLIDE_W, innerHeight / SLIDE_H);
+    stage.style.transform = `translate(${(innerWidth - SLIDE_W * scale) / 2}px, ${(innerHeight - SLIDE_H * scale) / 2}px) scale(${scale})`;
+  }
+
+  function show(number) {
+    current = Math.min(Math.max(number, 1), slides.length);
+    slides.forEach((slide, index) => slide.classList.toggle("on", index === current - 1));
+    if (location.hash !== `#${current}`) history.replaceState(null, "", `#${current}`);
+  }
+
+  function makeStepper(root) {
+    const steps = Number(root.dataset.steps);
+    const dots = root.querySelector(".dots");
+    for (let i = 0; i < steps; i++) dots.appendChild(document.createElement("i"));
+    const prev = root.querySelector('[data-step="-1"]');
+    const next = root.querySelector('[data-step="1"]');
+    let at = 1;
+    function paint() {
+      root.querySelectorAll("[data-from]").forEach(el => el.classList.toggle("off", at < Number(el.dataset.from)));
+      root.querySelectorAll("[data-now]").forEach(el => el.classList.toggle("now", at === Number(el.dataset.now)));
+      root.querySelectorAll("[data-hl]").forEach(grid => {
+        const hit = JSON.parse(grid.dataset.hl)[at - 1] || [];
+        [...grid.children].forEach((cell, i) => cell.classList.toggle("hit", hit.includes(i)));
+      });
+      root.querySelectorAll("[data-reveal]").forEach(grid => {
+        [...grid.children].forEach((cell, i) => cell.classList.toggle("off", i >= at));
+      });
+      [...dots.children].forEach((dot, i) => dot.classList.toggle("now", i === at - 1));
+      prev.disabled = at === 1;
+      next.disabled = at === steps;
+    }
+    const move = delta => {
+      const target = at + delta;
+      if (target < 1 || target > steps) return false;
+      at = target;
+      paint();
+      return true;
+    };
+    prev.addEventListener("click", () => move(-1));
+    next.addEventListener("click", () => move(1));
+    paint();
+    return move;
+  }
+
+  const steppers = new Map(slides
+    .filter(slide => slide.querySelector(".stepper"))
+    .map(slide => [slide, makeStepper(slide.querySelector(".stepper"))]));
+
+  function advance(delta) {
+    const move = steppers.get(slides[current - 1]);
+    if (!move || !move(delta)) show(current + delta);
+  }
+
+  document.addEventListener("click", event => {
+    const button = event.target.closest("[data-go]");
+    if (button) show(current + Number(button.dataset.go));
+  });
+  addEventListener("keydown", event => {
+    if (event.key === "ArrowRight" || event.key === "PageDown") advance(1);
+    else if (event.key === "ArrowLeft" || event.key === "PageUp") advance(-1);
+    else if (event.key === "Home") show(1);
+    else if (event.key === "End") show(slides.length);
+  });
+  let touchX = null;
+  addEventListener("touchstart", event => { touchX = event.changedTouches[0].clientX; }, {passive: true});
+  addEventListener("touchend", event => {
+    if (touchX === null) return;
+    const dx = event.changedTouches[0].clientX - touchX;
+    touchX = null;
+    if (Math.abs(dx) >= SWIPE_PX) advance(dx < 0 ? 1 : -1);
+  }, {passive: true});
+  addEventListener("hashchange", () => show(Number(location.hash.slice(1)) || 1));
+  addEventListener("resize", fit);
+
+  window.deck = {show};
+  fit();
+  show(Number(location.hash.slice(1)) || 1);
+})();
+</script>
+</body>
+</html>
