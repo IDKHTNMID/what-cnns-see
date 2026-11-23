@@ -84,7 +84,7 @@
 
 - Deconvolution and Checkerboard Artifacts（2016）：梯度裡的棋盤狀假影來自卷積層的反向傳播；DeepDream 的假影裡另有比較不規則的高頻圖樣，作者認為是最大池化造成的（[Deconvolution and Checkerboard Artifacts](../sources/deconv-checkerboard.md) § Artifacts in Gradients）。
 - Feature Visualization（2017）：反向傳播經過每一個有步幅的卷積或池化，梯度大小都會出現棋盤狀假影（[Feature Visualization](../sources/feature-visualization.md) § The Enemy of Feature Visualization）。
-- The Building Blocks of Interpretability（2018）：GoogLeNet 有步幅的最大池化在梯度裡帶來很多雜訊和棋盤狀假影；作者做空間歸因時放寬最大池化的梯度，並把棋盤狀假影抵消掉，見[歸因](../methods/attribution.md)（[The Building Blocks of Interpretability](../sources/building-blocks.md) § How Are Concepts Assembled?）。
+- The Building Blocks of Interpretability（2018）：GoogLeNet 有步幅的最大池化在梯度裡帶來很多雜訊和棋盤狀假影；作者做空間歸因時放寬（relaxation）最大池化的梯度，並把棋盤狀假影抵消掉，見[歸因](../methods/attribution.md)（[The Building Blocks of Interpretability](../sources/building-blocks.md) § How Are Concepts Assembled?）。
 
 > 原文（deconv-checkerboard）：We believe these to be caused by max pooling.
 

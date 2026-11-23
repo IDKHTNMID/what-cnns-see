@@ -125,3 +125,13 @@ Append-only record of every `scripts/check_all.py` run.
 - check_quotes: 0 problem(s)
 - check_links: 0 problem(s)
 
+## [2026-11-23 13:13] add glossary rows after lint | PASS
+
+- check_quotes: 0 problem(s)
+- check_links: 0 problem(s)
+
+## [2026-11-23 13:13] log glossary decisions | PASS
+
+- check_quotes: 0 problem(s)
+- check_links: 0 problem(s)
+

@@ -13,7 +13,7 @@
 2. 每張影像隨機取一個位置的激活向量（activation vector，原文叫 spatial activation），避開影像邊緣；一百萬張影像得到一百萬個激活向量，每個可能有 512 維（[Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md) § Aggregating Multiple Images）。
 3. 用 UMAP 或 t-SNE 這類降維（dimensionality reduction）方法把激活向量投影到二維，保留原本空間的一部分局部結構，相似的激活向量排在附近（[Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md) § Aggregating Multiple Images）。
 4. 在二維圖上畫格子，把每個格子（grid cell）裡的激活向量取平均（[Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md) § Aggregating Multiple Images）。
-5. 對每個格子的平均激活向量做特徵視覺化（feature visualization，原文在這裡也叫 feature inversion），得到這一格的圖示；可以再依格子裡平均了多少個激活向量（密度）調整格子大小（[Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md) § Aggregating Multiple Images）。
+5. 對每個格子的平均激活向量做特徵視覺化（feature visualization，原文在這裡也叫 feature inversion），得到這一格的圖示（icon）；可以再依格子裡平均了多少個激活向量（密度）調整格子大小（[Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md) § Aggregating Multiple Images）。
 6. 對每個激活向量算歸因向量（attribution vector）；每一格顯示格子裡歸因向量的平均，標上這一格最支持的類別（[Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md) § Aggregating Multiple Images；[Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md) § Exploring Neural Networks with Activation Atlases）。
 
 > 原文（activation-atlas）：Thus, when we pass an entire image through the network, each neuron will be evaluated hundreds of times, once for each overlapping patch of the image.
@@ -28,7 +28,7 @@
 ### 聚焦單一類別
 
 1. 算每個激活值對某個類別（例如「消防船」fireboat）的貢獻，對應到圖示的不透明度；貢獻小或負的區域完全透明（[Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md) § Focusing on a Single Classification）。
-2. mixed5b 的激活值和 logit 之間是線性關係，貢獻可以直接算；和輸出之間隔了好幾層時，作者用後面那幾層的線性近似來估計（[Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md) § Focusing on a Single Classification）。
+2. mixed5b 的激活值和 logit 之間是線性關係，貢獻可以直接算；和輸出之間隔了好幾層時，作者用後面那幾層的線性近似（linear approximation）來估計（[Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md) § Focusing on a Single Classification）。
 
 ### 類別激活圖譜
 

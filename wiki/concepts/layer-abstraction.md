@@ -7,7 +7,7 @@ CNN 每一層的激活值建立在前一層的激活值上；越往後的層似�
 - **d2l：** 直覺上，靠近輸入的低層可能有些通道專門辨認邊緣，有些辨認紋理（[d2l](../sources/d2l-ch7.md) § 7.1.4. Channels）。
 - **Feature Visualization：** 用最佳化畫出 GoogLeNet 各層的通道，由低到高依序像邊緣（conv2d0）、紋理（mixed3a）、圖案（mixed4a）、部件（mixed4b、mixed4c）、物體（mixed4d、mixed4e）（[Feature Visualization](../sources/feature-visualization.md) § Feature Visualization）。
 - **Building Blocks：** 比較 mixed3a、mixed4a、mixed4d、mixed5a 的[激活網格](../methods/activation-grid.md)，網路的理解從前面幾層的邊緣，變成後面幾層更複雜的形狀和物件部位（[The Building Blocks of Interpretability](../sources/building-blocks.md) § What Does the Network See?）。
-- **Activation Atlas：** 比較三層的[激活圖譜](../methods/activation-atlas.md)，前面的層（例如 mixed3b）似乎表示紋理和簡單圖案；中間的層（例如 mixed4c）的圖示是眼睛、葉子、水這類很多類別共用的概念；最後的層（例如 mixed5b）的抽象概念和輸出類別更接近（[Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md) § Looking at Multiple Layers）。
+- **Activation Atlas：** 比較三層的[激活圖譜](../methods/activation-atlas.md)，前面的層（例如 mixed3b）似乎表示紋理和簡單圖案；中間的層（例如 mixed4c）的圖示（icon）是眼睛、葉子、水這類很多類別共用的概念；最後的層（例如 mixed5b）的抽象概念和輸出類別更接近（[Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md) § Looking at Multiple Layers）。
 
 > 原文（d2l-ch7）：Intuitively, you might imagine that at lower layers that are closer to inputs, some channels could become specialized to recognize edges while others could recognize textures.
 
@@ -59,7 +59,7 @@ CNN 每一層的激活值建立在前一層的激活值上；越往後的層似�
 - [通道](channel.md)：主流架構通常越深通道越多（[d2l](../sources/d2l-ch7.md) § 7.4.2. Multiple Output Channels）。
 - [特徵視覺化](../methods/feature-visualization.md)：上面各層的圖都是用特徵視覺化畫的（[Feature Visualization](../sources/feature-visualization.md) § Feature Visualization；[Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md) § Aggregating Multiple Images）。
 - [激活圖譜](../methods/activation-atlas.md)：比較各層時，兩層之間沒有對齊，相似的特徵出現在隨機的位置（[Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md) § No alignment between layers）。
-- [歸因](../methods/attribution.md)：mixed5b 和 logit 之間是線性關係，更前面的層要用後面幾層的線性近似來估計對類別的貢獻（[Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md) § Focusing on a Single Classification）。
+- [歸因](../methods/attribution.md)：mixed5b 和 logit 之間是線性關係，更前面的層要用後面幾層的線性近似（linear approximation）來估計對類別的貢獻（[Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md) § Focusing on a Single Classification）。
 
 > 原文（activation-atlas）：The later layers also tend to have larger receptive fields than the ones that precede them (meaning they are shown larger subsets of the image) so the concepts seem to encompass more of the whole of objects.
 

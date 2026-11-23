@@ -2,7 +2,7 @@
 
 ## 是什麼
 
-語意字典（semantic dictionary）把每個神經元（neuron）的激活值（activation）配上那個神經元的特徵視覺化（feature visualization），再依激活值大小排序（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Making Sense of Hidden Layers）。這樣激活值就對應到圖像，不再是抽象的索引；很多圖像看起來像人熟悉的概念，例如「垂耳」「狗鼻」「毛」（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Making Sense of Hidden Layers）。這個詞是 Building Blocks 的作者 Ian 和 Chris 創的（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Author Contributions）。
+語意字典（semantic dictionary）把每個神經元（neuron）的激活值（activation）配上那個神經元的特徵視覺化（feature visualization），再依激活值大小排序（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Making Sense of Hidden Layers）。這樣激活值就對應到圖示（icon），不再是抽象的索引；很多圖示看起來像人熟悉的概念，例如「垂耳」「狗鼻」「毛」（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Making Sense of Hidden Layers）。這個詞是 Building Blocks 的作者 Ian 和 Chris 創的（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Author Contributions）。
 
 > 原文（building-blocks）：To make a semantic dictionary, we pair every neuron activation with a visualization of that neuron and sort them by the magnitude of the activation.
 
@@ -44,8 +44,8 @@
 
 ## 和其他概念的關係
 
-- [特徵視覺化](../methods/feature-visualization.md)：語意字典裡的每張圖像都是特徵視覺化的結果（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Making Sense of Hidden Layers）。
-- [特徵圖](feature-map.md)：語意字典替特徵圖裡的激活值配上圖像（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Making Sense of Hidden Layers）。
+- [特徵視覺化](../methods/feature-visualization.md)：語意字典裡的每個圖示都是特徵視覺化的結果（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Making Sense of Hidden Layers）。
+- [特徵圖](feature-map.md)：語意字典替特徵圖裡的激活值配上圖示（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Making Sense of Hidden Layers）。
 - [激活網格](../methods/activation-grid.md)：把同樣的做法套到每個元素的激活向量，排成網格（[The Building Blocks of Interpretability](../sources/building-blocks.md) § What Does the Network See?）。
 - [歸因](../methods/attribution.md)：通道歸因的介面用語意字典的圖示代表通道（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Channel Attribution）。
 - [激活空間](activation-space.md)：語意字典可以用在任何激活值的基底上；遇到多義神經元時，也可以旋轉語意字典（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Making Sense of Hidden Layers；[The Building Blocks of Interpretability](../sources/building-blocks.md) § How Trustworthy Are These Interfaces?）。

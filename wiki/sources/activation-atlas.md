@@ -21,7 +21,7 @@
 
 > 原文（activation-atlas）：In practice, however, neurons are rarely used by the network in isolation, and it may be difficult to understand them that way.
 
-**3. 越後面的層越接近類別。** 前面的層（例如 mixed3b）表示紋理和簡單圖案；中間的層（例如 mixed4c）的圖示是眼睛、葉子、水這類很多類別共用的概念；最後的層（例如 mixed5b）的抽象概念和輸出類別更接近（§ Looking at Multiple Layers）。後面的層除了把概念細分，也把舊概念組合成新概念，見[逐層抽象](../concepts/layer-abstraction.md)（§ Looking at Multiple Layers）。
+**3. 越後面的層越接近類別。** 前面的層（例如 mixed3b）似乎表示紋理和簡單圖案；中間的層（例如 mixed4c）的圖示（icon）是眼睛、葉子、水這類很多類別共用的概念；最後的層（例如 mixed5b）的抽象概念和輸出類別更接近（§ Looking at Multiple Layers）。後面的層除了把概念細分，也把舊概念組合成新概念，見[逐層抽象](../concepts/layer-abstraction.md)（§ Looking at Multiple Layers）。
 
 > 原文（activation-atlas）：In the final layers (eg. mixed5b), abstractions become more closely aligned with the output classes.
 

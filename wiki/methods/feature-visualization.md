@@ -11,7 +11,7 @@
 | 神經元 | $\text{layer}_n[x,y,z]$ | 第 $n$ 層、元素 $(x,y)$、第 $z$ 個通道上的一個值 | （[Feature Visualization](../sources/feature-visualization.md) § Optimization Objectives） |
 | 通道 | $\text{layer}_n[:,:,z]$ | 第 $z$ 個通道的所有元素 | （[Feature Visualization](../sources/feature-visualization.md) § Optimization Objectives） |
 | 層（DeepDream） | $\text{layer}_n[:,:,:]^2$ | 整層，找這層覺得「有趣」的影像 | （[Feature Visualization](../sources/feature-visualization.md) § Optimization Objectives） |
-| 類別 logits | $\text{pre\_softmax}[k]$ | 第 $k$ 類在 softmax 之前的值 | （[Feature Visualization](../sources/feature-visualization.md) § Optimization Objectives） |
+| 類別 logit | $\text{pre\_softmax}[k]$ | 第 $k$ 類在 softmax 之前的值 | （[Feature Visualization](../sources/feature-visualization.md) § Optimization Objectives） |
 | 類別機率 | $\text{softmax}[k]$ | 第 $k$ 類在 softmax 之後的機率 | （[Feature Visualization](../sources/feature-visualization.md) § Optimization Objectives） |
 
 ![五種最佳化目標](../../raw/screenshots/feature-visualization/fig04.png)
@@ -91,7 +91,7 @@ Building Blocks 做[語意字典](../concepts/semantic-dictionary.md)時也用�
 
 > 原文（activation-atlas）：Roughly speaking, we can think of feature visualization as creating an idealized image of what the network thinks would produce a particular activation vector.
 
-**為什麼類別目標多用 logits。** 要提高 softmax 給某一類的機率，最容易的做法常常是壓低其他類，而不是讓這一類更像；作者的經驗是最佳化 softmax 之前的 logits，影像的視覺品質比較好（[Feature Visualization](../sources/feature-visualization.md) § Optimization Objectives）。
+**為什麼類別目標多用 logit。** 要提高 softmax 給某一類的機率，最容易的做法常常是壓低其他類，而不是讓這一類更像；作者的經驗是最佳化 softmax 之前的 logit，影像的視覺品質比較好（[Feature Visualization](../sources/feature-visualization.md) § Optimization Objectives）。
 
 > 原文（feature-visualization）：From our experience, optimizing pre-softmax logits produces images of better visual quality.
 

@@ -2,7 +2,7 @@
 
 ## 是什麼
 
-多用途特徵（multi-use features）是 Activation Atlas 取的名字：一個偵測器（detector）回應幾種很不一樣、但看起來相似的概念（[Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md) § Further Isolating Classes）。這裡的偵測器是類別激活圖譜上的一個圖示，也就是一格的平均激活向量（[Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md) § Further Isolating Classes；[Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md) § Aggregating Multiple Images）。
+多用途特徵（multi-use features）是 Activation Atlas 取的名字：一個偵測器（detector）回應幾種很不一樣、但看起來相似的概念（[Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md) § Further Isolating Classes）。這裡的偵測器是類別激活圖譜上的一個圖示（icon），也就是一格的平均激活向量（[Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md) § Further Isolating Classes；[Exploring Neural Networks with Activation Atlases](../sources/activation-atlas.md) § Aggregating Multiple Images）。
 
 > 原文（activation-atlas）：We'll call these "multi-use" features — detectors that react to very different concepts that are nonetheless visually similar.
 

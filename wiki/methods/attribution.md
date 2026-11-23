@@ -7,11 +7,11 @@
 
 ## 步驟
 
-### 線性近似
+### 線性近似（linear approximation）
 
 1. 一個神經元（neuron）對輸出的影響，估計成「它的激活值（activation）× 提高它的激活值會讓輸出提高多快」，也就是激活值乘上梯度（[The Building Blocks of Interpretability](../sources/building-blocks.md) § How Are Concepts Assembled?）。
 2. 對激活值的線性組合，歸因是各單位歸因的線性組合，也等於這個組合的激活值和梯度的內積（[The Building Blocks of Interpretability](../sources/building-blocks.md) § How Are Concepts Assembled?）。
-3. 做空間歸因時另外處理梯度：GoogLeNet 有步幅的最大池化會在梯度裡帶來很多雜訊和[棋盤狀假影](../concepts/checkerboard-artifacts.md)；作者把最大池化的梯度放寬，依激活值比例分給各輸入，不再全部給最大的那個，再把棋盤狀假影抵消掉（[The Building Blocks of Interpretability](../sources/building-blocks.md) § How Are Concepts Assembled?）。
+3. 做空間歸因時另外處理梯度：GoogLeNet 有步幅的最大池化會在梯度裡帶來很多雜訊和[棋盤狀假影](../concepts/checkerboard-artifacts.md)；作者把最大池化的梯度放寬（relaxation），依激活值比例分給各輸入，不再全部給最大的那個，再把棋盤狀假影抵消掉（[The Building Blocks of Interpretability](../sources/building-blocks.md) § How Are Concepts Assembled?）。
 
 > 原文（building-blocks）：That is, we estimate the effect of a neuron on the output is its activation times the rate at which increasing its activation increases the output.
 
@@ -30,7 +30,7 @@
 ### 通道歸因
 
 1. 改成按通道切：每個通道（原文也叫 detector）對最後的輸出貢獻多少，這叫通道歸因（channel attribution）（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Channel Attribution）。
-2. 用[語意字典](../concepts/semantic-dictionary.md)（semantic dictionary）的圖示代表最支持輸出類別的通道（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Channel Attribution）。
+2. 用[語意字典](../concepts/semantic-dictionary.md)（semantic dictionary）的圖示（icon）代表最支持輸出類別的通道（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Channel Attribution）。
 3. 滑鼠移到一個通道上時，在輸入影像上疊出它的激活值熱圖（heatmap），圖例顯示它最支持哪些類別；點下去可以看層到層歸因：哪些低層通道貢獻最多，又支持了哪些高層通道（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Channel Attribution）。
 
 > 原文（building-blocks）：Doing so allows us to perform channel attribution: how much did each detector contribute to the final output?
