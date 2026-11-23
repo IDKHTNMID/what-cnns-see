@@ -139,6 +139,15 @@ class EvidenceCheckTests(unittest.TestCase):
     def test_term_item_needs_evidence(self):
         self.assert_problem(VALID_DRAFT + "\n## 名詞\n\n- 白話：導數：函數的變化率。\n", "名詞「導數：函數的變化率。」: no evidence")
 
+    def test_bridge_item_needs_evidence(self):
+        self.assert_problem(VALID_DRAFT + "\n## 承上\n\n- 白話：承接上一頁。\n", "承上「承接上一頁。」: no evidence")
+
+    def test_unknown_badge_is_an_error(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = make_repo(tmp, VALID_DRAFT.replace("  白話：第 2048 步的影像\n", "  標籤：隨便寫\n  白話：第 2048 步的影像\n"))
+            with self.assertRaises(deck_draft.DraftError):
+                deck_draft.parse_draft(root / "deck/drafts/p06.md")
+
     def test_section_must_match_page(self):
         self.assert_problem(VALID_DRAFT.replace("區段：一個神經元", "區段：一張圖"), "section")
 

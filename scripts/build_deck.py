@@ -36,6 +36,7 @@ CROPPED_NOTE = "，經裁切"
 SKIP_HINT = "學過 CNN 的人可以從第 6 頁開始"
 SKIP_TO_PAGE = 6
 PLACED_BLOCKS = ("內文", "圖", "圖內文字", "互動")
+BRIDGE_BLOCK = "承上"
 TERM_BLOCK = "名詞"
 TERM_LABEL = "名詞"
 TERM_SEPARATOR = "："
@@ -127,6 +128,10 @@ def figure_aspect(item, root):
     return width / height
 
 
+def _badge_tone(badge):
+    return "b" if "B" in badge else "a"
+
+
 def figure_html(item, root, where):
     src = e(ASSET_PREFIX + item.file)
     alt = e(item.text)
@@ -143,7 +148,8 @@ def figure_html(item, root, where):
         )
     else:
         media = f'<img src="{src}" alt="{alt}">'
-    return f'<figure class="fig">{media}<figcaption>{alt}</figcaption></figure>'
+    badge = f'<span class="fig-badge tone-{_badge_tone(item.badge)}">{e(item.badge)}</span>' if item.badge else ""
+    return f'<figure class="fig">{badge}{media}<figcaption>{alt}</figcaption></figure>'
 
 
 def _horizontal_map(texts):
@@ -171,6 +177,8 @@ def _place_item(item, mode, root, where, texts):
     if item.block == "圖":
         if mode:
             raise BuildError(f"{where}: figures take no mode")
+        if item.badge:
+            texts.append(item.badge)
         texts.append(item.text)
         return figure_html(item, root, where)
     if mode == "cells":
@@ -179,6 +187,14 @@ def _place_item(item, mode, root, where, texts):
         return "".join(f'<span class="cell" data-v="{e(cell)}">{e(cell)}</span>' for cell in cells)
     if mode:
         raise BuildError(f"{where}: unknown mode {mode}")
+    if item.badge:
+        texts.append(item.badge)
+        texts.append(item.text)
+        return (
+            f'<span class="note-body">'
+            f'<span class="ref-badge tone-{_badge_tone(item.badge)}">{e(item.badge)}</span>'
+            f'{e(item.text)}</span>'
+        )
     texts.append(item.text)
     return e(item.text)
 
@@ -289,25 +305,36 @@ def render_slide(draft, total, root, sources, wiki_base=""):
     content = fill_layout(fragment, draft, root, texts)
     terms = term_strip(draft, texts)
 
+    bridges = draft.block(BRIDGE_BLOCK)
+    if len(bridges) > 1:
+        raise BuildError(f"p{draft.number:02d}: at most one {BRIDGE_BLOCK}")
+    bridge_html = ""
+    if bridges:
+        texts.append(bridges[0].text)
+        bridge_html = f'<p class="bridge">{e(bridges[0].text)}</p>'
+
     page_label = f"{draft.number:02d} / {total:02d}"
-    map_items = "".join(
-        f'<li class="here">{e(node)}</li>' if node in draft.map_nodes else f"<li>{e(node)}</li>"
-        for node in deck_draft.MAP_NODES
+    nav_items = "".join(
+        f'<li class="here"><a href="#{first}">{e(name)}</a></li>'
+        if name == draft.section
+        else f'<li><a href="#{first}">{e(name)}</a></li>'
+        for name, first, _ in deck_draft.SECTION_RANGES
     )
-    here = "、".join(draft.map_nodes)
     key_points = draft.block("重點")
     if len(key_points) != 1:
         raise BuildError(f"p{draft.number:02d}: needs exactly one 重點")
     key_point = key_points[0].text
     source_html, source_text = source_line(draft, root, sources, wiki_base)
-    texts += [page_label, *deck_draft.MAP_NODES, draft.section, draft.title, KEY_POINT_LABEL, key_point]
+    section_names = [name for name, _, _ in deck_draft.SECTION_RANGES]
+    texts += [page_label, *section_names, draft.section, draft.title, KEY_POINT_LABEL, key_point]
 
     markup = (
         f'<section class="slide" id="p{draft.number}" aria-label="第 {draft.number} 頁">'
-        f'<nav class="rail" aria-label="全程地圖，目前在{e(here)}"><span class="pg">{page_label}</span>'
-        f'<ol class="map">{map_items}</ol>{PAGER}</nav>'
-        f'<div class="body"><header><p class="part">{e(draft.section)}</p><h1>{e(draft.title)}</h1></header>'
-        f"{content}{terms}"
+        f'<nav class="rail" aria-label="章節目錄，目前在{e(draft.section)}"><span class="pg">{page_label}</span>'
+        f'<ol class="map">{nav_items}</ol>{PAGER}</nav>'
+        f'<div class="body"><header><div class="head-top"><p class="part">{e(draft.section)}</p>{bridge_html}</div>'
+        f'<h1>{e(draft.title)}</h1></header>'
+        f"{terms}{content}"
         f'<p class="take"><b>{KEY_POINT_LABEL}</b>{e(key_point)}</p>'
         f'<p class="src">{source_html}</p></div></section>'
     )

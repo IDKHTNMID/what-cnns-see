@@ -3,7 +3,8 @@ import re
 from dataclasses import dataclass, field
 from pathlib import Path
 
-BLOCKS = ("重點", "內文", "圖", "圖內文字", "互動", "名詞")
+BLOCKS = ("承上", "重點", "內文", "圖", "圖內文字", "互動", "名詞")
+BADGES = ("圖 A", "圖 B", "對應圖 A", "對應圖 B", "見圖 A", "見圖 B", "演化結果", "完成結果")
 MAP_NODES = ("影像", "低層", "中層", "高層", "類別機率")
 ALL_NODES = "全部"
 MAP_SEPARATOR = " → "
@@ -19,7 +20,7 @@ SECTION_RANGES = (
 DRAFT_NAME_RE = re.compile(r"^p(\d{2})\.md$")
 OUTLINE_PAGE_RE = re.compile(r"^## 第 (\d+) 頁：(.+?)\s*$")
 BACKTICK_RE = re.compile(r"`([^`]+)`")
-FIELD_RE = re.compile(r"^(?P<indent>- |  )(?P<key>白話|依據|檔案|裁切)：(?P<value>.*)$")
+FIELD_RE = re.compile(r"^(?P<indent>- |  )(?P<key>白話|依據|檔案|裁切|標籤)：(?P<value>.*)$")
 META_RE = re.compile(r"^- (?P<key>區段|地圖|圖見原文)：(?P<value>.+)$")
 
 
@@ -40,6 +41,7 @@ class Item:
     evidence: list = field(default_factory=list)
     file: str = ""
     crop: tuple = ()
+    badge: str = ""
 
 
 @dataclass
@@ -109,6 +111,13 @@ def _apply_field(item, key, value, where):
         if item.block != "圖":
             raise DraftError(f"{where}: only the 圖 block can name a file")
         item.file = value.strip()
+    elif key == "標籤":
+        if item.block not in ("圖", "內文"):
+            raise DraftError(f"{where}: 標籤 is only allowed on 圖 or 內文")
+        badge = value.strip()
+        if badge not in BADGES:
+            raise DraftError(f"{where}: unknown badge {badge!r}")
+        item.badge = badge
     else:
         item.crop = _parse_crop(value, where)
 

@@ -164,11 +164,11 @@ class TermStripTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             return build_deck.render_deck(make_repo(tmp, draft))[0]
 
-    def test_terms_are_rendered_outside_content(self):
+    def test_terms_are_rendered_above_content(self):
         html = self.slide(TERM_DRAFT).html
         self.assertIn('class="terms"', html)
-        self.assertLess(html.index("</ol></div>"), html.index('class="terms"'))
-        self.assertLess(html.index('class="terms"'), html.index('class="take"'))
+        self.assertLess(html.index("</header>"), html.index('class="terms"'))
+        self.assertLess(html.index('class="terms"'), html.index('class="content'))
 
     def test_term_and_definition_are_separate_text_nodes(self):
         texts = self.slide(TERM_DRAFT).texts
@@ -188,6 +188,38 @@ class TermStripTests(unittest.TestCase):
     def test_term_without_separator_fails(self):
         with self.assertRaisesRegex(build_deck.BuildError, "term：definition"):
             self.slide(TERM_DRAFT.replace("導數：函數", "導數函數"))
+
+
+class BridgeAndBadgeTests(unittest.TestCase):
+    def slide(self, draft):
+        with tempfile.TemporaryDirectory() as tmp:
+            return build_deck.render_deck(make_repo(tmp, draft))[0]
+
+    def test_bridge_renders_inside_header(self):
+        draft = DRAFT + "\n## 承上\n\n- 白話：上一頁看結構，這頁開始看單一神經元。\n  依據：methods/fv.md｜從隨機雜訊開始\n"
+        slide = self.slide(draft)
+        self.assertIn('<p class="bridge">上一頁看結構，這頁開始看單一神經元。</p>', slide.html)
+        self.assertIn("上一頁看結構，這頁開始看單一神經元。", slide.texts)
+
+    def test_multiple_bridges_fail(self):
+        item = "\n- 白話：承上\n  依據：methods/fv.md｜從隨機雜訊開始\n"
+        with self.assertRaisesRegex(build_deck.BuildError, "at most one 承上"):
+            self.slide(DRAFT + "\n## 承上\n" + item * 2)
+
+    def test_badges_render_on_figure_and_note(self):
+        draft = DRAFT.replace("  白話：圖說\n", "  標籤：圖 A\n  白話：圖說\n").replace(
+            "- 白話：第一步\n", "- 標籤：對應圖 A\n  白話：第一步\n"
+        )
+        slide = self.slide(draft)
+        self.assertIn('<span class="fig-badge tone-a">圖 A</span>', slide.html)
+        self.assertIn('<span class="ref-badge tone-a">對應圖 A</span>', slide.html)
+        self.assertIn("圖 A", slide.texts)
+        self.assertIn("對應圖 A", slide.texts)
+
+    def test_rail_lists_clickable_sections(self):
+        slide = self.slide(DRAFT)
+        self.assertIn('<li class="here"><a href="#6">一個神經元</a></li>', slide.html)
+        self.assertIn('<li><a href="#1">開始之前</a></li>', slide.html)
 
 
 class MapTests(unittest.TestCase):
