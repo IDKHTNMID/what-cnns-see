@@ -53,6 +53,17 @@ $k_h = k_w = 1$ 的卷積用最小的窗口，失去辨認高寬方向相鄰元�
 (n_h-k_h+1) \times (n_w-k_w+1)
 ```
 
+3×3 輸入配 2×2 卷積核時，四個輸出元素的算式（[d2l](../sources/d2l-ch7.md) § 7.2.1. The Cross-Correlation Operation）：
+
+```math
+\begin{aligned}
+0\times0+1\times1+3\times2+4\times3&=19\\
+1\times0+2\times1+4\times2+5\times3&=25\\
+3\times0+4\times1+6\times2+7\times3&=37\\
+4\times0+5\times1+7\times2+8\times3&=43
+\end{aligned}
+```
+
 d2l 推導出的多通道卷積層，$d$ 是輸出通道的索引，$\Delta$ 是局部範圍（[d2l](../sources/d2l-ch7.md) § 7.1.4. Channels）：
 
 ```math
