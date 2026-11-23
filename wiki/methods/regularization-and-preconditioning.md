@@ -13,7 +13,7 @@
 
 > 原文（feature-visualization）：Even if you carefully tune learning rate, you'll get noise.
 
-高頻圖樣為什麼形成，作者說還不完全了解；看起來重要的一部分是有步幅的卷積和池化，它們會在梯度裡造成高頻圖樣：反向傳播經過每一個有步幅的卷積或池化，梯度大小都會出現棋盤狀假影（[Feature Visualization](../sources/feature-visualization.md) § The Enemy of Feature Visualization）。步幅見[填充與步幅](padding-and-stride.md)，池化見[池化](pooling.md)，假影怎麼形成見[棋盤狀假影](../concepts/checkerboard-artifacts.md)。
+高頻圖樣為什麼形成，作者說還不完全了解；看起來重要的一部分是有步幅的卷積和池化，它們會在梯度（gradient）裡造成高頻圖樣：反向傳播經過每一個有步幅的卷積或池化，梯度大小都會出現棋盤狀假影（[Feature Visualization](../sources/feature-visualization.md) § The Enemy of Feature Visualization）。步幅見[填充與步幅](padding-and-stride.md)，池化見[池化](pooling.md)，假影怎麼形成見[棋盤狀假影](../concepts/checkerboard-artifacts.md)。
 
 > 原文（feature-visualization）：Each strided convolution or pooling creates checkerboard patterns in the gradient magnitudes when we backprop through it.
 

@@ -24,7 +24,7 @@
 
 > 原文（feature-visualization）：Our experience is broadly consistent with both results; we find that random directions often seem interpretable, but at a lower rate than basis directions.
 
-**5. 不加限制的最佳化會得到雜訊，要靠正則化和預條件。** 直接最佳化會得到滿是雜訊和高頻圖樣的影像（§ The Enemy of Feature Visualization）。壓制方法依正則化強弱排成光譜，中間有頻率懲罰、變換穩健性、學習先驗三類（§ The Spectrum of Regularization；§ Three Families of Regularization）。在去相關的空間裡做梯度下降（預條件）也能減少高頻，結果看起來好很多（§ Preconditioning and Parameterization）。
+**5. 不加限制的最佳化會得到雜訊，要靠正則化和預條件。** 直接最佳化會得到滿是雜訊和高頻圖樣的影像（§ The Enemy of Feature Visualization）。壓制方法依正則化強弱排成光譜，中間有頻率懲罰、變換穩健性、學習先驗三類（§ The Spectrum of Regularization；§ Three Families of Regularization）。在去相關的空間裡做梯度下降（gradient descent）（預條件）也能減少高頻，結果看起來好很多（§ Preconditioning and Parameterization）。
 
 > 原文（feature-visualization）：If you want to get useful visualizations, you need to impose a more natural structure using some kind of prior, regularizer, or constraint.
 

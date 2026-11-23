@@ -4,7 +4,7 @@
 
 ## 一句話
 
-神經網路產生的影像常有棋盤狀假影（checkerboard artifacts），原因是轉置卷積（transposed convolution）的不均勻重疊（uneven overlap）；先放大影像再做卷積（resize-convolution）就能避免；卷積層的梯度裡也有同樣的假影（§ 全文）。
+神經網路產生的影像常有棋盤狀假影（checkerboard artifacts），原因是轉置卷積（transposed convolution）的不均勻重疊（uneven overlap）；先放大影像再做卷積（resize-convolution）就能避免；卷積層的梯度（gradient）裡也有同樣的假影（§ 全文）。
 
 ## 重點
 

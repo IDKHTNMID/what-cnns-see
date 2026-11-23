@@ -35,7 +35,7 @@
 
 > 原文（d2l-ch7）：In this section we derived the structure of convolutional neural networks from first principles.
 
-每種運算都先用小矩陣手算一次（例如 3×3 輸入配 2×2 卷積核），再寫成函式，用圖上的數值驗證輸出；1×1 卷積另外用全連接層實作，確認結果和先前的多通道函式相同（§ 7.2.1. The Cross-Correlation Operation；§ 7.4.3. 1×1 Convolutional Layer；§ 7.5.1. Maximum Pooling and Average Pooling）。邊緣偵測的例子先手動設計卷積核 [1, −1]，再只看輸入輸出對、用平方誤差和梯度把卷積核學回來（§ 7.2.3. Object Edge Detection in Images；§ 7.2.4. Learning a Kernel）。
+每種運算都先用小矩陣手算一次（例如 3×3 輸入配 2×2 卷積核），再寫成函式，用圖上的數值驗證輸出；1×1 卷積另外用全連接層實作，確認結果和先前的多通道函式相同（§ 7.2.1. The Cross-Correlation Operation；§ 7.4.3. 1×1 Convolutional Layer；§ 7.5.1. Maximum Pooling and Average Pooling）。邊緣偵測的例子先手動設計卷積核 [1, −1]，再只看輸入輸出對、用平方誤差和梯度（gradient）把卷積核學回來（§ 7.2.3. Object Edge Detection in Images；§ 7.2.4. Learning a Kernel）。
 
 ## 結論
 

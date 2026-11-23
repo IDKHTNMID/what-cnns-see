@@ -77,7 +77,7 @@ d2l 用邊緣偵測說明卷積核能做什麼。輸入是 6×8 的「影像」�
 
 > 原文（d2l-ch7）：The kernel K only detects vertical edges.
 
-卷積核大了、層數多了，就不可能手動指定每個卷積核該做什麼（[d2l](../sources/d2l-ch7.md) § 7.2.4. Learning a Kernel）。d2l 只用輸入和輸出這組資料，從隨機的卷積核開始，用平方誤差和梯度更新 10 次，學到的卷積核就很接近 $[1, -1]$（[d2l](../sources/d2l-ch7.md) § 7.2.4. Learning a Kernel）。
+卷積核大了、層數多了，就不可能手動指定每個卷積核該做什麼（[d2l](../sources/d2l-ch7.md) § 7.2.4. Learning a Kernel）。d2l 只用輸入和輸出這組資料，從隨機的卷積核開始，用平方誤差和梯度（gradient）更新 10 次，學到的卷積核就很接近 $[1, -1]$（[d2l](../sources/d2l-ch7.md) § 7.2.4. Learning a Kernel）。
 
 > 原文（d2l-ch7）：Indeed, the learned kernel tensor is remarkably close to the kernel tensor K we defined earlier.
 

@@ -86,7 +86,7 @@
 
 > 原文（deconv-checkerboard）：In fact, not only do models with uneven overlap not learn to avoid this, but models with even overlap often learn kernels that cause similar artifacts!
 
-作者認為可能有很多因素，例如 GAN 的鑑別器（discriminator）和它的梯度；但很大一部分問題看起來是轉置卷積本身：最好的情況是很脆弱，即使仔細挑大小，也很容易表示出會產生假影的函數；最壞的情況是產生假影就是它的預設行為（[Deconvolution and Checkerboard Artifacts](../sources/deconv-checkerboard.md) § Overlap & Learning）。
+作者認為可能有很多因素，例如 GAN 的鑑別器（discriminator）和它的梯度（gradient）；但很大一部分問題看起來是轉置卷積本身：最好的情況是很脆弱，即使仔細挑大小，也很容易表示出會產生假影的函數；最壞的情況是產生假影就是它的預設行為（[Deconvolution and Checkerboard Artifacts](../sources/deconv-checkerboard.md) § Overlap & Learning）。
 
 > 原文（deconv-checkerboard）：At best, deconvolution is fragile because it very easily represents artifact creating functions, even when the size is carefully chosen.
 

@@ -11,7 +11,7 @@
 假影出現在兩個地方（[Deconvolution and Checkerboard Artifacts](../sources/deconv-checkerboard.md) § Deconvolution & Overlap；[Deconvolution and Checkerboard Artifacts](../sources/deconv-checkerboard.md) § Artifacts in Gradients）：
 
 - 產生影像時：用轉置卷積（transposed convolution）做上採樣（upsampling），卷積核大小不能被步幅整除時重疊不均勻；二維時兩個軸的不均勻相乘，形成棋盤狀假影，見[上採樣](../methods/upsampling.md)（[Deconvolution and Checkerboard Artifacts](../sources/deconv-checkerboard.md) § Deconvolution & Overlap）。
-- 梯度裡：計算卷積層的梯度時，反向傳播做的是轉置卷積，所以梯度裡也可能出現棋盤狀假影（[Deconvolution and Checkerboard Artifacts](../sources/deconv-checkerboard.md) § Artifacts in Gradients）。
+- 梯度（gradient）裡：計算卷積層的梯度時，反向傳播做的是轉置卷積，所以梯度裡也可能出現棋盤狀假影（[Deconvolution and Checkerboard Artifacts](../sources/deconv-checkerboard.md) § Artifacts in Gradients）。
 
 > 原文（deconv-checkerboard）：This can cause checkerboard patterns in the gradient, just like when we use deconvolution to generate images.
 

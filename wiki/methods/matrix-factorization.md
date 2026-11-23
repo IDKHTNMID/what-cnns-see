@@ -3,7 +3,7 @@
 ## 輸入
 
 - 一張影像在某一層的特徵圖（feature map）（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Making Things Human-Scale）。
-- 要分成幾個群組，以及分解要完整描述什麼：激活值（activation）、梯度或歸因（attribution）（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Making Things Human-Scale）。
+- 要分成幾個群組，以及分解要完整描述什麼：激活值（activation）、梯度（gradient）或歸因（attribution）（[The Building Blocks of Interpretability](../sources/building-blocks.md) § Making Things Human-Scale）。
 
 ## 步驟
 

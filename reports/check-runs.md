@@ -135,3 +135,13 @@ Append-only record of every `scripts/check_all.py` run.
 - check_quotes: 0 problem(s)
 - check_links: 0 problem(s)
 
+## [2026-11-23 13:40] add gradient glossary row | PASS
+
+- check_quotes: 0 problem(s)
+- check_links: 0 problem(s)
+
+## [2026-11-23 13:40] log gradient glossary row | PASS
+
+- check_quotes: 0 problem(s)
+- check_links: 0 problem(s)
+

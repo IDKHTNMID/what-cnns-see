@@ -36,7 +36,7 @@
 - 層：激活網格比較 mixed3a、mixed4a、mixed4d、mixed5a 四層；開頭的互動圖看 mixed4d 的通道（§ What Does the Network See?；§ The Space of Interpretability Interfaces）。
 - 範例：一張有拉布拉多犬的影像，看網路怎麼偵測到垂耳、垂耳又怎麼影響分類（§ The Building Blocks of Interpretability）。
 - 特徵視覺化用以最佳化為基礎的做法，避免假相關（§ Making Sense of Hidden Layers）。
-- 歸因一律用線性近似（linear approximation）；空間歸因時另外處理最大池化的梯度，並抵消棋盤狀假影（§ How Are Concepts Assembled?）。
+- 歸因一律用線性近似（linear approximation）；空間歸因時另外處理最大池化的梯度（gradient），並抵消棋盤狀假影（§ How Are Concepts Assembled?）。
 - 分工：Ian 和 Chris 創了 semantic dictionaries 這個詞；歸因和矩陣分解的程式碼大多是 Chris 寫的（§ Author Contributions）。
 
 > 原文（building-blocks）：In this article, we use GoogLeNet, an image classification model, to demonstrate our interface ideas because its neurons seem unusually semantically meaningful.

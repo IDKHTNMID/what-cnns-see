@@ -28,7 +28,7 @@
 > 原文（d2l-ch7）：Since pooling aggregates information from an area, deep learning frameworks default to matching pooling window sizes and stride.
 
 - 計算感受野時，池化層和卷積層用同一組參數描述，池化窗口的大小就是公式裡的卷積核大小 $k_l$，見[感受野的計算](receptive-field-computation.md)（[Computing Receptive Fields](../sources/computing-receptive-fields.md) § Problem setup）。
-- 反向傳播經過池化時，梯度大小會出現棋盤狀假影；Feature Visualization 說高頻圖樣為什麼形成還不完全清楚，但看起來這是重要原因之一，見[正則化與預條件](regularization-and-preconditioning.md)（[Feature Visualization](../sources/feature-visualization.md) § The Enemy of Feature Visualization）。
+- 反向傳播經過池化時，梯度（gradient）大小會出現棋盤狀假影；Feature Visualization 說高頻圖樣為什麼形成還不完全清楚，但看起來這是重要原因之一，見[正則化與預條件](regularization-and-preconditioning.md)（[Feature Visualization](../sources/feature-visualization.md) § The Enemy of Feature Visualization）。
 - Deconvolution and Checkerboard Artifacts 則認為，最大池化造成的是比較不規則的高頻圖樣；各篇的說法見[棋盤狀假影](../concepts/checkerboard-artifacts.md)的說法不一致段（[Deconvolution and Checkerboard Artifacts](../sources/deconv-checkerboard.md) § Artifacts in Gradients）。
 - Building Blocks 說 GoogLeNet 有步幅的最大池化會在梯度裡帶來很多雜訊和棋盤狀假影。作者做[歸因](attribution.md)時把最大池化的梯度放寬（relaxation）：依激活值比例分給窗口裡的各輸入，不再全部給最大的那個；再把棋盤狀假影抵消掉（[The Building Blocks of Interpretability](../sources/building-blocks.md) § How Are Concepts Assembled?）。
 
