@@ -6,7 +6,7 @@
 
 | 內容 | 位置 |
 |---|---|
-| 教學 HTML 簡報（13 頁） | [deck/index.html](deck/index.html) |
+| 教學 HTML 簡報（13 頁） | [線上簡報](https://idkhtnmid.github.io/what-cnns-see/deck/)（原始檔：[deck/index.html](deck/index.html)） |
 | LLM Wiki（31 頁、名詞表 125 條） | [wiki/index.md](wiki/index.md) |
 | 流程圖與流程說明 | [deck/workflow.md](deck/workflow.md) |
 | 一次實際執行的紀錄與反思 | [deck/reports/run-report.md](deck/reports/run-report.md) |
