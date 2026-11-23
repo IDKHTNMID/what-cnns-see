@@ -178,3 +178,12 @@
 - 更新：`methods/convolution-operation.md` 的公式段補上 d2l 的四個輸出元素算式（19、25、37、43），原本只寫第一步。
 - 原因：簡報第 3 頁要逐步示範卷積，而簡報只能用 Wiki 的內容。
 - 檢查：第 1 輪通過。
+
+## [2026-11-23] ingest | Dive into Deep Learning, Sections 1.1–1.2, 2.4, 3.1 and 5.1
+
+- 原因：使用者看簡報時指出全連接層等名詞新手看不懂；原本 6 篇來源大多預設讀者懂參數、訓練和導數，使用者決定補基礎來源。
+- 新增：`sources/d2l-basics.md`、`concepts/neural-network-basics.md`、`methods/gradient-descent.md`；`raw/d2l-basics/`（4 頁和 `mlp.svg`）。
+- 更新：`glossary.md`、`index.md`、`raw/SOURCES.md`。
+- 名詞決定：使用者確認新增參數、模型、訓練、損失函數、導數、梯度下降、層、全連接層，共 125 條。
+- 說法不一致：神經元在 d2l 的全連接網路裡指一層中算出來的一個單位，在 Feature Visualization 指 CNN 某一層、某個元素、某個通道上的一個值；講 CNN 時以後者為主軸，寫在 `concepts/neural-network-basics.md`。
+- 檢查：第 2 輪通過。第 1 輪有一行公式沒有出處，改成和說明寫在同一段。

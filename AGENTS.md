@@ -108,7 +108,7 @@ reports/check-runs.md        每次檢查的結果（程式自動追加）
   2. 依目前最常用的說法，定一個主名詞。
   3. 別名收進名詞表。
   4. 之後所有頁面都用主名詞。
-- **「最常用」的依據**：先找 6 篇來源本身。來源分不出來，才查外部資料，順序是主流框架官方文件的 API 名稱，再來是教科書或綜述。依據寫進名詞表的「用語依據」欄，填來源出處或外部網址。[#24]
+- **「最常用」的依據**：先找收錄的來源本身。來源分不出來，才查外部資料，順序是主流框架官方文件的 API 名稱，再來是教科書或綜述。依據寫進名詞表的「用語依據」欄，填來源出處或外部網址。[#24]
 - **主名詞要先確認**：在 ingest 討論時提出，使用者確認後才使用。[#24]
 - **說法不同**：寫在該頁的 `## 說法不一致` 段。[#25]
   - 兩種說法並列，各自標出處。
@@ -136,7 +136,7 @@ reports/check-runs.md        每次檢查的結果（程式自動追加）
 
 ## 9. Ingest 流程（一次一篇）
 
-順序：`d2l-ch7` → `computing-receptive-fields` → `feature-visualization` → `deconv-checkerboard` → `building-blocks` → `activation-atlas`。[#28]
+順序：`d2l-ch7` → `computing-receptive-fields` → `feature-visualization` → `deconv-checkerboard` → `building-blocks` → `activation-atlas`；做簡報時再補 `d2l-basics`。[#28]
 
 每篇照下面的步驟：[#27]
 
@@ -171,3 +171,7 @@ reports/check-runs.md        每次檢查的結果（程式自動追加）
 - 不放個人資料和 API 金鑰。[#45]
 - 這個 repo 是獨立的作業：Wiki 的頁面、log 和名詞表只寫在這裡，不寫進使用者的個人知識庫，也不從那裡取材。[#50]
 - 程式碼和 commit message 用英文。
+
+## 12. 簡報
+
+做教學簡報時照 `deck/workflow.md` 的關卡走。簡報只用 `wiki/` 的內容，每句畫面文字都要配 Wiki 依據。

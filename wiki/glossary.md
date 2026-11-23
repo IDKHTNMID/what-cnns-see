@@ -119,3 +119,11 @@
 | 隨機池化 | stochastic pooling | — | 把匯總和隨機化結合的降低解析度做法 | （[d2l](sources/d2l-ch7.md) § 7.5.4. Summary） | 只有一種叫法 |
 | 分數最大池化 | fractional max-pooling | — | 把匯總和隨機化結合的降低解析度做法 | （[d2l](sources/d2l-ch7.md) § 7.5.4. Summary） | 只有一種叫法 |
 | 梯度 | gradient | — | 提高神經元的激活值時，輸出（例如類別 logit）跟著改變多快 | （[The Building Blocks of Interpretability](sources/building-blocks.md) § How Are Concepts Assembled?；[Exploring Neural Networks with Activation Atlases](sources/activation-atlas.md) § Aggregating Multiple Images） | Building Blocks 和 Activation Atlas 都這樣叫（[The Building Blocks of Interpretability](sources/building-blocks.md) § How Are Concepts Assembled?；[Exploring Neural Networks with Activation Atlases](sources/activation-atlas.md) § Aggregating Multiple Images） |
+| 參數 | parameter | — | 決定程式行為的數字，可以想成能轉動的旋鈕 | （[d2l 基礎](sources/d2l-basics.md) § 1.1. A Motivating Example） | 只有一種叫法 |
+| 模型 | model | — | 參數固定下來的程式 | （[d2l 基礎](sources/d2l-basics.md) § 1.1. A Motivating Example） | 只有一種叫法 |
+| 訓練 | training | — | 用資料找出最好的參數值 | （[d2l 基礎](sources/d2l-basics.md) § 1.1. A Motivating Example） | 只有一種叫法 |
+| 損失函數 | loss function | — | 衡量模型做得多差的函數，越低越好 | （[d2l 基礎](sources/d2l-basics.md) § 1.2.3. Objective Functions） | d2l 說目標函數（objective function）習慣上定義成越低越好，所以也叫損失函數（[d2l 基礎](sources/d2l-basics.md) § 1.2.3. Objective Functions） |
+| 導數 | derivative | — | 函數隨輸入改變的變化率 | （[d2l 基礎](sources/d2l-basics.md) § 2.4.1. Derivatives and Differentiation） | 只有一種叫法 |
+| 梯度下降 | gradient descent | — | 每一步看每個參數稍微改變時損失怎麼變，再把參數往損失變低的方向更新 | （[d2l 基礎](sources/d2l-basics.md) § 1.2.4. Optimization Algorithms） | 只有一種叫法 |
+| 層 | layer | — | 神經網路裡的一層計算；每一層把結果交給下一層，直到產生輸出 | （[d2l 基礎](sources/d2l-basics.md) § 5.1.1.2. Incorporating Hidden Layers） | 只有一種叫法 |
+| 全連接層 | fully connected layer | — | 每個輸入都影響這一層每個神經元的層 | （[d2l 基礎](sources/d2l-basics.md) § 5.1.1.2. Incorporating Hidden Layers） | 只有一種叫法 |

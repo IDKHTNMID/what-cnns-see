@@ -2,6 +2,8 @@
 
 ## 基礎（學過 CNN 可跳過）
 
+- [神經網路基礎](concepts/neural-network-basics.md) — 參數、模型、層和全連接層；每一層把結果交給下一層，直到產生輸出
+- [訓練與梯度下降](methods/gradient-descent.md) — 用資料找出最好的參數值；損失函數、導數和梯度下降
 - [卷積層](concepts/convolutional-layer.md) — 從全連接層加上兩個原則推出卷積層，參數從 10¹² 降到 4Δ²
 - [平移不變性](concepts/translation-invariance.md) — 同一塊圖案不管出現在哪裡，早期層的反應都相似
 - [局部性](concepts/locality.md) — 早期層只看局部區域，代價是每個單元只用到局部資訊
@@ -33,6 +35,7 @@
 
 ## 來源
 
+- [d2l 基礎小節（1.1–1.2、2.4、3.1、5.1）](sources/d2l-basics.md) — 參數、訓練、導數、梯度下降和全連接層
 - [d2l 第 7 章（7.1–7.5）](sources/d2l-ch7.md) — CNN 基礎：卷積層、填充與步幅、通道、池化
 - [Computing Receptive Fields（2019）](sources/computing-receptive-fields.md) — 感受野大小與區域的閉式解、多路徑對齊、現代網路的感受野
 - [Feature Visualization（2017）](sources/feature-visualization.md) — 用最佳化看 GoogLeNet 各層在找什麼：目標、多樣性、神經元互動、正則化光譜、預條件

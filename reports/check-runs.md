@@ -155,3 +155,29 @@ Append-only record of every `scripts/check_all.py` run.
 - check_quotes: 0 problem(s)
 - check_links: 0 problem(s)
 
+## [2026-11-23 19:56] pre-publish check after deck stage | PASS
+
+- check_quotes: 0 problem(s)
+- check_links: 0 problem(s)
+
+## [2026-11-23 20:20] ingest d2l-basics round 1 | FAIL (1)
+
+- check_quotes: 1 problem(s)
+  - `wiki/methods/gradient-descent.md:33: no citation`
+- check_links: 0 problem(s)
+
+## [2026-11-23 20:20] ingest d2l-basics round 2 | PASS
+
+- check_quotes: 0 problem(s)
+- check_links: 0 problem(s)
+
+## [2026-11-23 20:21] after ingest d2l-basics | PASS
+
+- check_quotes: 0 problem(s)
+- check_links: 0 problem(s)
+
+## [2026-11-23 21:02] pre-publish final | PASS
+
+- check_quotes: 0 problem(s)
+- check_links: 0 problem(s)
+

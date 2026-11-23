@@ -10,8 +10,9 @@ Manifest of the raw sources. Source files in `raw/` are never edited after they 
 | computing-receptive-fields | Computing Receptive Fields of Convolutional Neural Networks | André Araujo, Wade Norris, Jack Sim | 2019 | https://distill.pub/2019/computing-receptive-fields/ | CC BY 4.0 | 2026-11-22 |
 | deconv-checkerboard | Deconvolution and Checkerboard Artifacts | Augustus Odena, Vincent Dumoulin, Chris Olah | 2016 | https://distill.pub/2016/deconv-checkerboard/ | CC BY 2.0 | 2026-11-22 |
 | d2l-ch7 | Dive into Deep Learning, Chapter 7 (Sections 7.1–7.5) | Aston Zhang, Zachary C. Lipton, Mu Li, Alexander J. Smola | 2023 | https://d2l.ai/chapter_convolutional-neural-networks/ | CC BY-SA 4.0 | 2026-11-22 |
+| d2l-basics | Dive into Deep Learning, Sections 1.1–1.2, 2.4, 3.1 and 5.1 | Aston Zhang, Zachary C. Lipton, Mu Li, Alexander J. Smola | 2023 | https://d2l.ai/ | CC BY-SA 4.0 | 2026-11-23 |
 
-The Distill articles state that diagrams and text are under the licence above "unless noted otherwise"; source code on their GitHub pages is under Apache 2.0. The d2l licence is the LICENSE file of https://github.com/d2l-ai/d2l-en (text CC BY-SA 4.0); d2l pages are stored under `d2l-ch7/` with the site's own folder layout.
+The Distill articles state that diagrams and text are under the licence above "unless noted otherwise"; source code on their GitHub pages is under Apache 2.0. The d2l licence is the LICENSE file of https://github.com/d2l-ai/d2l-en (text CC BY-SA 4.0); d2l pages are stored under `d2l-ch7/` and `d2l-basics/` with the site's own folder layout.
 
 ## Figures not stored here
 
