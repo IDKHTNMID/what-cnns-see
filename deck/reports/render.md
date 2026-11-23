@@ -163,3 +163,30 @@
 
 檢查 13 頁，視窗 1280×720。
 
+## [2026-11-23 23:09] plain-story 13-slide pass 1 | FAIL (4)
+
+檢查 13 頁，視窗 1280×720。
+
+- `p06 content overflow: div.pair-row scrolls`
+- `p11 content overflow: li`
+- `p11 content overflow: div.content.side-wide scrolls`
+- `p11 content overflow: ol.how scrolls`
+
+## [2026-11-23 23:10] plain-story 13-slide pass 2 | PASS
+
+檢查 13 頁，視窗 1280×720。
+
+## [2026-11-23 23:20] plain-story 13-slide pass 3 | FAIL (1)
+
+檢查 13 頁，視窗 1280×720。
+
+- `p06 content overflow: div.pair-row scrolls`
+
+## [2026-11-23 23:20] plain-story 13-slide pass 4 | PASS
+
+檢查 13 頁，視窗 1280×720。
+
+## [2026-11-23 23:23] plain-story 13-slide final | PASS
+
+檢查 13 頁，視窗 1280×720。
+

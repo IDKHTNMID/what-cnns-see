@@ -14,7 +14,7 @@
 ## 第 2 頁：看一張圖，為什麼不把每個像素都接起來？
 
 - 段落：CNN 基礎
-- Wiki：`concepts/neural-network-basics.md`、`concepts/convolutional-layer.md`、`concepts/translation-invariance.md`、`concepts/locality.md`
+- Wiki：`concepts/neural-network-basics.md`、`concepts/convolutional-layer.md`、`concepts/translation-invariance.md`、`concepts/locality.md`、`glossary.md`
 - 圖：`raw/d2l-basics/_images/mlp.svg`
 - 地圖位置：影像 → 低層
 
@@ -28,7 +28,7 @@
 ## 第 4 頁：一層只看一小塊，後面怎麼看得到更大範圍？
 
 - 段落：CNN 基礎
-- Wiki：`concepts/receptive-field.md`、`methods/receptive-field-computation.md`、`methods/padding-and-stride.md`、`methods/pooling.md`、`concepts/channel.md`
+- Wiki：`concepts/receptive-field.md`、`methods/receptive-field-computation.md`
 - 圖：`raw/screenshots/computing-receptive-fields/fig05.png`
 - 地圖位置：低層 → 高層
 
@@ -42,7 +42,7 @@
 ## 第 6 頁：直接調整輸入影像，為什麼只得到雜訊？
 
 - 段落：看神經元
-- Wiki：`methods/regularization-and-preconditioning.md`、`sources/feature-visualization.md`
+- Wiki：`methods/regularization-and-preconditioning.md`、`sources/feature-visualization.md`、`glossary.md`
 - 圖：`raw/screenshots/feature-visualization/fig20.png`、`raw/screenshots/feature-visualization/fig30.png`
 - 地圖位置：中層
 
@@ -84,13 +84,13 @@
 ## 第 12 頁：看懂這些概念之後，能改變它的分類嗎？
 
 - 段落：看一整層
-- Wiki：`concepts/multi-use-features.md`、`sources/activation-atlas.md`
+- Wiki：`concepts/multi-use-features.md`、`sources/activation-atlas.md`、`glossary.md`
 - 圖：無（補丁流程圖；附原文連結）
 - 地圖位置：全部
 
 ## 第 13 頁：最後一問：這些解釋能信到什麼程度？
 
 - 段落：能信多少
-- Wiki：`sources/building-blocks.md`、`sources/feature-visualization.md`、`sources/activation-atlas.md`
+- Wiki：`sources/building-blocks.md`、`sources/feature-visualization.md`、`sources/activation-atlas.md`、`glossary.md`
 - 圖：無（三張限制卡）
 - 地圖位置：全部

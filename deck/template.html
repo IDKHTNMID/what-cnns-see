@@ -304,10 +304,11 @@ h1 {
   transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease;
 }
 .cell.hit { background: var(--primary); border-color: var(--primary); color: #fff; font-weight: 700; }
-.calc-panel { display: grid; grid-template-rows: 1fr auto; gap: 8px; }
-.calc { list-style: none; padding: 0; display: grid; gap: 6px; align-content: center; }
+.calc-panel { display: grid; grid-template-rows: auto 1fr auto; gap: 6px; }
+.calc-rule { font-size: 16.5px; line-height: 1.4; color: var(--muted); }
+.calc { list-style: none; padding: 0; display: grid; gap: 4px; align-content: center; }
 .calc li {
-  font-family: var(--mono); font-size: 18px; padding: 8px 12px;
+  font-family: var(--mono); font-size: 17.5px; padding: 6px 12px;
   border-radius: 6px; border-left: 3px solid transparent; color: var(--muted); white-space: nowrap;
 }
 .calc li.now { background: var(--tint); border-left-color: var(--accent); color: var(--primary); font-weight: 700; }
@@ -319,7 +320,9 @@ h1 {
   grid-column: 1 / -1;
   display: grid; grid-template-columns: 148px auto minmax(0, 1fr); gap: 4px 14px; align-items: center;
   border-left: 4px solid var(--accent);
+  transition: background-color 160ms ease, border-color 160ms ease;
 }
+.edge.now { background: var(--tint-accent); border-color: var(--accent); }
 .edge .lbl { font-size: 15px; font-weight: 700; color: var(--primary); text-align: right; }
 .row { display: grid; grid-auto-flow: column; grid-auto-columns: 40px; gap: 2px; }
 .row .cell { height: 34px; font-size: 17px; border-radius: 4px; }
@@ -327,7 +330,7 @@ h1 {
 .row.bw .cell[data-v="1"] { background: #fff; }
 .row.out { margin-left: 21px; }
 .row.out .cell:not([data-v="0"]) { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 700; }
-.edge .say { grid-column: 3; grid-row: 1 / span 2; font-size: 19px; line-height: 1.45; padding-left: 8px; }
+.edge .say { grid-column: 3; grid-row: 1 / span 2; font-size: 18px; line-height: 1.45; padding-left: 8px; }
 
 /* p6 — Direct Side-by-Side Image/Text Pairs (No Badges Needed) */
 .pair-rows { grid-template-rows: repeat(2, minmax(0, 1fr)); gap: 18px; }
@@ -337,9 +340,9 @@ h1 {
 }
 .pair-row .fig { height: 100%; }
 .pair-text {
-  display: flex; flex-direction: column; gap: 14px;
-  padding: 16px 20px; border-left: 4px solid var(--line);
-  font-size: 19.5px; line-height: 1.55; color: var(--ink);
+  display: flex; flex-direction: column; gap: 10px;
+  padding: 10px 18px; border-left: 4px solid var(--line);
+  font-size: 18.5px; line-height: 1.5; color: var(--ink);
 }
 .pair-good .pair-text { border-left-color: var(--accent); }
 
