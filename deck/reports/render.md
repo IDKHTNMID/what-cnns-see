@@ -108,3 +108,46 @@
 
 檢查 15 頁，視窗 1280×720。
 
+## [2026-11-23 21:31] uiuxpro swiss modernism round 1 | PASS
+
+檢查 15 頁，視窗 1280×720。
+
+## [2026-11-23 21:33] uiuxpro swiss modernism round 2 | PASS
+
+檢查 15 頁，視窗 1280×720。
+
+## [2026-11-23 21:55] structure pass round 1 (bridges & badges) | FAIL (18)
+
+檢查 15 頁，視窗 1280×720。
+
+- `p01 content overflow: h1 scrolls`
+- `p02 content overflow: h1 scrolls`
+- `p03 content overflow: h1 scrolls`
+- `p04 content overflow: h1 scrolls`
+- `p05 content overflow: h1 scrolls`
+- `p06 content overflow: h1 scrolls`
+- `p07 content overflow: li`
+- `p07 content overflow: h1 scrolls`
+- `p07 content overflow: div.content.side-wide scrolls`
+- `p07 content overflow: ol.how scrolls`
+- `p08 content overflow: h1 scrolls`
+- `p09 content overflow: h1 scrolls`
+- `p10 content overflow: h1 scrolls`
+- `p11 content overflow: h1 scrolls`
+- `p12 content overflow: h1 scrolls`
+- `p13 content overflow: h1 scrolls`
+- `p14 content overflow: h1 scrolls`
+- `p15 content overflow: h1 scrolls`
+
+## [2026-11-23 21:55] structure pass round 2 (bridges & badges) | PASS
+
+檢查 15 頁，視窗 1280×720。
+
+## [2026-11-23 21:56] structure pass round 3 (badge flow) | PASS
+
+檢查 15 頁，視窗 1280×720。
+
+## [2026-11-23 22:04] structure pass final | PASS
+
+檢查 15 頁，視窗 1280×720。
+
